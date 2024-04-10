@@ -1,0 +1,46 @@
+---
+title: "What is Drivly Connect?"
+---
+
+import { HeroContent } from "/snippets/hero-content.mdx";
+
+<HeroContent withGrid>
+  <img class="block" src="/images/connect/ConnectHero.svg" alt="Hero Dark" />
+</HeroContent>
+
+
+Use Drivly Connect to sync, analyze and normalize all of your automotive data and systems in one place. Drivly Connect allows users to securely connect all their automotive data and systems in seconds (vs. managing disparate systems the traditional ways). Users simply enter the login credentials associated with their accounts. Before you can make API requests to Drivly, you will need to link your service providers. It’s a simple 3-step process:
+
+1. Select a data or service provider
+2. Sign in
+3. Give consent
+
+We designed Connect in compliance with the OAuth2 authorization protocol to safely handle all credentials for you.
+
+
+<Tip>
+
+  Connect is your gateway to the [Drivly AI](/ai/what-is-drivly-ai) ecosystem (coming soon). If you don't have an account, you can sign up
+  [here](https://www.driv.ly/signup) – it takes less than 1-minute!
+  
+</Tip>
+
+---
+
+## Connect Flow Overview
+
+The Drivly Connect flow starts when a user wants to connect an exsisting data or service provider to their Drivly account. An overview of the process can be found below. To start integrating Drivly Connect make sure you have your `api_key` from your `dashboard`
+
+Before initialising the link flow, ensure you have generated a `user_id` for the specific user. This should be done when a user signs up to your service and is to be stored alongside your user entry in your database. See for more details on how to create a `user_id`.
+
+1. To launch Drivly Connect, first generate a `link_token` by passing the `user_id` to the `/link/token` endpoint.
+
+2. Pass the `link_token` into the Vital link component to open the link for the user. Please note: the `link_token` is a short-lived one-time use token.
+
+3. Use the `onSuccess`, `onError`, `onExit` callbacks to handle different events on your frontend.
+
+<HeroContent withGrid>
+  <img class="block" src="/images/connect/ConnectFlowOverview.png" alt="Hero Dark" />
+</HeroContent>
+
+---

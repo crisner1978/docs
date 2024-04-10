@@ -1,0 +1,391 @@
+---
+title: 'Vehicle Details'
+api: 'GET https://listing.vin/{vin}'
+---
+
+<ParamField path='vin'  type="string">
+  The VIN (Vehicle Identification Number) of the vehicle you want to search for.
+</ParamField>
+
+---
+
+### Response
+
+<ResponseField name="vehicle" type="object" required>
+  The vehicle details.
+
+  <Expandable title="Vehicle body">
+    <ResponseField name="vin" type="string" required>
+      The VIN of the vehicle.
+    </ResponseField>
+    <ResponseField name="year" type="number" required>
+      The year of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="make" type="string" required>
+      The make of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="model" type="string" required>
+      The model of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="trim" type="string" required>
+      The trim of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="series" type="string" required>
+      The series of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="style" type="string" required>
+      The style of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="drivetrain" type="string" required>
+      The drivetrain of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="engine" type="string" required>
+      The engine details of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="transmission" type="string" required>
+      The transmission of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="confidence" type="number" required>
+      The confidence level of the vehicle details.
+    </ResponseField>
+
+    <ResponseField name="interiorColor" type="object" required>
+      The interior color of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="exteriorColor" type="object" required>
+      The exterior color of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="options" type="object" required>
+      The options available for the vehicle.
+    </ResponseField>
+
+    <ResponseField name="baseInvoice" type="number" required>
+      The base invoice price of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="optionsMsrp" type="number" required>
+      The MSRP (Manufacturer's Suggested Retail Price) of the options.
+    </ResponseField>
+
+    <ResponseField name="fuel" type="string" required>
+      The recommended fuel for the vehicle.
+    </ResponseField>
+
+    <ResponseField name="doors" type="number" required>
+      The number of doors of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="seats" type="number" required>
+      The number of seats in the vehicle.
+    </ResponseField>
+  </Expandable>  
+</ResponseField>
+
+<ResponseField name="retailListing" type="object" required>
+  The retail listing details.
+
+  <Expandable title="Retail Listing body">
+    <ResponseField name="used" type="boolean" required>
+      Whether the vehicle is used or not.
+    </ResponseField>
+
+    <ResponseField name="cpo" type="boolean" required>
+      Whether the vehicle is CPO (Certified Pre-Owned) or not.
+    </ResponseField>
+
+    <ResponseField name="price" type="number" required>
+      The price of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="miles" type="number" required>
+      The miles of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="carfax" type="string" required>
+      The Carfax URL of the vehicle.
+    </ResponseField>
+
+    <ResponseField name="photos" type="array" required>
+      The photos of the vehicle.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json Response
+{
+  "vehicle": {
+    "vin": "5UXCW2C02L9B92963",
+    "year": 2020,
+    "make": "BMW",
+    "model": "X7",
+    "trim": "xDrive40i Sports Activity Vehicle",
+    "series": "xDrive40i",
+    "style": "4D SUV",
+    "drivetrain": "AWD",
+    "engine": "3L I-6 gasoline direct injection, DOHC, Double VANOS variable valve control, TwinPower intercooled turbo, premium unleaded, engine with 335HP",
+    "transmission": "8-speed automatic",
+    "confidence": 0.995,
+    "interiorColor": {
+      "Black": "#000000"
+    },
+    "exteriorColor": {
+      "Black Sapphire Metallic": "#121212"
+    },
+    "options": {
+      "328": "Aluminum Running Boards",
+      "453": "Front Ventilated Seats",
+      "456": "Multi-Contour Seats",
+      "100690-BEC0702ZCW": "Cold Weather Package",
+      "4NN": "5-Zone Automatic Climate Control",
+      "4HA": "Front and Rear Heated Seats",
+      "4HB": "Heated Front Seats Armrests and Steering Wheel",
+      "105125-BAA0102ZLS": "Luxury Seating Package",
+      "4T7": "Front Massaging Seats",
+      "4U5": "Second-Row Captain's Chairs"
+    },
+    "baseInvoice": 69225,
+    "optionsMsrp": 1250,
+    "fuel": "Premium Unleaded (Recommended)",
+    "doors": 4,
+    "seats": 7
+  },
+  "retailListing": {
+    "used": true,
+    "cpo": false,
+    "price": 43990,
+    "miles": 61160,
+    "carfax": "https://www.carfax.com/VehicleHistory/p/Report.cfx?vin=5UXCW2C02L9B92963&partner=FRD_2",
+    "photos": []
+  },
+  "specs": {
+    "Power Feature": {
+      "hands-free entry": true,
+      "Reverse tilt passenger only provides curb view when vehicle in reverse": true,
+      "4 one-touch power windows": true,
+      "Heated mirrors": true
+    },
+    "Mechanical Options": {
+      "Integral Active Steering": true,
+      "Remote Engine Start": true,
+      "M Sport Brakes": true
+    },
+    "Rearseats": {
+      "Rear head room": "39.9 in.",
+      "Rear leg room": "37.6 in.",
+      "Rear shoulder room": "58.1 in.",
+      "power folding split-bench third row seats": true,
+      "Split-folding rear seatback": true,
+      "reclining rear seats": true,
+      "folding center armrest": true
+    },
+    "Warranty": {
+      "Basic": "4 yr./ 50000 mi.",
+      "Drivetrain": "4 yr./ 50000 mi.",
+      "Rust": "12 yr./ unlimited mi.",
+      "Roadside": "4 yr./ unlimited mi."
+    },
+    "Measurements": {
+      "Maximum cargo capacity": "90.4 cu.ft.",
+      "Wheelbase": "122.2 in.",
+      "Curb weight": "5370 lbs.",
+      "Gross weight": "6989 lbs.",
+      "Angle of approach": "23.1 degrees",
+      "Maximum payload": "1202 lbs.",
+      "Overall width with mirrors": "87.3 in.",
+      "Length": "203.3 in.",
+      "Angle of departure": "20.5 degrees",
+      "Maximum towing capacity": "7500 lbs.",
+      "Turning circle": "42.8 ft.",
+      "Ground clearance": "8.7 in.",
+      "Height": "71.1 in.",
+      "Overall width without mirrors": "78.7 in."
+    },
+    "Comfort & Convenience": {
+      "front seatback storage": true,
+      "cruise control": true,
+      "front, rear and 3rd row cupholders": true,
+      "leather steering wheel": true,
+      "keyless ignition": true,
+      "rear ventilation ducts with fan control": true,
+      "Four zone climate control": true,
+      "turn signal in mirrors": true,
+      "Dual illuminating vanity mirrors": true,
+      "electrochromatic inside rearview mirror": true,
+      "front and rear door pockets": true,
+      "front and rear parking sensors": true,
+      "power rear seat easy entry": true,
+      "tilt and telescopic steering wheel": true,
+      "electric power steering": true,
+      "rear view camera": true,
+      "universal remote transmitter (for garage door, security system, etc.)": true,
+      "Transmission, cruise and audio controls on steering wheel": true,
+      "interior air filtration": true
+    },
+    "Exterior Options": {
+      "21\" Double-Spoke Bi-Color Orbit Grey Wheels w/All-Season Run-Flat Tires": true,
+      "22\" V-Spoke Bi-Color Black Wheels w/Performance Run-Flat Tires": true,
+      "22\" Multi-Spoke Bi-Color Ferric Grey Wheels w/Performance Run-Flat Tires": true,
+      "21\" Y-Spoke Black Wheels w/All-Season Run-Flat Tires": true,
+      "Trailer Hitch - 7500 lbs. Towing Limit": true,
+      "Aluminum Running Boards": true,
+      "21\" Y-Spoke Bi-Color Ferric Grey Wheels w/All-Season Non Run-Flat Tires": true,
+      "22\" V-Spoke Bi-Color Orbit Grey Wheels w/Performance Run-Flat Tires": true,
+      "Extended Shadowline Trim": true,
+      "Space-Saver Spare": true,
+      "22\" Y-Spoke Bi-Color Orbit Grey Wheels w/Performance Run-Flat Tires": true
+    },
+    "Drive Train": {
+      "Drive type": "all wheel drive",
+      "descent control": true,
+      "Center limited slip differential": true,
+      "Transmission": "8-speed shiftable automatic"
+    },
+    "Suspension": {
+      "four-wheel independent suspension": true,
+      "Front and rear stabilizer bar": true
+    },
+    "Instrumentation": {
+      "clock": true,
+      "compass": true,
+      "external temperature display": true,
+      "trip computer": true,
+      "tachometer": true
+    },
+    "In Car Entertainment": {
+      "AM/FM  stereo": true,
+      "auxiliary audio input and USB with external media control": true,
+      "satellite radio satellite radio": true,
+      "12 months of provided satellite radio service": true,
+      "205 watts stereo output": true,
+      "10 total speakers": true,
+      "USB connection": true
+    },
+    "Frontseats": {
+      "height adjustable passenger seat": true,
+      "sport front seats": true,
+      "multi-level heating driver seat": true,
+      "Front leg room": "39.8 in.",
+      "leatherette": true,
+      "12-way power driver seat": true,
+      "Front head room": "41.9 in.",
+      "height adjustable driver seat": true,
+      "multi-level heating passenger seat": true,
+      "Front shoulder room": "60.0 in.",
+      "Driver seat with power adjustable lumbar support": true,
+      "12-way power passenger seat": true,
+      "Passenger seat with power adjustable lumbar support": true
+    },
+    "Safety & Security Options": {
+      "Night Vision w/Pedestrian Detection": true
+    },
+    "Packages": {
+      "Driving Assistance Professional Package": true,
+      "Luxury Seating Package": true,
+      "Premium Package": true,
+      "Executive Package": true,
+      "M Sport Package": true,
+      "Dynamic Handling Package": true,
+      "Parking Assistance Package": true,
+      "Cold Weather Package": true,
+      "Off-Road Package": true
+    },
+    "Fuel": {
+      "EPA combined MPG": "22 MPG",
+      "EPA city/highway MPG": "20/25 MPG",
+      "Range in miles (city/hwy)": "438.0/547.5 mi.",
+      "Fuel tank capacity": "21.9 gal.",
+      "Fuel type": "premium unleaded (recommended)"
+    },
+    "Telematics": {
+      "Airbag Deployment Notification": true,
+      "Concierge Service": true,
+      "Stolen Vehicle Tracking/Assistance": true,
+      "Roadside Assistance": true,
+      "Mobile Internet (Browser)": true,
+      "Destination Download": true,
+      "Emergency Service": true,
+      "Hands-Free Calling": true,
+      "Destination guidance (also Turn-by-Turn Navigation)": true
+    },
+    "Safety": {
+      "Rear door child safety locks": true,
+      "Turn signal mirrors": true,
+      "daytime running lights": true,
+      "dual front side-mounted airbags": true,
+      "Passenger airbag occupant sensing deactivation": true,
+      "stability control": true,
+      "Rear height adjustable headrests": true,
+      "remote anti-theft alarm system": true,
+      "2 front headrests": true,
+      "3 rear headrests": true,
+      "auto delay off headlamps": true,
+      "tire pressure monitoring": true,
+      "traction control": true,
+      "pre-collision safety system": true,
+      "4-wheel ABS": true,
+      "brake drying": true,
+      "self-leveling headlights": true,
+      "emergency braking preparation": true,
+      "front fog/driving lights": true,
+      "Rear center 3-point belt": true,
+      "post-collision safety system": true,
+      "child seat anchors": true,
+      "front and rear head airbags": true,
+      "Emergency braking assist": true,
+      "adaptive headlights": true,
+      "Front and rear ventilated disc brakes": true,
+      "dusk sensing headlamps": true,
+      "LED headlamp": true,
+      "blind spot and lane departure warnings accident avoidance system": true
+    },
+    "Tires and Wheels": {
+      "Run flat tires": true,
+      "21 x 9.5 in. wheels": true,
+      "painted alloy wheels": true,
+      "285/45R21 tires": true
+    },
+    "Engine": {
+      "Torque": "330 lb-ft @ 1500 rpm",
+      "Base engine size": "3.0 L",
+      "Horsepower": "335 hp @ 5500 rpm",
+      "Valves": "24",
+      "Base engine type": "gas",
+      "direct injection": true,
+      "Valve timing": "Variable",
+      "Cylinders": "inline 6",
+      "Cam type": "Double overhead cam (DOHC)"
+    },
+    "Interior Options": {
+      "Head-Up Display": true,
+      "5-Zone Automatic Climate Control": true,
+      "Anthracite Alcantara Headliner": true,
+      "Multi-Contour Seats": true,
+      "Glass Controls": true,
+      "Heated Front Seat Armrests and Steering Wheel": true,
+      "Leather Dashboard": true,
+      "Harman Kardon Surround Sound System": true,
+      "Ambient Air Package": true,
+      "Alcantara Headliner in Upholstery Color": true,
+      "Rear-Seat Entertainment Professional": true,
+      "Second Row Captain's Chairs": true,
+      "Front Ventilated Seats": true,
+      "Bowers & Wilkins Diamond Surround Sound System": true
+    }
+  }
+}
+```
+
+</ResponseExample>

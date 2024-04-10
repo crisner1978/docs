@@ -1,0 +1,58 @@
+---
+title: 'Overview of the Photos API'
+sidebarTitle: 'Overview'
+description: 'Photos API for vehicle images and visual content.'
+---
+
+<Frame type='glass'>
+  <p class='font-medium text-sm'>
+    <span class='text-primary dark:text-primary-light text-sm font-semibold'>photos.vin</span> is
+    our content delivery network (CDN) for vehicle photos. Enhance your vehicle listings with
+    high-quality images from our database of over 1.5 million vehicles.
+  </p>
+</Frame>
+
+<p class='font-medium'>
+  Drivly's Photos CDN leverages the robust infrastructure of Cloudflare to deliver exceptional
+  vehicle photos. Our CDN incorporates an advanced image optimization layer, guaranteeing swift
+  loading times and an unparalleled user experience. Furthermore, we employ sophisticated analytics
+  techniques to gather valuable insights on photo usage and performance.
+</p>
+
+## Features
+
+- **High-Quality Images**: Access high-quality images for over 1.5 million vehicles.
+- **Fast Delivery**: Deliver images to your users quickly and efficiently.
+- **Stock photos**: Access stock photos for almost every vehicle in the market.
+- **Built-in image optimization**: Automatically, or manually optimize images for faster loading times.
+
+---
+
+## Pricing
+
+While we're in beta, access to the Photos CDN is free. We may introduce pricing in the future, but we'll give you plenty of notice before we do.
+
+### Usage limits
+
+Images are served from a global network of servers, and we don't impose any limits on the number of images you can serve. However, we do have a fair usage policy, and we may contact you if we notice any unusual usage patterns.
+
+---
+
+## Retail & Wholesale Photos
+
+- **Retail Photos**: High-quality images sourced from dealerships, providing accurate representations of vehicles.
+- **Wholesale Photos**: Images sourced from auctions such as Manheim and Adesa, offering a broader selection but with varying quality and accuracy.
+
+<Note>`photos.vin` will provide access to both so you can decide which to use, and where.</Note>
+
+---
+
+## How to access the photos?
+
+The photos are accessible via the `photos.vin` CDN, and the URL is constructed as follows:
+
+```http Get all photos
+https://photos.vin/{vin}
+```
+
+This will return all photos for the VIN, including retail and wholesale photos.

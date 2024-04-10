@@ -1,0 +1,195 @@
+---
+title: 'Search by Year, Make, & Model'
+---
+
+<p class="font-medium">
+  <code class="p-2 flex flex-wrap items-center justify-start">
+    <span class="px-1 py-0.5 mr-2 rounded-[0.3rem] text-[0.55rem] leading-tight font-bold bg-green-400/20 text-green-700 dark:bg-green-400/20 dark:text-green-400 text-base">GET</span>
+    <span>https://listings.vin?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla</span>
+  </code>
+</p>
+
+<ParamField query="vehicle.year" type="number">
+  The year of the vehicle. Example: 2019. If you want to search for a range of years, you can use the format 2019-2021.
+</ParamField>
+
+<ParamField query="vehicle.make" type="string">
+  The make of the vehicle. Example: Toyota.
+</ParamField>
+
+<ParamField query="vehicle.model" type="string">
+  The model of the vehicle. Example: Corolla.
+</ParamField>
+
+
+<ResponseExample>
+```json
+{
+  "data": [
+    {
+      "vin": "2T1BURHE1KC202274",
+      "url": "http://listings.vin/2T1BURHE1KC202274",
+      "retailRandom": 0.9996617230592939,
+      "vehicle": {
+        "vin": "2T1BURHE1KC202274",
+        "squishVin": "2T1BURHEKC",
+        "year": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "SE",
+        "series": "SE 4dr Sedan (1.8L 4cyl 6M)",
+        "bodyStyle": "Car",
+        "type": [
+          "Sedan"
+        ],
+        "style": "Sedan",
+        "drivetrain": "FWD",
+        "engine": "1.8L 4Cyl gasoline",
+        "cylinders": 4,
+        "fuel": "Regular Unleaded",
+        "transmission": "Manual",
+        "confidence": 0.995,
+        "interiorColor": "Black",
+        "exteriorColor": "Blue",
+        "baseMsrp": 21865,
+        "baseInvoice": 20245,
+        "doors": 4,
+        "seats": 5
+      },
+      "retailListing": {
+        "vdp": "/toyota-corolla#vin=2T1BURHE1KC202274",
+        "price": 17900,
+        "miles": 58721,
+        "used": true,
+        "cpo": false,
+        "carfaxUrl": "https://www.carfax.com/VehicleHistory/p/Report.cfx?vin=2T1BURHE1KC202274&partner=FRD_2",
+        "dealer": "Kia of Alhambra",
+        "city": "Alhambra",
+        "state": "CA",
+        "primaryImage": "https://retail.photos.vin/2T1BURHE1KC202274-1.jpg",
+        "photoCount": 30,
+        "margin": null
+      },
+      "score": 4.4302077293396
+    }
+  ],
+  "facets": {
+    "exteriorColor": {
+      "Gray (160)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Gray",
+      "White (142)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=White",
+      "Silver (118)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Silver",
+      "Black (109)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Black",
+      "Red (83)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Red",
+      "Blue (60)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Blue",
+      "Brown (11)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Brown",
+      "Green (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Green",
+      "Gold (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.exteriorColor=Gold"
+    },
+    "trims": {
+      "LE (303)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.trim=LE",
+      "L (225)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.trim=L",
+      "SE (150)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.trim=SE",
+      "XLE (26)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.trim=XLE",
+      "XSE (16)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.trim=XSE",
+      "LE Eco w/Premium Package (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.trim=LE+Eco+w%2FPremium+Package"
+    },
+    "accidents": {
+      "0 (34)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&autocheck.numberOfAccidents=0",
+      "1 (8)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&autocheck.numberOfAccidents=1",
+      "2 (8)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&autocheck.numberOfAccidents=2",
+      "3 (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&autocheck.numberOfAccidents=3"
+    },
+    "states": {
+      "TX (11)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=TX",
+      "FL (10)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=FL",
+      "NJ (5)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=NJ",
+      "CA (4)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=CA",
+      "GA (4)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=GA",
+      "OH (3)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=OH",
+      "PA (3)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=PA",
+      "IL (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=IL",
+      "NY (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=NY",
+      "IN (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=IN",
+      "MD (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=MD",
+      "MI (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=MI",
+      "MN (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=MN",
+      "NC (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=NC",
+      "NV (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=NV",
+      "TN (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=TN",
+      "VA (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&wholesaleListing.state=VA"
+    },
+    "transmissions": {
+      "Automatic (572)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.transmission=Automatic",
+      "Manual (150)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.transmission=Manual"
+    },
+    "interiorColor": {
+      "Black (381)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Black",
+      "Gray (168)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Gray",
+      "Brown (29)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Brown",
+      "Other (7)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Other",
+      "Blue (4)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Blue",
+      "White (4)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=White",
+      "Beige (3)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Beige",
+      "Tan (3)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Tan",
+      "Orange (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.interiorColor=Orange"
+    },
+    "engine": {
+      "1.8L 4Cyl gasoline (615)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.engine=1.8L+4Cyl+gasoline",
+      "1.8L 4Cyl Gasoline (106)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.engine=1.8L+4Cyl+Gasoline"
+    },
+    "series": {
+      "LE 4dr Sedan (1.8L 4cyl CVT) (302)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.series=LE+4dr+Sedan+%281.8L+4cyl+CVT%29",
+      "L 4dr Sedan (1.8L 4cyl CVT) (225)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.series=L+4dr+Sedan+%281.8L+4cyl+CVT%29",
+      "SE 4dr Sedan (1.8L 4cyl 6M) (150)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.series=SE+4dr+Sedan+%281.8L+4cyl+6M%29",
+      "XLE 4dr Sedan (1.8L 4cyl CVT) (26)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.series=XLE+4dr+Sedan+%281.8L+4cyl+CVT%29",
+      "XSE 4dr Sedan (1.8L 4cyl CVT) (16)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.series=XSE+4dr+Sedan+%281.8L+4cyl+CVT%29",
+      "LE Eco w/Premium Package 4dr Sedan (1.8L 4cyl CVT) (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&vehicle.series=LE+Eco+w%2FPremium+Package+4dr+Sedan+%281.8L+4cyl+CVT%29"
+    },
+    "prices": {
+      "5000-6000 (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=5000-6000",
+      "6000-7000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=6000-7000",
+      "7000-8000 (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=7000-8000",
+      "8000-9000 (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=8000-9000",
+      "9000-10000 (4)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=9000-10000",
+      "10000-11000 (8)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=10000-11000",
+      "11000-12000 (22)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=11000-12000",
+      "12000-13000 (56)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=12000-13000",
+      "13000-14000 (60)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=13000-14000",
+      "14000-15000 (67)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=14000-15000",
+      "15000-16000 (87)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=15000-16000",
+      "16000-17000 (81)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=16000-17000",
+      "17000-18000 (79)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=17000-18000",
+      "18000-19000 (69)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=18000-19000",
+      "19000-20000 (62)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=19000-20000",
+      "20000-21000 (34)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=20000-21000",
+      "21000-22000 (14)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=21000-22000",
+      "22000-23000 (7)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=22000-23000",
+      "23000-24000 (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=23000-24000",
+      "24000-25000 (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.price=24000-25000"
+    },
+    "mileage": {
+      "0-7000 (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=0-7000",
+      "7000-13000 (5)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=7000-13000",
+      "13000-19000 (9)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=13000-19000",
+      "19000-25000 (18)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=19000-25000",
+      "25000-32000 (30)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=25000-32000",
+      "32000-38000 (27)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=32000-38000",
+      "38000-44000 (33)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=38000-44000",
+      "44000-50000 (48)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=44000-50000",
+      "50000-57000 (49)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=50000-57000",
+      "57000-63000 (54)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=57000-63000",
+      "63000-69000 (55)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=63000-69000",
+      "69000-75000 (63)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=69000-75000",
+      "75000-82000 (56)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=75000-82000",
+      "82000-88000 (31)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=82000-88000",
+      "88000-94000 (39)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=88000-94000",
+      "94000-100000 (27)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=94000-100000",
+      "100000-107000 (36)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=100000-107000",
+      "107000-113000 (18)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=107000-113000",
+      "113000-119000 (22)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=113000-119000",
+      "119000-125000 (14)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla&retailListing.miles=119000-125000"
+    }
+  }
+}
+```
+</ResponseExample>

@@ -1,0 +1,18 @@
+---
+openapi: get /meetings/versions
+---
+
+      <Accordion title="Usage with the Drivly SDK" icon="code-simple">
+        <Note>
+          <span class="font-medium">Make sure you install our SDK first. You can find out how, and more [here](/commerce/sdk).</span>
+        </Note>
+
+        ```typescript
+        import { SDK } from '@drivly/commerce'
+        import type { meetings } from '@drivly/commerce'
+
+        const sdk = new SDK(...)
+
+        const meetings = await sdk.meetings.find(): Promise<meetings[]>
+        ```
+      </Accordion>

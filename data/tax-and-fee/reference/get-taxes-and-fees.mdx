@@ -1,0 +1,32 @@
+---
+title: 'Get Taxes & Fees'
+api: 'GET https://taxes.vin/{vin}'
+---
+
+<ParamField path="vin" type="string" required>
+  The Vehicle Identification Number (e.g. WP0AF2A99KS165242)
+</ParamField>
+
+<ParamField query="zip" type="number">
+  The ZIP code of the location (e.g. 33132). If not provided, we will use the ZIP code of the request origin.
+</ParamField>
+
+<ParamField query="creditScore" type="number">
+  The buyer’s credit score (e.g. 720)
+</ParamField>
+
+<ParamField query="styleId" type="string">
+  The vehicle style identifier (e.g., 401752745)
+</ParamField>
+
+<ParamField query="listingId" type="string">
+  The listing identifier (e.g., WP0AF2A99KS165242-db7f459d-1c76)
+</ParamField>
+
+<ParamField query="price" type="number">
+  The vehicle price (e.g., 239888)
+</ParamField>
+
+<ParamField query="miles" type="number">
+  The current mileage of the vehicle (e.g. 10616)
+</ParamField>

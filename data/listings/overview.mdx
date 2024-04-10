@@ -1,0 +1,107 @@
+---
+title: 'Overview of the Listings Search API'
+sidebarTitle: 'Overview'
+description: 'Listings Search API for online vehicle listings.'
+---
+
+<Frame type="glass">
+  <p class="font-medium text-sm">
+    <span class="text-primary dark:text-primary-light text-sm font-semibold">listings.vin</span> allows you to supercharge your search experience, find out how we can boost your customer experience today.
+  </p>
+</Frame>
+
+<p class="font-medium">
+  Our listings API is one of the most powerful search engines for vehicles on the market. It allows you to search for vehicles based on a
+  wide range of criteria, including make, model, year, price, and more. You can also filter your search results based on the location of
+  the vehicle, the type of vehicle, and other factors.
+
+With over **1.5 million vehicles** in our database, that are updated daily, you can be sure that you're getting the most
+accurate and up-to-date information available.
+
+</p>
+
+## Features
+
+- **Powerful search**: Our search engine is capable of handling complex queries, so you can find exactly what you're looking for.
+- **Facets**: We'll tell you exactly how many results match each category, so you can quickly narrow down your search.
+
+---
+
+## Searching & Sorting
+
+Listings.vin is a massive collection of listings for cars, however because of its size, its impractical to show your users all the listings at once.
+
+To make it easier to find the right car, our search system supports an extensive set of fields, filters, and sorting options.
+
+All you need to do is append your search to `listings.vin` and we'll take care of the rest:
+
+<p class='font-medium'>
+  <code class='p-2 flex flex-wrap items-center justify-start'>
+    <div class='px-1 py-0.5 mr-2 rounded-[0.3rem] text-[0.55rem] leading-tight font-bold bg-green-400/20 text-green-700 dark:bg-green-400/20 dark:text-green-400 text-base'>GET</div>
+    <span>https://listings.vin/?vehicle.make=ford&vehicle.model=mustang</span>
+  </code>
+</p>
+
+<Card
+  title='Search Listings'
+  icon='magnifying-glass-chart'
+  href='/data/vehicle/listings/reference/search'>
+  View the full list of search parameters and options
+</Card>
+
+---
+
+## Facets
+
+Facets provide a powerful mechanism to analyze the distribution of data based on specific field values. They offer a convenient
+way to identify and retrieve targeted information from search results.
+
+### Utilizing facets
+
+The facets for listings are encapsulated within a dedicated object at the root of each `listings.vin` request, and are named after
+the corresponding field. Each facet is represented as an object, with the field values serving as keys and the count of matching results as values.
+
+```json
+{
+  "data": [...],
+  "facets": {
+    "make": {
+      "Ford (4123)": "http://listings.vin/?vehicle.make=Ford",
+      ...
+    },
+    "model": {
+      "F-150 (54321)": "http://listings.vin/?vehicle.model=F-150",
+    },
+    ...
+  }
+}
+```
+
+### Filtering by facets
+
+The URL returned for each facet value can be used to filter the search results by the corresponding field value. For example,
+clicking on the link for the `Ford` make facet would return all listings for Ford vehicles. This is done to provide a convenient
+way to narrow down the search results based on specific criteria.
+
+---
+
+## Photos
+
+We provide access to the retail and wholesale photos for every listing under our `photos.vin` CDN.
+
+### What is the difference between retail and wholesale photos?
+
+Retail photos are sourced from dealerships and are typically higher quality, and verified to be accurate.
+Wholesale photos on the other hand are sourced from auctions such as Manheim and Adesa, and may not be accurate or up to date.
+
+Learn more about our [Photos API](/data/vehicle/photos/overview).
+
+---
+
+## Pricing
+
+The listings API is free of charge for all users while we're in beta. We may introduce pricing in the future, but we'll give you plenty of notice before we do.
+
+### Usage limits
+
+While we're in beta, there are no usage limits on the listings API. However, as we move towards a production release, we may introduce usage limits to ensure that the service remains performant for all users.

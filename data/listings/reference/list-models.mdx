@@ -1,0 +1,42 @@
+---
+title: 'List Models'
+api: 'GET https://listings.vin/{make}/models'
+---
+
+<ParamField path="make" type="string">
+  The manufacturer / make of the vehicle (Ford, Chevrolet, etc.)
+</ParamField>
+
+## Response
+
+The response will be an array of search results. Each result will contain the text of the search result and the filter object of the search result.
+
+<ResponseField name="data" type="object" required>
+  Key : Value pairs of the make and the number of models available for that make.
+</ResponseField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "data": {
+    "Escape": 1240,
+    "Explorer": 1174,
+    "F150": 771,
+    "Edge": 580,
+    "Mustang": 504,
+    "Fusion": 397,
+    "Focus": 325,
+    "F150 SuperCrew Cab": 285,
+    "Maverick": 272,
+    "EcoSport": 257,
+    "Expedition": 248,
+    "Bronco": 189,
+    "Bronco Sport": 155
+    ...
+  }
+}
+```
+
+</ResponseExample>

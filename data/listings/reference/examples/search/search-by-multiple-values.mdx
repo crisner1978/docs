@@ -1,0 +1,258 @@
+---
+title: 'Search by Multiple Year Make Model / Trim Combinations'
+---
+
+<p class="font-medium">
+  <code class="p-2 flex flex-wrap items-center justify-start">
+    <span class="px-1 py-0.5 mr-2 rounded-[0.3rem] text-[0.55rem] leading-tight font-bold bg-green-400/20 text-green-700 dark:bg-green-400/20 dark:text-green-400 text-base">GET</span>
+    <span class="w-full">https://listings.vin?vehicle.year=2016-2024&vehicle.make=Ford,Chevrolet&vehicle.model=F-150,Silverado</span>
+  </code>
+</p>
+
+You can search for multiple year make model / trim combinations by using the blow parameters, however these
+work for almost all of our fields. For example, you can search for multiple body styles, multiple colors,
+multiple transmission types, etc.
+
+<ParamField query="vehicle.year" type="number">
+  The years of your search, using a range. e.g. 2016-2024
+</ParamField>
+
+<ParamField query="vehicle.make" type="string">
+  The makes of your search, separated by commas. e.g. Ford,Chevrolet
+</ParamField>
+
+<ParamField query="vehicle.model" type="string">
+  The models of your search, separated by commas. e.g. F-150,Silverado
+</ParamField>
+
+<ParamField query="vehicle.trim" type="string">
+  The trims of your search, separated by commas. e.g. XLT,LT
+</ParamField>
+
+<ResponseExample>
+```json
+{
+  "data": [
+    {
+      "vin": "1FTEW1CG1JKD97369",
+      "url": "http://listings.vin/1FTEW1CG1JKD97369",
+      "retailRandom": 0.9999362549024684,
+      "vehicle": {
+        "vin": "1FTEW1CG1JKD97369",
+        "squishVin": "1FTEW1CGJK",
+        "year": 2018,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "XLT",
+        "series": "XLT 4dr SuperCrew 6.5 ft. SB (2.7L 6cyl Turbo 10A)",
+        "bodyStyle": "Truck",
+        "type": [
+          "Truck"
+        ],
+        "style": "Crew Cab Pickup",
+        "drivetrain": "RWD",
+        "engine": "2.7L 6Cyl gasoline",
+        "cylinders": 6,
+        "fuel": "Regular Unleaded",
+        "transmission": "Automatic",
+        "confidence": 0.995,
+        "interiorColor": "Gray",
+        "exteriorColor": "Red",
+        "baseMsrp": 39865,
+        "baseInvoice": 37075,
+        "doors": 4,
+        "seats": 6
+      },
+      "retailListing": {
+        "vdp": "/ford-f+150#vin=1FTEW1CG1JKD97369",
+        "price": 25988,
+        "miles": 85688,
+        "used": true,
+        "cpo": false,
+        "carfaxUrl": "https://www.carfax.com/VehicleHistory/p/Report.cfx?vin=1FTEW1CG1JKD97369&partner=FRD_2",
+        "dealer": "Direct Auto",
+        "city": "Biloxi",
+        "state": "MS",
+        "primaryImage": "https://retail.photos.vin/1FTEW1CG1JKD97369-1.jpg",
+        "photoCount": 39,
+        "margin": null
+      },
+      "score": 5.3890604972839355
+    },
+    ...
+  ],
+  "facets": {
+    "exteriorColor": {
+      "Gray (11260)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Gray",
+      "White (8991)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=White",
+      "Silver (4048)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Silver",
+      "Blue (3338)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Blue",
+      "Black (2866)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Black",
+      "Red (2604)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Red",
+      "Brown (335)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Brown",
+      "Gold (54)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Gold",
+      "Green (32)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Green",
+      "Yellow (7)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Yellow",
+      "Orange (5)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Orange",
+      "Purple (5)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.exteriorColor=Purple"
+    },
+    "fuel": {
+      "Flex-fuel (Unleaded/e85) (20702)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.fuel=Flex-fuel+%28Unleaded%2Fe85%29",
+      "Gasoline (5949)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.fuel=Gasoline",
+      "Regular Unleaded (5496)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.fuel=Regular+Unleaded",
+      "Hybrid (1892)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.fuel=Hybrid",
+      "Diesel (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.fuel=Diesel"
+    },
+    "drivetrain": {
+      "4WD (30091)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.drivetrain=4WD",
+      "RWD (3958)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.drivetrain=RWD"
+    },
+    "accidents": {
+      "0 (400)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&autocheck.numberOfAccidents=0",
+      "1 (92)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&autocheck.numberOfAccidents=1",
+      "2 (18)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&autocheck.numberOfAccidents=2",
+      "3 (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&autocheck.numberOfAccidents=3",
+      "4 (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&autocheck.numberOfAccidents=4"
+    },
+    "cylinders": {
+      "6 (15383)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.cylinders=6",
+      "8 (18055)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.cylinders=8"
+    },
+    "years": {
+      "2024 (7851)": "http://listings.vin/?vehicle.year=2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2023 (13276)": "http://listings.vin/?vehicle.year=2023&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2022 (1826)": "http://listings.vin/?vehicle.year=2022&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2021 (2997)": "http://listings.vin/?vehicle.year=2021&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2020 (2116)": "http://listings.vin/?vehicle.year=2020&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2019 (1751)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2018 (2017)": "http://listings.vin/?vehicle.year=2018&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2017 (1108)": "http://listings.vin/?vehicle.year=2017&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT",
+      "2016 (1109)": "http://listings.vin/?vehicle.year=2016&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT"
+    },
+    "states": {
+      "TX (74)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=TX",
+      "PA (39)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=PA",
+      "NC (38)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=NC",
+      "FL (36)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=FL",
+      "OH (32)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=OH",
+      "IN (26)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=IN",
+      "IL (24)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=IL",
+      "GA (22)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=GA",
+      "SC (22)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=SC",
+      "TN (20)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=TN",
+      "AR (17)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=AR",
+      "NY (17)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=NY",
+      "NJ (14)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=NJ",
+      "AL (12)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=AL",
+      "IA (12)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=IA",
+      "MI (11)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=MI",
+      "VA (11)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=VA",
+      "MO (10)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=MO",
+      "WI (9)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=WI",
+      "LA (8)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=LA",
+      "MA (8)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=MA",
+      "CA (7)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=CA",
+      "KS (6)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=KS",
+      "MN (6)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=MN",
+      "OK (6)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&wholesaleListing.state=OK"
+    },
+    "interiorColor": {
+      "Black (19533)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.interiorColor=Black",
+      "Gray (10665)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.interiorColor=Gray",
+      "Brown (881)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.interiorColor=Brown",
+      "Blue (9)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.interiorColor=Blue",
+      "Red (5)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.interiorColor=Red",
+      "White (4)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.interiorColor=White"
+    },
+    "engine": {
+      "5.0L 8Cyl gasoline (9100)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=5.0L+8Cyl+gasoline",
+      "gasoline (5949)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=gasoline",
+      "3.3L 6Cyl gasoline (5766)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=3.3L+6Cyl+gasoline",
+      "5.0L 8Cyl flex fuel (4474)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=5.0L+8Cyl+flex+fuel",
+      "5.0L 8Cyl hybrid (2596)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=5.0L+8Cyl+hybrid",
+      "2.7L 6Cyl gasoline (2093)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=2.7L+6Cyl+gasoline",
+      "hybrid (1892)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=hybrid",
+      "3.3L 6Cyl flex fuel (727)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=3.3L+6Cyl+flex+fuel",
+      "3.5L 6Cyl gasoline (722)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=3.5L+6Cyl+gasoline",
+      "3.5L 6Cyl flex fuel (346)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=3.5L+6Cyl+flex+fuel",
+      "2.7L 6Cyl flex fuel (267)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=2.7L+6Cyl+flex+fuel",
+      "5.0L 8Cyl diesel (54)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=5.0L+8Cyl+diesel",
+      "2.7L 6Cyl hybrid (52)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=2.7L+6Cyl+hybrid",
+      "2.7L 6Cyl diesel (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=2.7L+6Cyl+diesel",
+      "diesel (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.engine=diesel"
+    },
+    "series": {
+      "XLT 4dr SuperCrew 4WD 6.5 ft. SB (5.0L 8cyl 10A) (15034)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+4WD+6.5+ft.+SB+%285.0L+8cyl+10A%29",
+      "XLT 4dr SuperCrew 4WD 5.5 ft. SB (3.3L 6cyl 10A) (3802)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+4WD+5.5+ft.+SB+%283.3L+6cyl+10A%29",
+      "XLT 4dr SuperCrew 6.5 ft. SB (2.7L 6cyl Turbo 10A) (2023)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+6.5+ft.+SB+%282.7L+6cyl+Turbo+10A%29",
+      "XLT 4dr SuperCrew 4WD 5.5 ft. SB (3.3L 6cyl 6A) (1497)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+4WD+5.5+ft.+SB+%283.3L+6cyl+6A%29",
+      "XLT 4dr SuperCrew 4WD 5.5 ft. SB (3.5L 6cyl 6A) (846)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+4WD+5.5+ft.+SB+%283.5L+6cyl+6A%29",
+      "XLT 4dr SuperCrew 4WD 6.5 ft. SB (5.0L 8cyl 6A) (729)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+4WD+6.5+ft.+SB+%285.0L+8cyl+6A%29",
+      "XLT 4dr SuperCrew 5.5 ft. SB (3.3L 6cyl 10A) (491)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+5.5+ft.+SB+%283.3L+6cyl+10A%29",
+      "XLT 4dr SuperCab 4WD 8 ft. LB (5.0L 8cyl 10A) (335)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+4WD+8+ft.+LB+%285.0L+8cyl+10A%29",
+      "XLT 4dr SuperCab 4WD 6.5 ft. SB (3.3L 6cyl 10A) (265)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+4WD+6.5+ft.+SB+%283.3L+6cyl+10A%29",
+      "XLT 4dr SuperCrew 6.5 ft. SB (2.7L 6cyl Turbo 6A) (255)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+6.5+ft.+SB+%282.7L+6cyl+Turbo+6A%29",
+      "XLT 4dr SuperCab 4WD 6.5 ft. SB (3.3L 6cyl 6A) (219)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+4WD+6.5+ft.+SB+%283.3L+6cyl+6A%29",
+      "XLT 4dr SuperCab 4WD 6.5 ft. SB (3.5L 6cyl 6A) (131)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+4WD+6.5+ft.+SB+%283.5L+6cyl+6A%29",
+      "XLT 4dr SuperCab 4WD 8 ft. LB (5.0L 8cyl 6A) (126)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+4WD+8+ft.+LB+%285.0L+8cyl+6A%29",
+      "XLT 4dr SuperCab 8 ft. LB (2.7L 6cyl Turbo 10A) (97)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+8+ft.+LB+%282.7L+6cyl+Turbo+10A%29",
+      "XLT 4dr SuperCrew 5.5 ft. SB (3.3L 6cyl 6A) (65)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+5.5+ft.+SB+%283.3L+6cyl+6A%29",
+      "XLT 2dr Regular Cab 4WD 8 ft. LB (3.3L 6cyl 10A) (50)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+2dr+Regular+Cab+4WD+8+ft.+LB+%283.3L+6cyl+10A%29",
+      "XLT 4dr SuperCrew 5.5 ft. SB (3.5L 6cyl 6A) (50)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCrew+5.5+ft.+SB+%283.5L+6cyl+6A%29",
+      "XLT 4dr SuperCab 8 ft. LB (2.7L 6cyl Turbo 6A) (38)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+8+ft.+LB+%282.7L+6cyl+Turbo+6A%29",
+      "XLT 4dr SuperCab 6.5 ft. SB (3.3L 6cyl 6A) (36)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+6.5+ft.+SB+%283.3L+6cyl+6A%29",
+      "XLT 2dr Regular Cab 4WD 8 ft. LB (3.3L 6cyl 6A) (24)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+2dr+Regular+Cab+4WD+8+ft.+LB+%283.3L+6cyl+6A%29",
+      "XLT 2dr Regular Cab 8 ft. LB (3.3L 6cyl 6A) (19)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+2dr+Regular+Cab+8+ft.+LB+%283.3L+6cyl+6A%29",
+      "XLT 2dr Regular Cab 4WD 8 ft. LB (3.5L 6cyl 6A) (15)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+2dr+Regular+Cab+4WD+8+ft.+LB+%283.5L+6cyl+6A%29",
+      "XLT 2dr Regular Cab 8 ft. LB (3.3L 6cyl 10A) (15)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+2dr+Regular+Cab+8+ft.+LB+%283.3L+6cyl+10A%29",
+      "XLT 2dr Regular Cab 8 ft. LB (3.5L 6cyl 6A) (15)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+2dr+Regular+Cab+8+ft.+LB+%283.5L+6cyl+6A%29",
+      "XLT 4dr SuperCab 6.5 ft. SB (3.5L 6cyl 6A) (11)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&vehicle.series=XLT+4dr+SuperCab+6.5+ft.+SB+%283.5L+6cyl+6A%29"
+    },
+    "prices": {
+      "5000-13000 (35)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=5000-13000",
+      "13000-20000 (797)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=13000-20000",
+      "20000-27000 (2874)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=20000-27000",
+      "27000-34000 (3568)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=27000-34000",
+      "34000-42000 (3516)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=34000-42000",
+      "42000-49000 (2669)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=42000-49000",
+      "49000-56000 (5857)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=49000-56000",
+      "56000-63000 (9839)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=56000-63000",
+      "63000-71000 (3075)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=63000-71000",
+      "71000-78000 (251)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=71000-78000",
+      "78000-85000 (234)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=78000-85000",
+      "85000-92000 (20)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=85000-92000",
+      "92000-100000 (24)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=92000-100000",
+      "100000-107000 (5)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=100000-107000",
+      "107000-114000 (3)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=107000-114000",
+      "114000-121000 (2)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=114000-121000",
+      "121000-129000 (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=121000-129000",
+      "129000-136000 (1)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=129000-136000",
+      "136000-143000 (0)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=136000-143000",
+      "143000-150000 (0)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.price=143000-150000"
+    },
+    "mileage": {
+      "0-7000 (15059)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=0-7000",
+      "7000-13000 (672)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=7000-13000",
+      "13000-19000 (729)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=13000-19000",
+      "19000-25000 (869)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=19000-25000",
+      "25000-32000 (1048)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=25000-32000",
+      "32000-38000 (817)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=32000-38000",
+      "38000-44000 (721)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=38000-44000",
+      "44000-50000 (744)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=44000-50000",
+      "50000-57000 (792)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=50000-57000",
+      "57000-63000 (754)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=57000-63000",
+      "63000-69000 (612)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=63000-69000",
+      "69000-75000 (611)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=69000-75000",
+      "75000-82000 (661)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=75000-82000",
+      "82000-88000 (517)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=82000-88000",
+      "88000-94000 (486)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=88000-94000",
+      "94000-100000 (497)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=94000-100000",
+      "100000-107000 (478)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=100000-107000",
+      "107000-113000 (368)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=107000-113000",
+      "113000-119000 (309)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=113000-119000",
+      "119000-125000 (285)": "http://listings.vin/?vehicle.year=2016-2024&vehicle.make=Ford%2CChevrolet&vehicle.model=F-150%2CSilverado&vehicle.trim=XLT%2CLT&retailListing.miles=119000-125000"
+    }
+  }
+}
+```
+</ResponseExample>

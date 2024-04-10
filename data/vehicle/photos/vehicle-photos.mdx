@@ -1,0 +1,41 @@
+---
+title: 'Vehicle Photos'
+api: 'GET https://photos.vin/{vin}'
+---
+
+<ParamField path='vin' type='string' required>
+  The Vehicle Identification Number (e.g. WDC0G4KB1KV163662)
+</ParamField>
+
+<ResponseExample>
+```json WDC0G4KB1KV163662
+{
+  "data": {
+    "wholesale": [],
+    "retail": [
+      "https://retail.photos.vin/WDC0G4KB1KV163662-1.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-2.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-3.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-4.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-5.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-6.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-7.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-8.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-9.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-10.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-11.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-12.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-13.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-14.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-15.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-16.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-17.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-18.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-19.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-20.jpg",
+      "https://retail.photos.vin/WDC0G4KB1KV163662-21.jpg"
+    ]
+  }
+}
+```
+</ResponseExample>

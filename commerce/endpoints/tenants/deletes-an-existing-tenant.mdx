@@ -1,0 +1,18 @@
+---
+openapi: delete /tenants/{id}
+---
+
+      <Accordion title="Usage with the Drivly SDK" icon="code-simple">
+        <Note>
+          <span class="font-medium">Make sure you install our SDK first. You can find out how, and more [here](/commerce/sdk).</span>
+        </Note>
+
+        ```typescript
+        import { SDK } from '@drivly/commerce'
+        import type { tenants } from '@drivly/commerce'
+
+        const sdk = new SDK(...)
+
+        const tenants = await sdk.tenants.delete(tenantsId: string): Promise<void>
+        ```
+      </Accordion>

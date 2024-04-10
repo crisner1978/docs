@@ -1,0 +1,71 @@
+---
+title: 'View photo'
+sidebarTitle: 'View photo'
+api: 'GET https://{subdomain}.photos.vin/{vin}-{photoIndex}.jpg'
+---
+
+<Frame type="glass">
+  <p class="font-medium text-sm">
+    <span class="text-primary dark:text-primary-light text-sm font-semibold">photos.vin</span> is our content delivery network (CDN) for vehicle photos. Enhance your vehicle listings with high-quality images from our database of over 1.5 million vehicles.
+  </p>
+</Frame>
+
+<ParamField path="subdomain" type="string">
+  The target subdomain for the image. This is either `wholesale` or `retail`.
+</ParamField>
+
+<ParamField path="vin" type="string">
+  The vehicle identification number (VIN) of the vehicle.
+</ParamField>
+
+<ParamField path="photoIndex" type="number">
+  The index of the photo. The index starts at 1 and goes up to 100.
+</ParamField>
+
+## Query parameters
+
+<ParamField query="w" type="number">
+  The width of the image in pixels. The maximum width is 1920 pixels. If the width is not specified, the original width of the image is used.
+  If combined with the `h` parameter, the image is resized to fit within the specified dimensions while maintaining the original aspect ratio.
+  However, you can also use the `fit` to specify how the image is resized (cover, contain, fill, inside, outside).
+</ParamField>
+
+<ParamField query="h" type="number">
+  The height of the image in pixels. The maximum height is 1920 pixels. If the height is not specified, the original height of the image is used.
+  If combined with the `w` parameter, the image is resized to fit within the specified dimensions while maintaining the original aspect ratio.
+  However, you can also use the `fit` to specify how the image is resized (cover, contain, fill, inside, outside).
+</ParamField>
+
+<ParamField query="fit" type="string" default="cover" placeholder="cover, contain, fill, inside, outside">
+  The fit parameter specifies how the image is resized to fit within the specified dimensions. The following values are supported:
+  - `cover`: The image is resized to fill the specified dimensions while maintaining the original aspect ratio. The image is cropped if necessary. (This is our recommended option.)
+  - `contain`: The image is resized to fit within the specified dimensions while maintaining the original aspect ratio. The image is not cropped.
+  - `fill`: The image is resized to fill the specified dimensions while maintaining the original aspect ratio. The image is not cropped.
+  - `inside`: The image is resized to fit within the specified dimensions while maintaining the original aspect ratio. The image is not cropped.
+  - `outside`: The image is resized to fill the specified dimensions while maintaining the original aspect ratio. The image is cropped if necessary.
+</ParamField>
+
+<ParamField query="quality" type="string">
+  The quality parameter specifies the quality of the image. The value must be a number between 0 and 100. The default value is 85.
+  Only applies to JPEG, WebP, and TIFF images.
+</ParamField>
+ 
+<ParamField query="output" type="string">
+  Encodes the image to a specific format. Accepts `jpg`, `png`, `gif`, `tiff`, `webp` or `json`. If none is given, it will honor the origin image format.
+</ParamField>
+
+<RequestExample>
+
+```bash Basic example
+  curl https://retail.photos.vin/KMHRC8A36RU306739-12.jpg
+```
+
+```bash With h+w
+  curl https://retail.photos.vin/KMHRC8A36RU306739-12.jpg?w=800&h=600
+```
+
+```bash Changing output format
+  curl https://retail.photos.vin/KMHRC8A36RU306739-12.jpg?w=100&h=100&output=webp
+```
+
+</RequestExample>

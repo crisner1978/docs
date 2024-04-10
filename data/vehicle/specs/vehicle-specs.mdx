@@ -1,0 +1,607 @@
+---
+title: Vehicle Specs
+api: 'GET https://specs.vin/{vin}'
+---
+
+<ParamField path="vin" type="string" required>
+  The Vehicle Identification Number (e.g. WP0AF2A99KS165242)
+</ParamField>
+
+<ResponseExample>
+```json Jeep Wrangler (1C4HJXEN5MW592818)
+{
+  "vehicle": {
+    "vin": "1C4HJXEN5MW592818",
+    "year": "2021",
+    "make": "Jeep",
+    "model": "Wrangler"
+  },
+  "specs": {
+    "name": "Unlimited Sahara 4dr SUV 4WD (3.6L 6cyl 6M)",
+    "price": {
+      "baseMsrp": 39770,
+      "baseInvoice": 38022
+    },
+    "totalSeating": 5,
+    "color": {
+      "exterior": [
+        {
+          "name": "Nacho Clear Coat",
+          "rgb": "216,131,11"
+        },
+        {
+          "name": "Snazzberry Pearl Coat",
+          "rgb": "82,16,33"
+        },
+        {
+          "name": "Sting-Gray Clear Coat",
+          "rgb": "58,58,58"
+        },
+        {
+          "name": "Bright White Clear Coat",
+          "rgb": "255,255,255"
+        },
+        {
+          "name": "Black Clear Coat",
+          "rgb": "0,0,0"
+        },
+        {
+          "name": "Billet Silver Metallic Clear Coat",
+          "rgb": "128,132,136"
+        },
+        {
+          "name": "Firecracker Red Clear Coat",
+          "rgb": "177,23,38"
+        },
+        {
+          "name": "Limited Edition Tuscadero Pearl Coat",
+          "rgb": "224,8,84"
+        },
+        {
+          "name": "Granite Crystal Metallic Clear Coat",
+          "rgb": "72,72,72"
+        },
+        {
+          "name": "Hellayella Clear Coat",
+          "rgb": "253,232,45"
+        },
+        {
+          "name": "Sarge Green Clear Coat",
+          "rgb": "84,101,56"
+        }
+      ],
+      "interior": [
+        {
+          "name": "Black/Heritage Tan, cloth",
+          "rgb": "169,141,94"
+        },
+        {
+          "name": "Black/Dark Saddle, leather",
+          "rgb": "0,0,0"
+        },
+        {
+          "name": "Black, cloth",
+          "rgb": "0,0,0"
+        },
+        {
+          "name": "Black, leather",
+          "rgb": "0,0,0"
+        }
+      ]
+    },
+    "features": {
+      "powerFeature": {
+        "handsFreeEntry": true,
+        "2OneTouchPowerWindows": true,
+        "heatedMirrors": true
+      },
+      "mechanicalOptions": {
+        "272": "1 Selec-Trac Full Time 4WD System",
+        "antiSpinDifferentialRearAxle": true,
+        "8SpeedAutomatic850ReTransmission": true,
+        "36LV6VvtETorqueEngine": true,
+        "8SpeedAuto8Hp75Transmission": true,
+        "30LV6TurboDieselEngineW/essG3": true,
+        "engineBlockHeater": true,
+        "20LI4DohcDiTurboEngineW/ess": true,
+        "moparColdAirIntake": true,
+        "remoteStartSystem": true
+      },
+      "rearseats": {
+        "rearHipRoom": "56.7 in.",
+        "splitFoldingRearSeatback": true,
+        "rearHeadRoom": "41.7 in.",
+        "rearLegRoom": "38.3 in.",
+        "rearShoulderRoom": "55.7 in."
+      },
+      "warranty": {
+        "basic": "3 yr./ 36000 mi.",
+        "drivetrain": "5 yr./ 60000 mi.",
+        "rust": "5 yr./ unlimited mi.",
+        "roadsideAssistance": "5 yr./ 60000 mi."
+      },
+      "measurements": {
+        "maximumCargoCapacity": "72.4 cu.ft.",
+        "countryOfFinalAssembly": "United States",
+        "wheelbase": "118.4 in.",
+        "curbWeight": "4263 lbs.",
+        "grossWeight": "5500 lbs.",
+        "cargoCapacity,AllSeatsInPlace": "31.7 cu.ft.",
+        "angleOfApproach": "41.8 degrees",
+        "maximumPayload": "880 lbs.",
+        "length": "188.4 in.",
+        "angleOfDeparture": "36.1 degrees",
+        "maximumTowingCapacity": "3500 lbs.",
+        "turningCircle": "39.4 ft.",
+        "groundClearance": "10.0 in.",
+        "height": "73.6 in.",
+        "overallWidthWithoutMirrors": "73.8 in."
+      },
+      "comfort &Convenience": {
+        "audioAndCruiseControlsOnSteeringWheel": true,
+        "frontSeatbackStorage": true,
+        "cruiseControl": true,
+        "leatherSteeringWheel": true,
+        "keylessIgnition": true,
+        "powerSteering": true,
+        "singleZoneFrontClimateControl": true,
+        "dualIlluminatingVanityMirrors": true,
+        "frontAndRearCupholders": true,
+        "cargoFloorMats": true,
+        "frontAndRearDoorPockets": true,
+        "tiltAndTelescopicSteeringWheel": true,
+        "rearViewCamera": true,
+        "universalRemoteTransmitter (forGarageDoor,SecuritySystem,Etc.)": true,
+        "interiorAirFiltration": true
+      },
+      "exteriorOptions": {
+        "moparMeshSunbonnetTop": true,
+        "18\"X75\"TechGrayMachinedFaceWheels": true,
+        "moparDoorsOffMirrorKit": true,
+        "moparChromeTubeSteps": true,
+        "dualDoorGroupW/premiumUppers": true,
+        "moparAmericanFlagHoodGraphic": true,
+        "moparBlackTubeSteps": true,
+        "mopar1941HoodGraphic": true,
+        "moparHingeGateReinforcement": true,
+        "moparSunriderFliptopForHardtop": true,
+        "dualDoorGroupW/baseUppers": true,
+        "jeepTrailRatedKit": true,
+        "frontLicensePlateBracket": true,
+        "bodyColor3PieceHardTop": true,
+        "skyOneTouchPowerTop": true,
+        "premiumBlackSunriderSoftTop": true,
+        "softTopWindowStorageBag": true,
+        "moparLowerBodySideGraphic": true,
+        "moparSolidSunbonnetTop": true,
+        "premiumTanSunriderSoftTop": true,
+        "moparUpperBodySideGraphic": true,
+        "corningGorillaGlass": true,
+        "black3PieceHardTop": true,
+        "moparHeavyDutyRockSliderW/stepAssist": true
+      },
+      "driveTrain": {
+        "driveType": "four wheel drive",
+        "automaticLockingHubs": true,
+        "manualHiLoGearSelection": true,
+        "transmission": "6-speed manual",
+        "partTime4Wd": true
+      },
+      "suspension": {
+        "frontAndRearStabilizerBar": true
+      },
+      "instrumentation": {
+        "clock": true,
+        "externalTemperatureDisplay": true,
+        "tripComputer": true,
+        "tachometer": true
+      },
+      "inCarEntertainment": {
+        "8TotalSpeakers": true,
+        "am/fmStereo": true,
+        "auxiliaryAudioInputAndUsbWithExternalMediaControl": true,
+        "satelliteRadioSatelliteRadio": true,
+        "6MonthsOfProvidedSatelliteRadioService": true,
+        "usbConnection": true,
+        "androidAuto/appleCarPlay": true
+      },
+      "frontseats": {
+        "frontHeadRoom": "42.6 in.",
+        "bucketFrontSeats": true,
+        "4WayManualPassengerSeatAdjustment": true,
+        "6WayManualDriverSeatAdjustments": true,
+        "heightAdjustableDriverSeat": true,
+        "frontShoulderRoom": "55.7 in.",
+        "frontLegRoom": "41.2 in.",
+        "frontHipRoom": "53.9 in.",
+        "driverSeatWithManualAdjustableLumbarSupport": true,
+        "cloth": true
+      },
+      "safety &SecurityOptions": {
+        "integratedOffRoadCamera": true
+      },
+      "packages": {
+        "advancedSafetyGroup": true,
+        "coldWeatherGroupW/automaticTransmission": true,
+        "safetyGroup": true,
+        "trailerTowAndHdElectricalGroup": true,
+        "quickOrderPackage22G": true,
+        "ledLightingGroup": true,
+        "84\"RadioAndPremiumAudioGroup": true,
+        "coldWeatherGroupW/manualTransmission": true,
+        "smoker'sGroup": true,
+        "quickOrderPackage26G": true,
+        "quickOrderPackage25G": true,
+        "dualTopGroup": true,
+        "quickOrderPackage24G": true,
+        "quickOrderPackage23G": true
+      },
+      "fuel": {
+        "epaCombinedMpg": "19 MPG",
+        "epaCity/highwayMpg": "17/23 MPG",
+        "rangeInMiles (city/hwy)": "365.5/494.5 mi.",
+        "fuelTankCapacity": "21.5 gal.",
+        "fuelType": "regular unleaded"
+      },
+      "safety": {
+        "4WheelAbs": true,
+        "rearDoorChildSafetyLocks": true,
+        "daytimeRunningLights": true,
+        "frontFog/drivingLights": true,
+        "frontHeightAdjustableHeadrests": true,
+        "rearCenter3PointBelt": true,
+        "engineImmobilizer": true,
+        "postCollisionSafetySystem": true,
+        "childSeatAnchors": true,
+        "dualFrontSideMountedAirbags": true,
+        "passengerAirbagOccupantSensingDeactivation": true,
+        "stabilityControl": true,
+        "emergencyBrakingAssist": true,
+        "remoteAntiTheftAlarmSystem": true,
+        "frontAndRearVentilatedDiscBrakes": true,
+        "2FrontHeadrests": true,
+        "3RearHeadrests": true,
+        "duskSensingHeadlamps": true,
+        "autoDelayOffHeadlamps": true,
+        "tirePressureMonitoring": true,
+        "rearFoldingHeadrests": true,
+        "tractionControl": true
+      },
+      "tiresAndWheels": {
+        "255/70R18Tires": true,
+        "outsideRearMountedSpareTire": true,
+        "painted/polishedAlloyWheels": true,
+        "fullsizeMatchingSpareTire": true,
+        "allSeasonTires": true,
+        "18X75InWheels": true
+      },
+      "engine": {
+        "torque": "260 lb-ft @ 4000 rpm",
+        "baseEngineSize": "3.6 L",
+        "horsepower": "285 hp @ 6400 rpm",
+        "valves": "24",
+        "baseEngineType": "gas",
+        "valveTiming": "Variable",
+        "cylinders": "V6",
+        "camType": "Double overhead cam (DOHC)"
+      },
+      "interiorOptions": {
+        "alpinePremiumAudioSystem": true,
+        "remoteProximityKeylessEntry": true,
+        "trailRailManagementSystem": true,
+        "moparPlasticDoorSillGuards": true,
+        "moparCargoTubLiner": true,
+        "moparHardtopHeadliner": true,
+        "moparBlackStitchedLeather": true,
+        "moparBlackPerforatedLeather": true,
+        "moparGrabHandleKit": true,
+        "leatherTrimmedSeatsW/saharaLogo": true,
+        "moparStainlessDoorSillGuards": true
+      }
+    },
+    "orderedFeatures": [
+      {
+        "category": "Fuel",
+        "categoryGroup": "Mechanical",
+        "features": {
+          "fuelType": "Regular unleaded",
+          "epaCity/highwayMpg": "17/23 MPG",
+          "epaCombinedMpg": "19 MPG",
+          "rangeInMiles (city/hwy)": "365.5/494.5 mi.",
+          "fuelTankCapacity": "21.5 gal."
+        }
+      },
+      {
+        "category": "Engine",
+        "categoryGroup": "Mechanical",
+        "features": {
+          "baseEngineSize": "3.6 L",
+          "cylinders": "V6",
+          "baseEngineType": "Gas",
+          "horsepower": "285 hp @ 6400 rpm",
+          "torque": "260 lb-ft @ 4000 rpm",
+          "valves": "24",
+          "camType": "Double overhead cam (DOHC)",
+          "valveTiming": "Variable"
+        }
+      },
+      {
+        "category": "Drive Train",
+        "categoryGroup": "Mechanical",
+        "features": {
+          "transmission": "6-speed manual",
+          "driveType": "Four wheel drive",
+          "partTime4Wd": true,
+          "manualHiLoGearSelection": true,
+          "automaticLockingHubs": true
+        }
+      },
+      {
+        "category": "Suspension",
+        "categoryGroup": "Mechanical",
+        "features": {
+          "frontAndRearStabilizerBar": true
+        }
+      },
+      {
+        "category": "Measurements",
+        "categoryGroup": "Exterior",
+        "features": {
+          "length": "188.4 in.",
+          "overallWidthWithoutMirrors": "73.8 in.",
+          "height": "73.6 in.",
+          "wheelbase": "118.4 in.",
+          "cargoCapacity,AllSeatsInPlace": "31.7 cu.ft.",
+          "maximumCargoCapacity": "72.4 cu.ft.",
+          "turningCircle": "39.4 ft.",
+          "groundClearance": "10.0 in.",
+          "angleOfApproach": "41.8 degrees",
+          "angleOfDeparture": "36.1 degrees",
+          "curbWeight": "4263 lbs.",
+          "maximumTowingCapacity": "3500 lbs.",
+          "maximumPayload": "880 lbs.",
+          "grossWeight": "5500 lbs.",
+          "countryOfFinalAssembly": "United States"
+        }
+      },
+      {
+        "category": "Frontseats",
+        "categoryGroup": "Interior",
+        "features": {
+          "frontHeadRoom": "42.6 in.",
+          "frontLegRoom": "41.2 in.",
+          "frontShoulderRoom": "55.7 in.",
+          "frontHipRoom": "53.9 in.",
+          "cloth": true,
+          "bucketFrontSeats": true,
+          "6WayManualDriverSeatAdjustments": true,
+          "heightAdjustableDriverSeat": true,
+          "driverSeatWithManualAdjustableLumbarSupport": true,
+          "4WayManualPassengerSeatAdjustment": true
+        }
+      },
+      {
+        "category": "Rearseats",
+        "categoryGroup": "Interior",
+        "features": {
+          "rearHeadRoom": "41.7 in.",
+          "rearLegRoom": "38.3 in.",
+          "rearShoulderRoom": "55.7 in.",
+          "rearHipRoom": "56.7 in.",
+          "splitFoldingRearSeatback": true
+        }
+      },
+      {
+        "category": "Safety",
+        "categoryGroup": "Safety",
+        "features": {
+          "postCollisionSafetySystem": true,
+          "dualFrontSideMountedAirbags": true,
+          "passengerAirbagOccupantSensingDeactivation": true,
+          "stabilityControl": true,
+          "tractionControl": true,
+          "childSeatAnchors": true,
+          "rearDoorChildSafetyLocks": true,
+          "4WheelAbs": true,
+          "frontAndRearVentilatedDiscBrakes": true,
+          "emergencyBrakingAssist": true,
+          "tirePressureMonitoring": true,
+          "duskSensingHeadlamps": true,
+          "autoDelayOffHeadlamps": true,
+          "daytimeRunningLights": true,
+          "frontFog/drivingLights": true,
+          "2FrontHeadrests": true,
+          "frontHeightAdjustableHeadrests": true,
+          "3RearHeadrests": true,
+          "rearFoldingHeadrests": true,
+          "rearCenter3PointBelt": true,
+          "remoteAntiTheftAlarmSystem": true,
+          "engineImmobilizer": true
+        }
+      },
+      {
+        "category": "In Car Entertainment",
+        "categoryGroup": "Interior",
+        "features": {
+          "am/fmStereo": true,
+          "8TotalSpeakers": true,
+          "androidAuto/appleCarPlay": true,
+          "usbConnection": true,
+          "auxiliaryAudioInputAndUsbWithExternalMediaControl": true,
+          "satelliteRadioSatelliteRadio": true,
+          "6MonthsOfProvidedSatelliteRadioService": true
+        }
+      },
+      {
+        "category": "Power Feature",
+        "categoryGroup": "Interior",
+        "features": {
+          "2OneTouchPowerWindows": true,
+          "handsFreeEntry": true,
+          "heatedMirrors": true
+        }
+      },
+      {
+        "category": "Comfort & Convenience",
+        "categoryGroup": "Interior",
+        "features": {
+          "keylessIgnition": true,
+          "tiltAndTelescopicSteeringWheel": true,
+          "audioAndCruiseControlsOnSteeringWheel": true,
+          "powerSteering": true,
+          "rearViewCamera": true,
+          "cruiseControl": true,
+          "universalRemoteTransmitter (forGarageDoor,SecuritySystem,Etc.)": true,
+          "frontAndRearCupholders": true,
+          "frontAndRearDoorPockets": true,
+          "frontSeatbackStorage": true,
+          "leatherSteeringWheel": true,
+          "singleZoneFrontClimateControl": true,
+          "interiorAirFiltration": true,
+          "dualIlluminatingVanityMirrors": true,
+          "cargoFloorMats": true
+        }
+      },
+      {
+        "category": "Instrumentation",
+        "categoryGroup": "Interior",
+        "features": {
+          "tripComputer": true,
+          "externalTemperatureDisplay": true,
+          "tachometer": true,
+          "clock": true
+        }
+      },
+      {
+        "category": "Tires and Wheels",
+        "categoryGroup": "Exterior",
+        "features": {
+          "painted/polishedAlloyWheels": true,
+          "18X75InWheels": true,
+          "allSeasonTires": true,
+          "255/70R18Tires": true,
+          "fullsizeMatchingSpareTire": true,
+          "outsideRearMountedSpareTire": true
+        }
+      },
+      {
+        "category": "Warranty",
+        "categoryGroup": "Warranty",
+        "features": {
+          "basic": "3 yr./ 36000 mi.",
+          "drivetrain": "5 yr./ 60000 mi.",
+          "rust": "5 yr./ unlimited mi.",
+          "roadsideAssistance": "5 yr./ 60000 mi."
+        }
+      },
+      {
+        "category": "Mechanical Options",
+        "categoryGroup": "Mechanical",
+        "features": {
+          "272:1SelecTracFullTime4WdSystem": true,
+          "antiSpinDifferentialRearAxle": true,
+          "30LV6TurboDieselEngineW/essG3": true,
+          "8SpeedAuto8Hp75Transmission": true,
+          "moparColdAirIntake": true,
+          "8SpeedAutomatic850ReTransmission": true,
+          "36LV6VvtETorqueEngine": true,
+          "engineBlockHeater": true,
+          "remoteStartSystem": true,
+          "20LI4DohcDiTurboEngineW/ess": true
+        }
+      },
+      {
+        "category": "Packages",
+        "categoryGroup": "Packages",
+        "features": {
+          "smoker'sGroup": true,
+          "advancedSafetyGroup": true,
+          "trailerTowAndHdElectricalGroup": true,
+          "quickOrderPackage25G": true,
+          "safetyGroup": true,
+          "quickOrderPackage26G": true,
+          "dualTopGroup": true,
+          "quickOrderPackage23G": true,
+          "quickOrderPackage22G": true,
+          "quickOrderPackage24G": true,
+          "coldWeatherGroupW/automaticTransmission": true,
+          "84\"RadioAndPremiumAudioGroup": true,
+          "coldWeatherGroupW/manualTransmission": true,
+          "ledLightingGroup": true
+        }
+      },
+      {
+        "category": "Safety & Security Options",
+        "categoryGroup": "Safety",
+        "features": {
+          "integratedOffRoadCamera": true
+        }
+      },
+      {
+        "category": "Interior Options",
+        "categoryGroup": "Interior",
+        "features": {
+          "moparCargoTubLiner": true,
+          "alpinePremiumAudioSystem": true,
+          "leatherTrimmedSeatsW/saharaLogo": true,
+          "moparPlasticDoorSillGuards": true,
+          "remoteProximityKeylessEntry": true,
+          "moparGrabHandleKit": true,
+          "moparStainlessDoorSillGuards": true,
+          "trailRailManagementSystem": true,
+          "moparHardtopHeadliner": true,
+          "moparBlackStitchedLeather": true,
+          "moparBlackPerforatedLeather": true
+        }
+      },
+      {
+        "category": "Exterior Options",
+        "categoryGroup": "Exterior",
+        "features": {
+          "jeepTrailRatedKit": true,
+          "moparAmericanFlagHoodGraphic": true,
+          "moparHeavyDutyRockSliderW/stepAssist": true,
+          "moparBlackTubeSteps": true,
+          "moparChromeTubeSteps": true,
+          "softTopWindowStorageBag": true,
+          "moparSunriderFliptopForHardtop": true,
+          "premiumTanSunriderSoftTop": true,
+          "corningGorillaGlass": true,
+          "moparLowerBodySideGraphic": true,
+          "moparMeshSunbonnetTop": true,
+          "dualDoorGroupW/premiumUppers": true,
+          "premiumBlackSunriderSoftTop": true,
+          "mopar1941HoodGraphic": true,
+          "moparUpperBodySideGraphic": true,
+          "frontLicensePlateBracket": true,
+          "bodyColor3PieceHardTop": true,
+          "moparDoorsOffMirrorKit": true,
+          "black3PieceHardTop": true,
+          "18\"X75\"TechGrayMachinedFaceWheels": true,
+          "dualDoorGroupW/baseUppers": true,
+          "moparHingeGateReinforcement": true,
+          "skyOneTouchPowerTop": true,
+          "moparSolidSunbonnetTop": true
+        }
+      }
+    ],
+    "edmundsTypeCategories": {
+      "suv": {
+        "id": 12,
+        "name": "SUV"
+      },
+      "convertible": {
+        "id": 1,
+        "name": "Convertible"
+      }
+    },
+    "styleAttributes": {
+      "electric": false,
+      "pluginElectric": false,
+      "truck": false
+    }
+  }
+}
+
+```
+</ResponseExample>

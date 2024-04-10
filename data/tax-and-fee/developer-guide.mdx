@@ -1,0 +1,248 @@
+---
+title: 'Getting Started with Taxes & Fees API'
+sidebarTitle: 'Guide'
+---
+
+---
+
+Get up and running with the Taxes & Fees API with our step-by-step guide.
+
+Before you can get started with this guide, you'll need to:
+
+1. [Sign up](https://www.driv.ly/signup) for a Drivly account
+2. Create a [DRIVLY_API_KEY](/commerce/overview#authentication).
+3. Basic understanding of REST APIs.
+4. A secure environment for handling sensitive data.
+
+<p class='font-medium'>
+  Our Taxes & Fees API empowers developers to provide customers accurate cost estimates based on
+  location, credit score, and other factors. This walkthrough guides you through leveraging our API
+  to make informed financial decisions in automotive sales.
+</p>
+
+import { StoryBoard } from '/snippets/story-board.mdx'
+
+<StoryBoard>
+  When Sam decides to purchase a used Porsche 911, understanding the full scope of potential costs,
+  including taxes, fees, and loan payments, becomes crucial.
+</StoryBoard>
+
+This guide will cover:
+
+1. Making the API call
+2. Processing the response
+3. Presenting the results
+
+
+<Steps>
+  <Step title="Making the API Call">
+    With the API key, craft a request to the endpoint with required parameters. 
+    
+    In this example, Sam is interested in a used car withVIN `WP0AF2A99KS165242` and lives in ZIP code `33132`. 
+    
+    Sam has a credit score of `720`.
+
+  <CodeGroup>
+
+```javascript taxes.js
+const vin = 'WP0AF2A99KS165242'
+const url = new URL(`https://taxes.vin/${vin}`)
+
+const params = {
+  zip: '33132',
+  creditScore: '720',
+}
+
+url.search = new URLSearchParams(params).toString()
+
+const headers = {
+  Authorization: 'Bearer YOUR_API_KEY',
+}
+
+fetch(url, { headers }).then((r) => r.json())
+```
+
+```python taxes.py
+
+import requests
+
+vin = "WP0AF2A99KS165242"
+
+url = f"https://taxes.vin/{vin}" #
+
+params = {
+"zip": "33132",
+"creditScore": "720",
+}
+
+headers = { "Authorization": "Bearer YOUR_API_KEY" }
+
+response = requests.get(url, params=params, headers=headers)
+data = response.json()
+
+```
+
+```python taxes.py (async)
+
+import aiohttp
+
+vin = "WP0AF2A99KS165242"
+
+url = f"https://taxes.vin/{vin}"
+
+params = {
+"zip": "33132",
+"creditScore": "720",
+}
+
+headers = {
+"Authorization": "Bearer YOUR_API_KEY"
+}
+
+async def main():
+async with aiohttp.ClientSession() as session:
+async with session.get(url, params=params, headers=headers) as response:
+data = await response.json()
+print(data)
+
+asyncio.run(main()) # Run the event loop using our main function
+
+```
+
+  </CodeGroup>
+
+  </Step>
+  <Step title="Processing the Response">
+    After receiving the response, extract the necessary information to present the taxes, fees, and loan payment calculations to Sam.
+
+  <CodeGroup>
+
+```javascript taxes.js
+const taxes = data.payments.taxes
+const fees = data.payments.fees
+const loanAmount = data.payments.loanAmount
+const monthlyPayment = data.payments.loanMonthlyPayment
+const monthlyPaymentWithTaxes = data.payments.loanMonthlyPaymentWithTaxes
+```
+
+```python taxes.py
+
+taxes = data["payments"]["taxes"]
+fees = data["payments"]["fees"]
+loan_amount = data["payments"]["loanAmount"]
+monthly_payment = data["payments"]["loanMonthlyPayment"]
+monthly_payment_with_taxes = data["payments"]["loanMonthlyPaymentWithTaxes"]
+
+```
+
+  </CodeGroup>
+
+  </Step>
+
+  <Step title="Presenting the Results">
+    Present the taxes, fees, and loan payment calculations to Sam. Sam can now make an informed decision about the potential costs and loan payments for the vehicle.
+
+  <CodeGroup>
+
+```javascript taxes.js
+console.log('Loan Amount:', loanAmount)
+console.log('Monthly Payment (without taxes):', monthlyPayment)
+console.log('Monthly Payment (with taxes):', monthlyPaymentWithTaxes)
+
+console.log('\nTaxes:')
+for (const [key, value] of Object.entries(taxes)) {
+  console.log(' ', key, ': $', value)
+}
+
+console.log('\nFees:')
+for (const [key, value] of Object.entries(fees)) {
+  if (key === 'dmvFeesItemized') {
+    console.log(' DMV Fees Itemized:')
+    for (const dmvFee of value) {
+      console.log(' ', dmvFee.name, ': $', dmvFee.value)
+    }
+  } else {
+    console.log(' ', key, ': $', value)
+  }
+}
+```
+
+```python taxes.py
+
+print(f"Loan Amount: ${loan_amount:.2f}")
+print(f"Monthly Payment (without taxes): ${monthly_payment:.2f}")
+print(f"Monthly Payment (with taxes): ${monthly_payment_with_taxes:.2f}")
+
+print("\nTaxes:")
+for key, value in taxes.items():
+key_formatted = key.replace("SalesTax", " Sales Tax")
+print(f" {key_formatted}: ${value:.2f}")
+key_formatted = key.replace("SalesTax", " Sales Tax")
+print(f" {key_formatted}: ${value:.2f}")
+
+print("\nFees:")
+for key, value in fees.items():
+if key != "dmvFeesItemized":
+print(f" {key}: ${value:.2f}")
+if key != "dmvFeesItemized":
+print(f" {key}: ${value:.2f}")
+
+    else:
+        print("  DMV Fees Itemized:")
+        for dmv_fee in value:
+            print(f"    {dmv_fee['name']}: ${dmv_fee['value']}")
+
+```
+
+  </CodeGroup>
+  </Step>
+</Steps>
+
+## Output
+
+Now, Sam has a clear overview of the costs, taxes, and fees associated with the automotive sale,
+as well as an estimated loan amount and monthly payments. Your application has successfully used
+the Auto Sale Taxes and Fees API to guide Sam through the purchasing process.
+
+```typescript
+
+Loan Amount: $29200.92
+Monthly Payment (without taxes): $430.36
+Monthly Payment (with taxes): $483.53
+
+Taxes:
+citySalesTax: $194.93
+combinedSalesTax: $2663.98
+countySalesTax: $64.97
+districtSalesTax: $844.68
+stateSalesTax: $1559.40
+gasGuzzlerTax: $0.00
+
+Fees:
+titleFee: $23
+registrationFee: $65
+dmvFee: $338.94
+combinedFees: $546.94
+docFee: $120
+DMV Fees Itemized:
+Air Quality Fee: $6
+Alternative Fuel/Technology Fee: $3
+Auto theft deterrence/DUI fee: $2
+Fingerprint ID Fee: $1
+Highway Patrol Fee: $29
+Reflectorized license plate fee: $1
+Service Authority for Freeway Emergencies fee: $1
+Smog Abatement Fee: $12
+Transfer Fee: $15
+Transportation Improvement Fee: $100
+Vehicle License Fee: $168.94
+
+```
+
+---
+
+## Further reading
+
+<Card title='API Reference' icon='link' href='/data/tax-and-fee/reference/get-taxes-and-fees'>
+  Take a look at all of the endpoints and parameters available in the Taxes & Fees API.
+</Card>

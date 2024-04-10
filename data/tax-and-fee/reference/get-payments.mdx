@@ -1,0 +1,293 @@
+---
+title: 'Get Payments'
+api: 'GET https://payments.vin/{vin}'
+---
+
+<ParamField path="vin" type="string" required>
+  The Vehicle Identification Number (e.g. WP0AF2A99KS165242)
+</ParamField>
+
+
+## Response
+
+The response will be an array of search results. Each result will contain the text of the search result and the filter object of the search result.
+
+<ResponseField name="vehicle" type="object" required>
+  The vehicle object contains the vin, year, make, and model of the vehicle.
+
+  <Expandable title="properties">
+    <ResponseField name="vin" type="string">
+      The Vehicle Identification Number (e.g. WP0AF2A99KS165242)
+    </ResponseField>
+    <ResponseField name="year" type="string">
+      The year of the vehicle (e.g. 2021)
+    </ResponseField>
+    <ResponseField name="make" type="string">
+      The make of the vehicle (e.g. Porsche)
+    </ResponseField>
+    <ResponseField name="model" type="string">
+      The model of the vehicle (e.g. 911)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="criteria" type="object" required>
+  The criteria object contains the price, zip, docFee, and tradeIn of the vehicle.
+
+  <Expandable title="properties">
+    <ResponseField name="price" type="number">
+      The price of the vehicle (e.g. 25000)
+    </ResponseField>
+    <ResponseField name="zip" type="string">
+      The zip code of the vehicle (e.g. 43345)
+    </ResponseField>
+    <ResponseField name="docFee" type="number">
+      The doc fee of the vehicle (e.g. 200)
+    </ResponseField>
+    <ResponseField name="tradeIn" type="number">
+      The trade in of the vehicle (e.g. 0)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="paymentsData" type="object" required>
+  The paymentsData object contains the loanAmount, loanMonthlyPayment, loanMonthlyPaymentWithTaxes, totalTaxesAndFees, taxes, fees, calculationCriteria, and limitCriteria of the vehicle.
+
+  <Expandable title="properties">
+    <ResponseField name="loanAmount" type="number">
+      The loan amount of the vehicle (e.g. 27093.5)
+    </ResponseField>
+    <ResponseField name="loanMonthlyPayment" type="number">
+      The loan monthly payment of the vehicle (e.g. 434.23)
+    </ResponseField>
+    <ResponseField name="loanMonthlyPaymentWithTaxes" type="number">
+      The loan monthly payment with taxes of the vehicle (e.g. 470.59)
+    </ResponseField>
+    <ResponseField name="totalTaxesAndFees" type="number">
+      The total taxes and fees of the vehicle (e.g. 2093.5)
+    </ResponseField>
+    <ResponseField name="taxes" type="object">
+      The taxes object contains the citySalesTax, combinedSalesTax, countySalesTax, districtSalesTax, stateSalesTax, and gasGuzzlerTax of the vehicle.
+
+      <Expandable title="properties">
+        <ResponseField name="citySalesTax" type="number">
+          The city sales tax of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="combinedSalesTax" type="number">
+          The combined sales tax of the vehicle (e.g. 1812.5)
+        </ResponseField>
+        <ResponseField name="countySalesTax" type="number">
+          The county sales tax of the vehicle (e.g. 375)
+        </ResponseField>
+        <ResponseField name="districtSalesTax" type="number">
+          The district sales tax of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="stateSalesTax" type="number">
+          The state sales tax of the vehicle (e.g. 1437.5)
+        </ResponseField>
+        <ResponseField name="gasGuzzlerTax" type="number">
+          The gas guzzler tax of the vehicle (e.g. 0)
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="fees" type="object">
+      The fees object contains the titleFee, registrationFee, dmvFee, combinedFees, docFee, and dmvFees of the vehicle.
+
+      <Expandable title="properties">
+        <ResponseField name="titleFee" type="number">
+          The title fee of the vehicle (e.g. 15)
+        </ResponseField>
+        <ResponseField name="registrationFee" type="number">
+          The registration fee of the vehicle (e.g. 46)
+        </ResponseField>
+        <ResponseField name="dmvFee" type="number">
+          The dmv fee of the vehicle (e.g. 20)
+        </ResponseField>
+        <ResponseField name="combinedFees" type="number">
+          The combined fees of the vehicle (e.g. 281)
+        </ResponseField>
+        <ResponseField name="docFee" type="number">
+          The doc fee of the vehicle (e.g. 200)
+        </ResponseField>
+        <ResponseField name="dmvFees" type="object">
+          The dmv fees object contains the Temporary Tag of the vehicle.
+
+          <Expandable title="properties">
+            <ResponseField name="Temporary Tag" type="number">
+              The temporary tag of the vehicle (e.g. 20)
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="calculationCriteria" type="object">
+      The calculationCriteria object contains the numberOfMonths, financeRate, downPayment, tradeIn, tradeInOwedAmount, salesPrice, conditionalIncentiveAmount, primaryIncentiveAmount, docFee, zipCode, styleId, marketValue, withConcreteTaxesAndFees, applyLimits, msrp, and lowerLimit of the vehicle.
+
+      <Expandable title="properties">
+        <ResponseField name="numberOfMonths" type="number">
+          The number of months of the vehicle (e.g. 72)
+        </ResponseField>
+        <ResponseField name="financeRate" type="number">
+          The finance rate of the vehicle (e.g. 7.663)
+        </ResponseField>
+        <ResponseField name="downPayment" type="number">
+          The down payment of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="tradeIn" type="number">
+          The trade in of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="tradeInOwedAmount" type="number">
+          The trade in owed amount of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="salesPrice" type="number">
+          The sales price of the vehicle (e.g. 25000)
+        </ResponseField>
+        <ResponseField name="conditionalIncentiveAmount" type="number">
+          The conditional incentive amount of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="primaryIncentiveAmount" type="number">
+          The primary incentive amount of the vehicle (e.g. 0)
+        </ResponseField>
+        <ResponseField name="docFee" type="number">
+          The doc fee of the vehicle (e.g. 200)
+        </ResponseField>
+        <ResponseField name="zipCode" type="string">
+          The zip code of the vehicle (e.g. 43345)
+        </ResponseField>
+        <ResponseField name="styleId" type="number">
+          The style id of the vehicle (e.g. 401858048)
+        </ResponseField>
+        <ResponseField name="marketValue" type="number">
+          The market value of the vehicle (e.g. 25000)
+        </ResponseField>
+        <ResponseField name="withConcreteTaxesAndFees" type="boolean">
+          The with concrete taxes and fees of the vehicle (e.g. true)
+        </ResponseField>
+        <ResponseField name="applyLimits" type="boolean">
+          The apply limits of the vehicle (e.g. true)
+        </ResponseField>
+        <ResponseField name="msrp" type="number">
+          The msrp of the vehicle (e.g. 25000)
+        </ResponseField>
+        <ResponseField name="lowerLimit" type="boolean">
+          The lower limit of the vehicle (e.g. false)
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="limitCriteria" type="object">
+      The limitCriteria object contains the limitPercentage, limitPrice, and limits of the vehicle.
+
+      <Expandable title="properties">
+        <ResponseField name="limitPercentage" type="number">
+          The limit percentage of the vehicle (e.g. 70)
+        </ResponseField>
+        <ResponseField name="limitPrice" type="number">
+          The limit price of the vehicle (e.g. 25000)
+        </ResponseField>
+        <ResponseField name="limits" type="array">
+          The limits of the vehicle.
+
+          <Expandable title="properties">
+            <ResponseField name="0" type="number">
+              The limit of the vehicle (e.g. 0)
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json Response
+{
+  "vehicle": {
+    "vin": "1C4HJXEN5MW592818",
+    "year": "2021",
+    "make": "Jeep",
+    "model": "Wrangler"
+  },
+  "criteria": {
+    "price": 25000,
+    "zip": "43345",
+    "docFee": 200,
+    "tradeIn": 0
+  },
+  "paymentsData": {
+    "loanAmount": 27093.5,
+    "loanMonthlyPayment": 434.23,
+    "loanMonthlyPaymentWithTaxes": 470.59,
+    "totalTaxesAndFees": 2093.5,
+    "taxes": {
+      "citySalesTax": 0,
+      "combinedSalesTax": 1812.5,
+      "countySalesTax": 375,
+      "districtSalesTax": 0,
+      "stateSalesTax": 1437.5,
+      "gasGuzzlerTax": 0
+    },
+    "fees": {
+      "titleFee": 15,
+      "registrationFee": 46,
+      "dmvFee": 20,
+      "combinedFees": 281,
+      "docFee": 200,
+      "dmvFees": {
+        "Temporary Tag": 20
+      }
+    },
+    "calculationCriteria": {
+      "numberOfMonths": 72,
+      "financeRate": 7.663,
+      "downPayment": 0,
+      "tradeIn": 0,
+      "tradeInOwedAmount": 0,
+      "salesPrice": 25000,
+      "conditionalIncentiveAmount": 0,
+      "primaryIncentiveAmount": 0,
+      "docFee": 200,
+      "zipCode": "43345",
+      "styleId": 401858048,
+      "marketValue": 25000,
+      "withConcreteTaxesAndFees": true,
+      "applyLimits": true,
+      "msrp": 25000,
+      "lowerLimit": false
+    },
+    "limitCriteria": {
+      "limitPercentage": 70,
+      "limitPrice": 25000,
+      "limits": []
+    }
+  },
+  "apr": {
+    "36": 7.644,
+    "48": 7.644,
+    "60": 7.524,
+    "72": 7.663,
+    "84": 8.263
+  },
+  "totalTaxesAndFees": 2093.5,
+  "taxes": {
+    "citySalesTax": 0,
+    "combinedSalesTax": 1812.5,
+    "countySalesTax": 375,
+    "districtSalesTax": 0,
+    "stateSalesTax": 1437.5,
+    "gasGuzzlerTax": 0
+  },
+  "fees": {
+    "titleFee": 15,
+    "registrationFee": 46,
+    "dmvFee": 20,
+    "combinedFees": 281,
+    "docFee": 200,
+    "dmvFees": {
+      "Temporary Tag": 20
+    }
+  }
+}
+```
+
+</ResponseExample>
