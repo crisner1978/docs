@@ -1,0 +1,25 @@
+---
+title: 'API Keys'
+---
+
+Drivly provides a unified API access mechanism for all of our data resources.
+
+## Creating an API Key
+
+To create an API key, navigate to [apikeys.do](https://apikeys.do/api) and click on the `"claim"` link. The UUIDv4 token will be given to you via the URL, and you can use it to authenticate your requests.
+
+## Authenticating Requests
+
+To authenticate your requests, you must include your API key in the `Authorization` header. The value of the `Authorization` header should be `Bearer <API_KEY>`, where `<API_KEY>` is your API key.
+
+#### Query Parameter Authentication
+
+You can also authenticate your requests by including your API key in the `apiKey` query parameter.
+
+```http
+GET https://taxes.vin/:vin?apiKey=your-api-key
+```
+
+## Rate limiting
+
+While we're in beta, we're not enforcing rate limits. We do ask that you be respectful of our resources and not abuse the system.

@@ -1,0 +1,41 @@
+---
+title: "Vehicle OEM Specs"
+api: 'GET https://build.vin/{vin}'
+---
+
+<ParamField path="vin" type="string" required>
+  The Vehicle Identification Number (e.g. WP0AF2A99KS165242)
+</ParamField>
+
+<ResponseExample>
+```json Jeep Wrangler (1C4HJXEN5MW592818)
+{
+  "build": {
+    "vin": "1C4HJXEN5MW592818",
+    "year": "2021",
+    "make": "Jeep",
+    "model": "Wrangler Unlimited",
+    "trim": "Unlimited Sahara 4x4",
+    "series": "Sahara 4x4",
+    "style": "4D SUV",
+    "drivetrain": "4x4",
+    "engine": "2L I-4 gasoline direct injection, DOHC, intercooled turbo, engine with 270HP",
+    "transmission": "6-Speed M/T",
+    "confidence": 0.995,
+    "interiorColor": {
+      "Black": "#000000"
+    },
+    "exteriorColor": {
+      "Bright White Clearcoat": "#E3E7E4"
+    },
+    "options": {
+      "DFT": "8-Speed Automatic Transmission",
+      "DRZ": "Dana M200 Rear Axle",
+      "BNK": "Selec-Speed Control",
+      "HT1": "Black 3-Piece Hard Top"
+    },
+    "optionsMsrp": 4095
+  }
+}
+```
+</ResponseExample>

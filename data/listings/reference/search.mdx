@@ -1,0 +1,491 @@
+---
+title: 'Search Listings'
+sidebarTitle: 'Search'
+api: 'GET https://listings.vin'
+---
+
+<ParamField query="vehicle.year" type="number">
+  The year of the vehicle you are searching for. You can use this parameter to search for vehicles from a specific year, such as 2018, or you can use a range query: `vehicle.year=2018-2020`.
+</ParamField>
+
+<ParamField query="vehicle.make" type="string">
+  The make of the vehicle you are searching for. You can use this parameter to search for vehicles from a specific manufacturer, such as Ford, Chevrolet, or Toyota.
+  Use a comma to search more than one make at once, e.g. `vehicle.make=Ford,Chevrolet`.
+</ParamField>
+
+<ParamField query="vehicle.model" type="string">
+  The model of the vehicle you are searching for. You can use this parameter to search for vehicles from a specific model, such as F-150, Silverado, or Camry.
+  Use a comma to search more than one model at once, e.g. `vehicle.model=F-150,Silverado`.
+</ParamField>
+
+<ParamField query="vehicle.trim" type="string">
+  The trim of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific trim, such as XLT, LT, or LE.
+  Use a comma to search more than one trim at once, e.g. `vehicle.trim=XLT,LT`.
+</ParamField>
+
+<ParamField query="vehicle.bodyStyle" type="string">
+  The body style of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific body style, such as sedan, coupe, or SUV.
+  Use a comma to search more than one body style at once, e.g. `vehicle.bodyStyle=sedan,coupe`.
+</ParamField>
+
+<ParamField query="vehicle.engine" type="string">
+  The size of engine of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific engine size, such as 2.0L, 3.5L, or 5.7L.
+  Use a comma to search more than one engine size at once, e.g. `vehicle.engine=2.0L,3.5L`.
+</ParamField>
+
+<ParamField query="vehicle.transmission" type="string">
+  The transmission of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific transmission, such as automatic, manual, or CVT.
+  Use a comma to search more than one transmission at once, e.g. `vehicle.transmission=automatic,manual`.
+</ParamField>
+
+<ParamField query="vehicle.interiorColor" type="string">
+  The interior color of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific interior color, such as black, gray, or beige.
+  Use a comma to search more than one interior color at once, e.g. `vehicle.interiorColor=black,gray`.
+</ParamField>
+
+<ParamField query="vehicle.exteriorColor" type="string">
+  The exterior color of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific exterior color, such as white, black, or silver.
+  Use a comma to search more than one exterior color at once, e.g. `vehicle.exteriorColor=white,black`.
+</ParamField>
+
+<ParamField query="vehicle.doors" type="number">
+  The number of doors of the vehicle you are searching for. You can use this parameter to search for vehicles with a specific number of doors, such as 2, 4, or 5.
+</ParamField>
+
+### Wholesale-specific parameters
+
+<ParamField query="wholesaleListing.buyNowPrice" type="number">
+  The price offered by our wholesale partners to purchase the vehicle immediately. You can use this parameter to search for vehicles based on their buy now price, such as `wholesaleListing.buyNowPrice=10000-20000`.
+</ParamField>
+
+<ParamField query="wholesaleListing.state" type="string">
+  The state where the vehicle is located. You can use this parameter to search for vehicles based on their location, such as `wholesaleListing.state=CA`.
+</ParamField>
+
+<ParamField query="wholesaleListing.miles" type="number">
+  The odometer reading of the vehicle. You can use this parameter to search for vehicles based on their mileage, such as `wholesaleListing.miles=10000-20000`.
+  This may not be available for all vehicles, as well as different sources may provide different mileage readings (retail listing may have a different number).
+</ParamField>
+
+### Retail-specific parameters
+
+<ParamField query="retailListing.price" type="number">
+  The price of the vehicle. You can use this parameter to search for vehicles based on their price, such as `retailListing.price=10000-20000`.
+</ParamField>
+
+<ParamField query="retailListing.state" type="string">
+  The state where the vehicle is located. You can use this parameter to search for vehicles based on their location, such as `retailListing.state=CA`.
+</ParamField>
+
+<ParamField query="retailListing.miles" type="number">
+  The odometer reading of the vehicle. You can use this parameter to search for vehicles based on their mileage, such as `retailListing.miles=10000-20000`.
+  This may not be available for all vehicles, as well as different sources may provide different mileage readings (wholesale listing may have a different number).
+</ParamField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "api": {
+    "icon": "🚗",
+    "name": "listings.vin",
+    "description": "Driv.ly VIN database"
+  },
+  "total": 1355694,
+  "links": {
+    "self": "http://listings.vin/?undefined",
+    "next": "https://listings.vin/?page=2",
+    "last": "https://listings.vin/?page=13557"
+  },
+  "data": [
+    {
+      "vin": "1C4RJGDG1N8599004",
+      "url": "http://listings.vin/1C4RJGDG1N8599004",
+      "retailRandom": 0.9999989870100219,
+      "vehicle": {
+        "vin": "1C4RJGDG1N8599004",
+        "squishVin": "1C4RJGDGN8",
+        "year": 2022,
+        "make": "Jeep",
+        "model": "Grand Cherokee",
+        "trim": "Overland",
+        "series": "Overland 4dr SUV (3.6L 6cyl 8A)",
+        "bodyStyle": "SUV",
+        "type": [
+          "Crossover",
+          "Performance/Sports",
+          "SUV"
+        ],
+        "style": "4dr SUV",
+        "drivetrain": "RWD",
+        "engine": "3.6L 6Cyl gasoline",
+        "cylinders": 6,
+        "fuel": "Regular Unleaded",
+        "transmission": "Automatic",
+        "confidence": 0.995,
+        "interiorColor": "Gray",
+        "exteriorColor": "Gray",
+        "baseMsrp": 54240,
+        "baseInvoice": 52180,
+        "doors": 4,
+        "seats": 5
+      },
+      "retailListing": {
+        "vdp": "/jeep-grand+cherokee#vin=1C4RJGDG1N8599004",
+        "price": 43991,
+        "miles": 31468,
+        "used": true,
+        "cpo": false,
+        "carfaxUrl": "https://www.carfax.com/VehicleHistory/p/Report.cfx?vin=1C4RJGDG1N8599004&partner=FRD_2",
+        "dealer": "Toyota of Fort Walton Beach",
+        "city": "Fort Walton Beach",
+        "state": "FL",
+        "primaryImage": "https://retail.photos.vin/1C4RJGDG1N8599004-1.jpg",
+        "photoCount": 18,
+        "margin": null
+      },
+      "score": 3
+    },
+    ...
+  ],
+  "facets": {
+    "models": {
+      "Silverado 1500 (41771)": "http://listings.vin/?vehicle.model=Silverado+1500",
+      "F-150 (37640)": "http://listings.vin/?vehicle.model=F-150",
+      "Rogue (32078)": "http://listings.vin/?vehicle.model=Rogue",
+      "1500 (29658)": "http://listings.vin/?vehicle.model=1500",
+      "Equinox (29366)": "http://listings.vin/?vehicle.model=Equinox",
+      "Explorer (27732)": "http://listings.vin/?vehicle.model=Explorer",
+      "Civic (25669)": "http://listings.vin/?vehicle.model=Civic",
+      "Grand Cherokee (24599)": "http://listings.vin/?vehicle.model=Grand+Cherokee",
+      "CR-V (22019)": "http://listings.vin/?vehicle.model=CR-V",
+      "Altima (21222)": "http://listings.vin/?vehicle.model=Altima",
+      "CX-5 (21123)": "http://listings.vin/?vehicle.model=CX-5",
+      "Wrangler Unlimited (21098)": "http://listings.vin/?vehicle.model=Wrangler+Unlimited",
+      "Compass (21018)": "http://listings.vin/?vehicle.model=Compass",
+      "Sentra (20469)": "http://listings.vin/?vehicle.model=Sentra",
+      "Charger (19827)": "http://listings.vin/?vehicle.model=Charger",
+      "Terrain (16812)": "http://listings.vin/?vehicle.model=Terrain",
+      "Accord (16751)": "http://listings.vin/?vehicle.model=Accord",
+      "Tucson (16169)": "http://listings.vin/?vehicle.model=Tucson",
+      "Challenger (14602)": "http://listings.vin/?vehicle.model=Challenger",
+      "Elantra (14056)": "http://listings.vin/?vehicle.model=Elantra",
+      "Sportage (13592)": "http://listings.vin/?vehicle.model=Sportage",
+      "Sierra 1500 (13509)": "http://listings.vin/?vehicle.model=Sierra+1500",
+      "Frontier (13297)": "http://listings.vin/?vehicle.model=Frontier",
+      "HR-V (13210)": "http://listings.vin/?vehicle.model=HR-V",
+      "Forte (12508)": "http://listings.vin/?vehicle.model=Forte"
+    },
+    "types": {
+      "SUV (671131)": "http://listings.vin/?vehicle.type=SUV",
+      "Crossover (620120)": "http://listings.vin/?vehicle.type=Crossover",
+      "Performance/Sports (269008)": "http://listings.vin/?vehicle.type=Performance%2FSports",
+      "Sedan (261607)": "http://listings.vin/?vehicle.type=Sedan",
+      "Luxury (194671)": "http://listings.vin/?vehicle.type=Luxury",
+      "Truck (178478)": "http://listings.vin/?vehicle.type=Truck",
+      "Hybrid (58998)": "http://listings.vin/?vehicle.type=Hybrid",
+      "Hatchback (56730)": "http://listings.vin/?vehicle.type=Hatchback",
+      "Convertible (51660)": "http://listings.vin/?vehicle.type=Convertible",
+      "Wagon (49172)": "http://listings.vin/?vehicle.type=Wagon",
+      "Minivan (47508)": "http://listings.vin/?vehicle.type=Minivan",
+      "Coupe (41707)": "http://listings.vin/?vehicle.type=Coupe",
+      "Electric (26907)": "http://listings.vin/?vehicle.type=Electric",
+      "Diesel (2690)": "http://listings.vin/?vehicle.type=Diesel"
+    },
+    "exteriorColor": {
+      "White (337872)": "http://listings.vin/?vehicle.exteriorColor=White",
+      "Black (287042)": "http://listings.vin/?vehicle.exteriorColor=Black",
+      "Gray (259396)": "http://listings.vin/?vehicle.exteriorColor=Gray",
+      "Silver (124156)": "http://listings.vin/?vehicle.exteriorColor=Silver",
+      "Blue (123080)": "http://listings.vin/?vehicle.exteriorColor=Blue",
+      "Red (113639)": "http://listings.vin/?vehicle.exteriorColor=Red",
+      "Green (18370)": "http://listings.vin/?vehicle.exteriorColor=Green",
+      "Brown (15742)": "http://listings.vin/?vehicle.exteriorColor=Brown",
+      "Orange (6886)": "http://listings.vin/?vehicle.exteriorColor=Orange",
+      "Yellow (4986)": "http://listings.vin/?vehicle.exteriorColor=Yellow",
+      "Gold (3151)": "http://listings.vin/?vehicle.exteriorColor=Gold",
+      "Purple (2793)": "http://listings.vin/?vehicle.exteriorColor=Purple",
+      "Other (692)": "http://listings.vin/?vehicle.exteriorColor=Other",
+      "Tan (327)": "http://listings.vin/?vehicle.exteriorColor=Tan",
+      "Burgundy (32)": "http://listings.vin/?vehicle.exteriorColor=Burgundy",
+      "Teal (15)": "http://listings.vin/?vehicle.exteriorColor=Teal",
+      "Beige (6)": "http://listings.vin/?vehicle.exteriorColor=Beige",
+      "Turquoise (1)": "http://listings.vin/?vehicle.exteriorColor=Turquoise"
+    },
+    "fuel": {
+      "Regular Unleaded (903258)": "http://listings.vin/?vehicle.fuel=Regular+Unleaded",
+      "Premium Unleaded (Recommended) (172041)": "http://listings.vin/?vehicle.fuel=Premium+Unleaded+%28Recommended%29",
+      "Premium Unleaded (Required) (93904)": "http://listings.vin/?vehicle.fuel=Premium+Unleaded+%28Required%29",
+      "Flex-fuel (Unleaded/e85) (70621)": "http://listings.vin/?vehicle.fuel=Flex-fuel+%28Unleaded%2Fe85%29",
+      "Gasoline (57380)": "http://listings.vin/?vehicle.fuel=Gasoline",
+      "Electric (30378)": "http://listings.vin/?vehicle.fuel=Electric",
+      "Flex Fuel (5448)": "http://listings.vin/?vehicle.fuel=Flex+Fuel",
+      "Hybrid (3862)": "http://listings.vin/?vehicle.fuel=Hybrid",
+      "Diesel (3270)": "http://listings.vin/?vehicle.fuel=Diesel",
+      "Flex-fuel (Premium Unleaded Recommended/e85) (510)": "http://listings.vin/?vehicle.fuel=Flex-fuel+%28Premium+Unleaded+Recommended%2Fe85%29",
+      "Plug-in Hybrid (503)": "http://listings.vin/?vehicle.fuel=Plug-in+Hybrid",
+      "Flex (193)": "http://listings.vin/?vehicle.fuel=Flex",
+      "Flex-fuel (Premium Unleaded Required/e85) (142)": "http://listings.vin/?vehicle.fuel=Flex-fuel+%28Premium+Unleaded+Required%2Fe85%29",
+      "Hydrogen (25)": "http://listings.vin/?vehicle.fuel=Hydrogen",
+      "Natural Gas (17)": "http://listings.vin/?vehicle.fuel=Natural+Gas",
+      "Gasoline Hybrid (2)": "http://listings.vin/?vehicle.fuel=Gasoline+Hybrid",
+      "Flex-fuel (Unleaded/natural Gas) (1)": "http://listings.vin/?vehicle.fuel=Flex-fuel+%28Unleaded%2Fnatural+Gas%29",
+      "Not Specified (1)": "http://listings.vin/?vehicle.fuel=Not+Specified"
+    },
+    "makes": {
+      "Chevrolet (174023)": "http://listings.vin/?vehicle.make=Chevrolet",
+      "Ford (142467)": "http://listings.vin/?vehicle.make=Ford",
+      "Nissan (141689)": "http://listings.vin/?vehicle.make=Nissan",
+      "Honda (120654)": "http://listings.vin/?vehicle.make=Honda",
+      "Jeep (114363)": "http://listings.vin/?vehicle.make=Jeep",
+      "Hyundai (96235)": "http://listings.vin/?vehicle.make=Hyundai",
+      "Kia (79474)": "http://listings.vin/?vehicle.make=Kia",
+      "Dodge (52520)": "http://listings.vin/?vehicle.make=Dodge",
+      "GMC (52114)": "http://listings.vin/?vehicle.make=GMC",
+      "Mazda (51558)": "http://listings.vin/?vehicle.make=Mazda",
+      "Ram (41203)": "http://listings.vin/?vehicle.make=Ram",
+      "BMW (35798)": "http://listings.vin/?vehicle.make=BMW",
+      "Buick (30905)": "http://listings.vin/?vehicle.make=Buick",
+      "Audi (28149)": "http://listings.vin/?vehicle.make=Audi",
+      "Mercedes-Benz (27869)": "http://listings.vin/?vehicle.make=Mercedes-Benz",
+      "Lexus (24123)": "http://listings.vin/?vehicle.make=Lexus",
+      "Chrysler (18261)": "http://listings.vin/?vehicle.make=Chrysler",
+      "Cadillac (17609)": "http://listings.vin/?vehicle.make=Cadillac",
+      "Acura (16806)": "http://listings.vin/?vehicle.make=Acura",
+      "Mitsubishi (15535)": "http://listings.vin/?vehicle.make=Mitsubishi",
+      "Lincoln (13997)": "http://listings.vin/?vehicle.make=Lincoln",
+      "Infiniti (10816)": "http://listings.vin/?vehicle.make=Infiniti",
+      "Toyota (10151)": "http://listings.vin/?vehicle.make=Toyota",
+      "MINI (7141)": "http://listings.vin/?vehicle.make=MINI",
+      "Land Rover (4451)": "http://listings.vin/?vehicle.make=Land+Rover"
+    },
+    "trims": {
+      "SV (55470)": "http://listings.vin/?vehicle.trim=SV",
+      "LT (52680)": "http://listings.vin/?vehicle.trim=LT",
+      "Limited (48536)": "http://listings.vin/?vehicle.trim=Limited",
+      "SEL (44444)": "http://listings.vin/?vehicle.trim=SEL",
+      "XLT (39737)": "http://listings.vin/?vehicle.trim=XLT",
+      "S (35473)": "http://listings.vin/?vehicle.trim=S",
+      "Sport (33165)": "http://listings.vin/?vehicle.trim=Sport",
+      "EX (32848)": "http://listings.vin/?vehicle.trim=EX",
+      "LX (31832)": "http://listings.vin/?vehicle.trim=LX",
+      "SE (29085)": "http://listings.vin/?vehicle.trim=SE",
+      "EX-L (25956)": "http://listings.vin/?vehicle.trim=EX-L",
+      "XL (25533)": "http://listings.vin/?vehicle.trim=XL",
+      "Touring (16716)": "http://listings.vin/?vehicle.trim=Touring",
+      "SLT (16644)": "http://listings.vin/?vehicle.trim=SLT",
+      "LS (15755)": "http://listings.vin/?vehicle.trim=LS",
+      "SL (14874)": "http://listings.vin/?vehicle.trim=SL",
+      "SXT (13836)": "http://listings.vin/?vehicle.trim=SXT",
+      "Big Horn (13395)": "http://listings.vin/?vehicle.trim=Big+Horn",
+      "RS (12861)": "http://listings.vin/?vehicle.trim=RS",
+      "Latitude (12706)": "http://listings.vin/?vehicle.trim=Latitude",
+      "Premium (11970)": "http://listings.vin/?vehicle.trim=Premium",
+      "R/T (11685)": "http://listings.vin/?vehicle.trim=R%2FT",
+      "Custom (11350)": "http://listings.vin/?vehicle.trim=Custom",
+      "GT (11150)": "http://listings.vin/?vehicle.trim=GT",
+      "SLE (10977)": "http://listings.vin/?vehicle.trim=SLE"
+    },
+    "drivetrain": {
+      "FWD (451579)": "http://listings.vin/?vehicle.drivetrain=FWD",
+      "AWD (389868)": "http://listings.vin/?vehicle.drivetrain=AWD",
+      "4WD (296373)": "http://listings.vin/?vehicle.drivetrain=4WD",
+      "RWD (181701)": "http://listings.vin/?vehicle.drivetrain=RWD",
+      "Rear Wheel Drive (35)": "http://listings.vin/?vehicle.drivetrain=Rear+Wheel+Drive",
+      "Front Wheel Drive (16)": "http://listings.vin/?vehicle.drivetrain=Front+Wheel+Drive",
+      "2 Wheel Drive (3)": "http://listings.vin/?vehicle.drivetrain=2+Wheel+Drive",
+      "All Wheel Drive (2)": "http://listings.vin/?vehicle.drivetrain=All+Wheel+Drive"
+    },
+    "accidents": {
+      "0 (30380)": "http://listings.vin/?autocheck.numberOfAccidents=0",
+      "1 (9252)": "http://listings.vin/?autocheck.numberOfAccidents=1",
+      "2 (2200)": "http://listings.vin/?autocheck.numberOfAccidents=2",
+      "3 (480)": "http://listings.vin/?autocheck.numberOfAccidents=3",
+      "4 (76)": "http://listings.vin/?autocheck.numberOfAccidents=4",
+      "5 (14)": "http://listings.vin/?autocheck.numberOfAccidents=5",
+      "6 (10)": "http://listings.vin/?autocheck.numberOfAccidents=6",
+      "7 (1)": "http://listings.vin/?autocheck.numberOfAccidents=7"
+    },
+    "cylinders": {
+      "0 (3838)": "http://listings.vin/?vehicle.cylinders=0",
+      "1 (1)": "http://listings.vin/?vehicle.cylinders=1",
+      "2 (358)": "http://listings.vin/?vehicle.cylinders=2",
+      "3 (47406)": "http://listings.vin/?vehicle.cylinders=3",
+      "4 (753571)": "http://listings.vin/?vehicle.cylinders=4",
+      "5 (387)": "http://listings.vin/?vehicle.cylinders=5",
+      "6 (386912)": "http://listings.vin/?vehicle.cylinders=6",
+      "8 (125385)": "http://listings.vin/?vehicle.cylinders=8",
+      "10 (291)": "http://listings.vin/?vehicle.cylinders=10"
+    },
+    "years": {
+      "2025 (205)": "http://listings.vin/?vehicle.year=2025",
+      "2024 (390140)": "http://listings.vin/?vehicle.year=2024",
+      "2023 (176659)": "http://listings.vin/?vehicle.year=2023",
+      "2022 (98954)": "http://listings.vin/?vehicle.year=2022",
+      "2021 (175866)": "http://listings.vin/?vehicle.year=2021",
+      "2020 (128416)": "http://listings.vin/?vehicle.year=2020",
+      "2019 (93856)": "http://listings.vin/?vehicle.year=2019",
+      "2018 (74059)": "http://listings.vin/?vehicle.year=2018",
+      "2017 (60448)": "http://listings.vin/?vehicle.year=2017",
+      "2016 (46846)": "http://listings.vin/?vehicle.year=2016",
+      "2015 (36699)": "http://listings.vin/?vehicle.year=2015",
+      "2014 (23959)": "http://listings.vin/?vehicle.year=2014",
+      "2013 (16123)": "http://listings.vin/?vehicle.year=2013",
+      "2012 (9323)": "http://listings.vin/?vehicle.year=2012"
+    },
+    "states": {
+      "FL (6135)": "http://listings.vin/?wholesaleListing.state=FL",
+      "TX (4913)": "http://listings.vin/?wholesaleListing.state=TX",
+      "NC (3058)": "http://listings.vin/?wholesaleListing.state=NC",
+      "GA (2681)": "http://listings.vin/?wholesaleListing.state=GA",
+      "IL (2559)": "http://listings.vin/?wholesaleListing.state=IL",
+      "NJ (2210)": "http://listings.vin/?wholesaleListing.state=NJ",
+      "PA (1896)": "http://listings.vin/?wholesaleListing.state=PA",
+      "CA (1763)": "http://listings.vin/?wholesaleListing.state=CA",
+      "IN (1625)": "http://listings.vin/?wholesaleListing.state=IN",
+      "OH (1614)": "http://listings.vin/?wholesaleListing.state=OH",
+      "SC (1276)": "http://listings.vin/?wholesaleListing.state=SC",
+      "NY (1210)": "http://listings.vin/?wholesaleListing.state=NY",
+      "TN (1128)": "http://listings.vin/?wholesaleListing.state=TN",
+      "VA (1078)": "http://listings.vin/?wholesaleListing.state=VA",
+      "AL (778)": "http://listings.vin/?wholesaleListing.state=AL",
+      "MI (768)": "http://listings.vin/?wholesaleListing.state=MI",
+      "AZ (742)": "http://listings.vin/?wholesaleListing.state=AZ",
+      "MA (585)": "http://listings.vin/?wholesaleListing.state=MA",
+      "MO (568)": "http://listings.vin/?wholesaleListing.state=MO",
+      "WI (558)": "http://listings.vin/?wholesaleListing.state=WI",
+      "AR (513)": "http://listings.vin/?wholesaleListing.state=AR",
+      "MS (458)": "http://listings.vin/?wholesaleListing.state=MS",
+      "NH (450)": "http://listings.vin/?wholesaleListing.state=NH",
+      "IA (432)": "http://listings.vin/?wholesaleListing.state=IA",
+      "LA (405)": "http://listings.vin/?wholesaleListing.state=LA"
+    },
+    "transmissions": {
+      "Automatic (1199967)": "http://listings.vin/?vehicle.transmission=Automatic",
+      "Manual (86543)": "http://listings.vin/?vehicle.transmission=Manual",
+      "Automated Manual (42335)": "http://listings.vin/?vehicle.transmission=Automated+Manual",
+      "Direct Drive (26368)": "http://listings.vin/?vehicle.transmission=Direct+Drive",
+      "Null (2)": "http://listings.vin/?vehicle.transmission=Null",
+      "10-speed (1)": "http://listings.vin/?vehicle.transmission=10-speed"
+    },
+    "interiorColor": {
+      "Black (834368)": "http://listings.vin/?vehicle.interiorColor=Black",
+      "Gray (269272)": "http://listings.vin/?vehicle.interiorColor=Gray",
+      "Brown (78637)": "http://listings.vin/?vehicle.interiorColor=Brown",
+      "Red (13841)": "http://listings.vin/?vehicle.interiorColor=Red",
+      "White (7031)": "http://listings.vin/?vehicle.interiorColor=White",
+      "Other (6181)": "http://listings.vin/?vehicle.interiorColor=Other",
+      "Beige (4802)": "http://listings.vin/?vehicle.interiorColor=Beige",
+      "Tan (4799)": "http://listings.vin/?vehicle.interiorColor=Tan",
+      "Blue (3666)": "http://listings.vin/?vehicle.interiorColor=Blue",
+      "Orange (60)": "http://listings.vin/?vehicle.interiorColor=Orange",
+      "Green (18)": "http://listings.vin/?vehicle.interiorColor=Green",
+      "Silver (18)": "http://listings.vin/?vehicle.interiorColor=Silver",
+      "Yellow (10)": "http://listings.vin/?vehicle.interiorColor=Yellow",
+      "Burgundy (8)": "http://listings.vin/?vehicle.interiorColor=Burgundy",
+      "Gold (2)": "http://listings.vin/?vehicle.interiorColor=Gold"
+    },
+    "engine": {
+      "2.0L 4Cyl gasoline (231700)": "http://listings.vin/?vehicle.engine=2.0L+4Cyl+gasoline",
+      "3.6L 6Cyl gasoline (154898)": "http://listings.vin/?vehicle.engine=3.6L+6Cyl+gasoline",
+      "2.5L 4Cyl gasoline (123566)": "http://listings.vin/?vehicle.engine=2.5L+4Cyl+gasoline",
+      "1.5L 4Cyl gasoline (93570)": "http://listings.vin/?vehicle.engine=1.5L+4Cyl+gasoline",
+      "3.5L 6Cyl gasoline (77862)": "http://listings.vin/?vehicle.engine=3.5L+6Cyl+gasoline",
+      "gasoline (57073)": "http://listings.vin/?vehicle.engine=gasoline",
+      "2.4L 4Cyl gasoline (45226)": "http://listings.vin/?vehicle.engine=2.4L+4Cyl+gasoline",
+      "1.6L 4Cyl gasoline (37559)": "http://listings.vin/?vehicle.engine=1.6L+4Cyl+gasoline",
+      "2.3L 4Cyl gasoline (26971)": "http://listings.vin/?vehicle.engine=2.3L+4Cyl+gasoline",
+      "3.0L 6Cyl gasoline (25350)": "http://listings.vin/?vehicle.engine=3.0L+6Cyl+gasoline",
+      "2.0L 4Cyl Gasoline (24337)": "http://listings.vin/?vehicle.engine=2.0L+4Cyl+Gasoline",
+      "electric (23863)": "http://listings.vin/?vehicle.engine=electric",
+      "3.8L 6Cyl gasoline (22668)": "http://listings.vin/?vehicle.engine=3.8L+6Cyl+gasoline",
+      "5.3L 8Cyl gasoline (20943)": "http://listings.vin/?vehicle.engine=5.3L+8Cyl+gasoline",
+      "2.0L 4Cyl hybrid (19837)": "http://listings.vin/?vehicle.engine=2.0L+4Cyl+hybrid",
+      "1.2L 3Cyl gasoline (16600)": "http://listings.vin/?vehicle.engine=1.2L+3Cyl+gasoline",
+      "5.7L 8Cyl gasoline (15728)": "http://listings.vin/?vehicle.engine=5.7L+8Cyl+gasoline",
+      "1.5L 3Cyl gasoline (15578)": "http://listings.vin/?vehicle.engine=1.5L+3Cyl+gasoline",
+      "5.0L 8Cyl gasoline (15549)": "http://listings.vin/?vehicle.engine=5.0L+8Cyl+gasoline",
+      "3.3L 6Cyl gasoline (13479)": "http://listings.vin/?vehicle.engine=3.3L+6Cyl+gasoline",
+      "2.7L 4Cyl gasoline (12335)": "http://listings.vin/?vehicle.engine=2.7L+4Cyl+gasoline",
+      "2.5L 4Cyl Gasoline (12021)": "http://listings.vin/?vehicle.engine=2.5L+4Cyl+Gasoline",
+      "3.6L 6Cyl Gasoline (11730)": "http://listings.vin/?vehicle.engine=3.6L+6Cyl+Gasoline",
+      "1.4L 4Cyl gasoline (11498)": "http://listings.vin/?vehicle.engine=1.4L+4Cyl+gasoline",
+      "1.3L 3Cyl gasoline (10102)": "http://listings.vin/?vehicle.engine=1.3L+3Cyl+gasoline"
+    },
+    "series": {
+      "SV 4dr Sedan (2.0L 4cyl CVT) (9876)": "http://listings.vin/?vehicle.series=SV+4dr+Sedan+%282.0L+4cyl+CVT%29",
+      "SEL 4dr Sedan (2.0L 4cyl CVT) (7721)": "http://listings.vin/?vehicle.series=SEL+4dr+Sedan+%282.0L+4cyl+CVT%29",
+      "EX 4dr Sedan (1.5L 4cyl Turbo CVT) (7204)": "http://listings.vin/?vehicle.series=EX+4dr+Sedan+%281.5L+4cyl+Turbo+CVT%29",
+      "SXT 4dr Sedan (3.6L 6cyl 8A) (7148)": "http://listings.vin/?vehicle.series=SXT+4dr+Sedan+%283.6L+6cyl+8A%29",
+      "Limited 4dr SUV 4WD (3.6L 6cyl 8A) (6753)": "http://listings.vin/?vehicle.series=Limited+4dr+SUV+4WD+%283.6L+6cyl+8A%29",
+      "Sport 4dr Sedan (2.0L 4cyl CVT) (6606)": "http://listings.vin/?vehicle.series=Sport+4dr+Sedan+%282.0L+4cyl+CVT%29",
+      "LT 4dr SUV (1.5L 4cyl Turbo 6A) (6570)": "http://listings.vin/?vehicle.series=LT+4dr+SUV+%281.5L+4cyl+Turbo+6A%29",
+      "XLT 4dr SUV AWD (2.3L 4cyl Turbo 10A) (6367)": "http://listings.vin/?vehicle.series=XLT+4dr+SUV+AWD+%282.3L+4cyl+Turbo+10A%29",
+      "2.5 S Preferred 4dr SUV AWD (2.5L 4cyl 6A) (6331)": "http://listings.vin/?vehicle.series=2.5+S+Preferred+4dr+SUV+AWD+%282.5L+4cyl+6A%29",
+      "SV 4dr SUV AWD (1.5L 3cyl Turbo CVT) (5927)": "http://listings.vin/?vehicle.series=SV+4dr+SUV+AWD+%281.5L+3cyl+Turbo+CVT%29",
+      "LT 4dr SUV AWD (1.5L 4cyl Turbo 6A) (5792)": "http://listings.vin/?vehicle.series=LT+4dr+SUV+AWD+%281.5L+4cyl+Turbo+6A%29",
+      "Laredo X 4dr SUV 4WD (3.6L 6cyl 8A) (5729)": "http://listings.vin/?vehicle.series=Laredo+X+4dr+SUV+4WD+%283.6L+6cyl+8A%29",
+      "EX-L 4dr SUV AWD (1.5L 4cyl Turbo CVT) (5400)": "http://listings.vin/?vehicle.series=EX-L+4dr+SUV+AWD+%281.5L+4cyl+Turbo+CVT%29",
+      "LXS 4dr Sedan (2.0L 4cyl CVT) (5371)": "http://listings.vin/?vehicle.series=LXS+4dr+Sedan+%282.0L+4cyl+CVT%29",
+      "XLT 4dr SuperCrew 4WD 6.5 ft. SB (5.0L 8cyl 10A) (5303)": "http://listings.vin/?vehicle.series=XLT+4dr+SuperCrew+4WD+6.5+ft.+SB+%285.0L+8cyl+10A%29",
+      "SV 4dr Hatchback (1.6L 4cyl CVT) (5184)": "http://listings.vin/?vehicle.series=SV+4dr+Hatchback+%281.6L+4cyl+CVT%29",
+      "EX 4dr SUV AWD (1.5L 4cyl Turbo CVT) (5136)": "http://listings.vin/?vehicle.series=EX+4dr+SUV+AWD+%281.5L+4cyl+Turbo+CVT%29",
+      "2.5 SR 4dr Sedan (2.5L 4cyl CVT) (5003)": "http://listings.vin/?vehicle.series=2.5+SR+4dr+Sedan+%282.5L+4cyl+CVT%29",
+      "SV 4dr SUV (1.5L 3cyl Turbo CVT) (5003)": "http://listings.vin/?vehicle.series=SV+4dr+SUV+%281.5L+3cyl+Turbo+CVT%29",
+      "2.5 S Select 4dr SUV AWD (2.5L 4cyl 6A) (4832)": "http://listings.vin/?vehicle.series=2.5+S+Select+4dr+SUV+AWD+%282.5L+4cyl+6A%29",
+      "SR 4dr Sedan (2.0L 4cyl CVT) (4822)": "http://listings.vin/?vehicle.series=SR+4dr+Sedan+%282.0L+4cyl+CVT%29",
+      "SV 4dr SUV AWD (2.5L 4cyl CVT) (4640)": "http://listings.vin/?vehicle.series=SV+4dr+SUV+AWD+%282.5L+4cyl+CVT%29",
+      "SEL 4dr SUV AWD (2.5L 4cyl 8A) (4620)": "http://listings.vin/?vehicle.series=SEL+4dr+SUV+AWD+%282.5L+4cyl+8A%29",
+      "2.5 SV 4dr Sedan (2.5L 4cyl CVT) (4588)": "http://listings.vin/?vehicle.series=2.5+SV+4dr+Sedan+%282.5L+4cyl+CVT%29",
+      "Big Horn 4dr Crew Cab 4WD 5.6 ft SB (3.6L 6cyl gas/electric mild hybrid 8A) (4530)": "http://listings.vin/?vehicle.series=Big+Horn+4dr+Crew+Cab+4WD+5.6+ft+SB+%283.6L+6cyl+gas%2Felectric+mild+hybrid+8A%29"
+    },
+    "prices": {
+      "10000-12000 (50210)": "http://listings.vin/?retailListing.price=10000-12000",
+      "12000-14000 (59330)": "http://listings.vin/?retailListing.price=12000-14000",
+      "14000-16000 (69529)": "http://listings.vin/?retailListing.price=14000-16000",
+      "16000-18000 (77564)": "http://listings.vin/?retailListing.price=16000-18000",
+      "18000-20000 (87644)": "http://listings.vin/?retailListing.price=18000-20000",
+      "20000-22000 (83664)": "http://listings.vin/?retailListing.price=20000-22000",
+      "22000-24000 (96904)": "http://listings.vin/?retailListing.price=22000-24000",
+      "24000-26000 (103991)": "http://listings.vin/?retailListing.price=24000-26000",
+      "26000-28000 (110579)": "http://listings.vin/?retailListing.price=26000-28000",
+      "28000-30000 (104735)": "http://listings.vin/?retailListing.price=28000-30000",
+      "30000-32000 (101498)": "http://listings.vin/?retailListing.price=30000-32000",
+      "32000-34000 (91425)": "http://listings.vin/?retailListing.price=32000-34000",
+      "34000-36000 (80830)": "http://listings.vin/?retailListing.price=34000-36000",
+      "36000-38000 (72706)": "http://listings.vin/?retailListing.price=36000-38000",
+      "38000-40000 (71829)": "http://listings.vin/?retailListing.price=38000-40000",
+      "40000-42000 (60457)": "http://listings.vin/?retailListing.price=40000-42000",
+      "42000-44000 (64530)": "http://listings.vin/?retailListing.price=42000-44000",
+      "44000-46000 (65470)": "http://listings.vin/?retailListing.price=44000-46000",
+      "46000-48000 (65995)": "http://listings.vin/?retailListing.price=46000-48000",
+      "48000- (67940)": "http://listings.vin/?retailListing.price=48000-"
+    },
+    "mileage": {
+      "0-6000 (1051775)": "http://listings.vin/?retailListing.miles=0-6000",
+      "6000-12000 (62398)": "http://listings.vin/?retailListing.miles=6000-12000",
+      "12000-18000 (64278)": "http://listings.vin/?retailListing.miles=12000-18000",
+      "18000-24000 (70216)": "http://listings.vin/?retailListing.miles=18000-24000",
+      "24000-30000 (73738)": "http://listings.vin/?retailListing.miles=24000-30000",
+      "30000-36000 (73262)": "http://listings.vin/?retailListing.miles=30000-36000",
+      "36000-42000 (65467)": "http://listings.vin/?retailListing.miles=36000-42000",
+      "42000-48000 (61184)": "http://listings.vin/?retailListing.miles=42000-48000",
+      "48000-54000 (56467)": "http://listings.vin/?retailListing.miles=48000-54000",
+      "54000-60000 (57376)": "http://listings.vin/?retailListing.miles=54000-60000",
+      "60000-66000 (61970)": "http://listings.vin/?retailListing.miles=60000-66000",
+      "66000-72000 (50943)": "http://listings.vin/?retailListing.miles=66000-72000",
+      "72000-78000 (45456)": "http://listings.vin/?retailListing.miles=72000-78000",
+      "78000-84000 (41823)": "http://listings.vin/?retailListing.miles=78000-84000",
+      "84000-90000 (38988)": "http://listings.vin/?retailListing.miles=84000-90000",
+      "90000-96000 (40249)": "http://listings.vin/?retailListing.miles=90000-96000",
+      "96000-102000 (37938)": "http://listings.vin/?retailListing.miles=96000-102000",
+      "102000-108000 (32552)": "http://listings.vin/?retailListing.miles=102000-108000",
+      "108000-114000 (29256)": "http://listings.vin/?retailListing.miles=108000-114000",
+      "114000-120000 (26208)": "http://listings.vin/?retailListing.miles=114000-120000"
+    }
+  }
+}
+```
+
+</ResponseExample>

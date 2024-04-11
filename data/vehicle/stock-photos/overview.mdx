@@ -1,0 +1,36 @@
+---
+title: 'Overview of the Stock Photos API'
+sidebarTitle: 'Overview'
+description: 'Stock Photos API for professional vehicle images'
+---
+
+<p class='font-medium'>
+  Drivly's Stock Photos API is a groundbreaking resource designed to transform the way automotive
+  businesses access and utilize visual content. This innovative API provides seamless access to a
+  vast library of high-quality, professional stock photos covering a wide range of vehicles.
+</p>
+
+<Note>
+  Our API ensures you have the visuals you need to enhance your website, marketing materials, and
+  online listings.
+</Note>
+
+## API Capabilities
+
+- **Extensive Library**: Access thousands of professional stock photos across various vehicle categories, including cars, trucks, motorcycles, and more.
+- **Easy Integration**: Seamlessly integrate high-quality visuals into your website, listings, or marketing materials with straightforward API calls.
+- **High-Resolution Images**: Enhance your content with high-resolution images that capture every detail, delivering a premium visual experience to your audience.
+
+## How to access stock photos?
+
+The photos are accessible via the `stock.photos.vin` CDN, and the URL is constructed as follows:
+
+```http Get stock photo by VIN
+https://stock.photos.vin/{vin}
+```
+
+```http Get stock photo by VIN and color option
+https://stock.photos.vin/{vin}?color=#0E0E0F
+```
+
+This will return a stock photo for the VIN, providing a high-quality visual representation of the vehicle.

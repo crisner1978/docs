@@ -1,0 +1,992 @@
+---
+title: 'Getting Started with Credit Applications'
+sidebarTitle: 'Guide'
+---
+
+---
+
+Get up and running with Credit Applications with our step-by-step guide.
+
+<Note>This guide uses Drivly's [Commerce API](/commerce/overview) and TypeScript.</Note>
+
+## Prerequisites
+
+Before diving into the integration process, ensure you have the following:
+
+1. **Sign up** for a Drivly account.
+2. Create a [DRIVLY_API_KEY](/commerce/overview#authentication).
+3. Basic understanding of TypeScript and REST APIs.
+4. A secure environment for handling sensitive data.
+
+<Warning>Always perform Credit Application operations server-side to secure API keys.</Warning>
+
+---
+
+## Overview
+
+The Credit Application process enables users to secure auto loans, providing them with information on loan amounts and interest rates. This guide covers various scenarios, including applications for primary applicants and co-applicants, with or without trade-ins.
+
+---
+
+## Implementation Options
+
+Choose your implementation approach:
+
+- [Setup the SDK](#setup-the-sdk)
+- [Use the API](#use-the-api)
+
+---
+
+## Setup the SDK
+
+<Steps>
+  <Step title='To get started, you will need to install the Drivly SDK.'>
+
+  <CodeGroup>
+
+```bash Yarn
+yarn add @drivly/commerce
+```
+
+```bash NPM
+npm install @drivly/commerce
+```
+
+```bash PnPM
+pnpm install @drivly/commerce
+```
+
+```bash Bun
+bun add @drivly/commerce
+```
+
+```bash CDN
+<script src="https://unpkg.com/@drivly/commerce"></script>
+```
+
+  </CodeGroup>
+
+  </Step>
+  <Step title="Create a singleton instance of the SDK.">
+
+```javascript sdk.ts
+import { SDK } from "@drivly/commerce";
+
+export const sdk = SDK({
+  apiKey: process.env.DRIVLY_API_KEY as string,
+  environment: "production",
+});
+```
+
+<Note>Now, we can export `sdk` for use in our application</Note>
+
+  </Step>
+  <Step title="Make a function to CREATE the Credit Application.">
+  
+  <CodeGroup>
+
+```javascript credit.action.ts
+'use server' // Next JS specific for server actions
+
+import { CreditApplication } from '@drivly/commerce'
+import { sdk } from './sdk'
+
+type CreditData = Omit<CreditApplication, 'id' | 'createdAt' | 'updatedAt'>
+
+export const createCreditApp = async (data: CreditData) => {
+  try {
+    const environment = process.env.NODE_ENV === 'production' 
+      ? 'Production' : 'Development'
+
+    const result = await sdk?.commerce.creditApplications.create({
+      doc: { environment, ...data },
+    })
+
+    if (!result) throw new Error('Failed to create Credit App')
+
+    return result.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+  </CodeGroup>
+
+  </Step>
+  <Step title='We might need to CREATE a Trade, we will need a few more functions.'>
+    In cases where a trade-in is involved, we need to create a trade record for the vehicle being traded.
+
+  <CodeGroup>
+
+```javascript trade.action.ts
+'use server' // Next JS specific for server actions
+
+import { sdk } from './sdk'
+import { createLienholder, getLienholderId } from './lienholder.action'
+import { CreateTradeParams } from './shared.param.types'
+import { createCommerceVehicle, getCommerceVehicleId } from './vehicle.action'
+
+export const createTrade = (params: CreateTradeParams) => {
+  try {
+    const { data, id: creditApplication } = params
+    const { lienholder: companyName, payoff, odometer, ...rest } = data
+    let lienholder: string | undefined
+
+    if (companyName) {
+      const prevLien = await getLienholderId({ companyName })
+
+      lienholder =
+        prevLien !== 'Lienholder not found'
+          ? prevLien
+          : await createLienholder({ data: { companyName } })
+    }
+
+    const prevVehicleId = await getCommerceVehicleId(rest.vin as string)
+
+    const vehicle =
+      prevVehicleId !== 'Vehicle not found'
+        ? prevVehicleId
+        : await createCommerceVehicle({ data: rest })
+
+    if (vehicle === 'Failed to create vehicle') throw new Error(vehicle)
+    if (lienholder === 'Lienholder not created') throw new Error(lienholder)
+
+    const result = await sdk?.commerce.trades.create({
+      doc: {
+        creditApplication,
+        lienholder,
+        odometer,
+        tradeInPayoffBalance: payoff,
+        vehicle,
+      },
+      depth: 0,
+    })
+
+    if (!result) throw new Error('Trade not created')
+
+    return result.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```javascript lienholder.action.ts
+'use server' // Next JS specific for server actions
+
+import { sdk } from '../sdk'
+import { CreateLienholderParams, GetLienholderParams } from './shared.param.types'
+
+export async function createLienholder(params: CreateLienholderParams) {
+  try {
+    const {
+      data: { companyName, companyType = ['Lender'] },
+    } = params
+
+    const result = await sdk?.commerce.customers.create({
+      doc: { companyName, companyType },
+    })
+
+    if (!result?.doc?.id) throw new Error('Lienholder not created')
+
+    return result.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getLienholderId(params: GetLienholderParams) {
+  try {
+    const { companyName } = params
+
+    const result = await sdk?.commerce.customers.find({
+      where: { companyName: { equals: companyName } },
+    })
+
+    if (!result?.docs?.[0]?.id) throw new Error('Lienholder not found')
+
+    return result.docs[0].id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```javascript vehicle.action.ts
+'use server' // Next JS specific for server actions
+
+import { sdk } from '../sdk'
+import { CreateCommerceVehicleParams } from './shared.param.types'
+
+export async function getCommerceVehicleId(vin: string) {
+  try {
+    const result = await sdk?.commerce.vehicles.find({
+      where: { vin: { equals: vin } },
+    })
+
+    if (!result?.docs?.[0]?.id) throw new Error('Vehicle not found')
+
+    return result.docs[0].id
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function createCommerceVehicle(params: CreateCommerceVehicleParams) {
+  try {
+    const { data } = params
+
+    const result = await sdk?.commerce.vehicles.create({ doc: data })
+
+    if (!result) throw new Error('Failed to create vehicle')
+
+    return result.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```typescript shared.param.types.ts
+import { Customer } from '@drivly/commerce'
+
+export interface CreateCommerceVehicleParams {
+  data: {
+    vin?: string | undefined
+    year?: string | undefined
+    make?: string | undefined
+    model?: string | undefined
+    trim?: string | undefined
+  }
+}
+
+export interface CreateTradeParams {
+  id: string
+  data: {
+    vin?: string | undefined
+    year?: string | undefined
+    make?: string | undefined
+    model?: string | undefined
+    trim?: string | undefined
+    odometer?: number | undefined
+    payoff?: string | undefined
+    lienholder?: string | undefined
+  }
+}
+
+export interface CreateLienholderParams {
+  data: Omit<Customer, 'id' | 'createdAt' | 'updatedAt'>
+}
+
+export interface GetLienholderParams {
+  companyName: string
+}
+```
+
+  </CodeGroup>
+  </Step>
+</Steps>
+
+---
+
+## Use the API
+
+Credit Application API `https://commerce.driv.ly/api/creditApplications`, we can use this API to create and manage Credit Applications.
+
+<Steps>
+  <Step title='Create an environment variable for your API Key.'>
+
+```bash .env
+DRIVLY_API_KEY='YOUR_API_KEY'
+```
+
+  </Step>
+  <Step title='Make a function to CREATE the Credit Application.'>
+
+```javascript credit.action.ts
+import { CreditApplication } from '@drivly/commerce'
+
+type CreditData = Omit<CreditApplication, 'id' | 'createdAt' | 'updatedAt'>
+
+const url = 'https://commerce.driv.ly/api/creditApplications'
+
+export const createCreditApp = async (data: CreditData) => {
+  try {
+    const environment = process.env.NODE_ENV === 'production' 
+      ? 'Production' : 'Development'
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${process.env.DRIVLY_API_KEY}`,
+      },
+      body: JSON.stringify({ environment, ...data }),
+    }).then((res) => res.json())
+
+    if (!response?.doc) throw new Error('Failed to create Credit App')
+
+    return response.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+  </Step>
+  <Step title='We might need to CREATE a Trade, we will need a few more functions.'>
+    In cases where a trade-in is involved, we need to create a trade record for the vehicle being traded.
+
+  <CodeGroup>
+
+```javascript trade.action.ts
+import { createLienholder, getLienholderId } from './lienholder.action'
+import { CreateTradeParams } from './shared.param.types'
+import { createCommerceVehicle, getCommerceVehicleId } from './vehicle.action'
+
+const url = 'https://commerce.driv.ly/api/trades'
+
+export const createTrade = (params: CreateTradeParams) => {
+  try {
+    const { data, id: creditApplication } = params
+    const { lienholder: companyName, payoff, odometer, ...rest } = data
+    let lienholder: string | undefined
+
+    if (companyName) {
+      const prevLien = await getLienholderId({ companyName })
+
+      lienholder =
+        prevLien !== 'Lienholder not found'
+          ? prevLien
+          : await createLienholder({ data: { companyName } })
+    }
+
+    const prevVehicleId = await getCommerceVehicleId(rest.vin as string)
+
+    const vehicle =
+      prevVehicleId !== 'Vehicle not found'
+        ? prevVehicleId
+        : await createCommerceVehicle({ data: rest })
+
+    if (vehicle === 'Failed to create vehicle') throw new Error(vehicle)
+    if (lienholder === 'Lienholder not created') throw new Error(lienholder)
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${process.env.DRIVLY_API_KEY}`,
+      },
+      body: JSON.stringify({
+        creditApplication,
+        lienholder,
+        odometer,
+        tradeInPayoffBalance: payoff,
+        vehicle,
+      }),
+    }).then((res) => res.json())
+
+    if (!response?.doc) throw new Error('Trade not created')
+
+    return response.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```javascript lienholder.action.ts
+import { CreateLienholderParams, GetLienholderParams } from './shared.param.types'
+
+const url = 'https://commerce.driv.ly/api/customers'
+
+export async function createLienholder(params: CreateLienholderParams) {
+  try {
+    const {
+      data: { companyName, companyType = ['Lender'] },
+    } = params
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${process.env.DRIVLY_API_KEY}`,
+      },
+      body: JSON.stringify({ companyName, companyType }),
+    }).then((res) => res.json())
+
+    if (!response?.doc) throw new Error('Lienholder not created')
+
+    return response.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getLienholderId(params: GetLienholderParams) {
+  try {
+    const { companyName } = params
+
+    const response = await fetch(`${url}?where[companyName][equals]=${companyName}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${process.env.DRIVLY_API_KEY}`,
+      },
+    }).then((res) => res.json())
+
+    if (!response?.docs?.[0]) throw new Error('Lienholder not found')
+
+    return response.docs[0].id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```javascript vehicle.action.ts
+import { CreateCommerceVehicleParams } from './shared.param.types'
+
+const url = 'https://commerce.driv.ly/api/vehicles'
+
+export async function getCommerceVehicleId(vin: string) {
+  try {
+    const response = await fetch(`${url}?where[vin][equals]=${vin}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${process.env.DRIVLY_API_KEY}`,
+      },
+    }).then((res) => res.json())
+
+    if (!response?.docs?.[0]) throw new Error('Vehicle not found')
+
+    return response.docs[0].id
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function createCommerceVehicle(params: CreateCommerceVehicleParams) {
+  try {
+    const { data } = params
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${process.env.DRIVLY_API_KEY}`,
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json())
+
+    if (!response?.doc) throw new Error('Failed to create vehicle')
+
+    return response.doc.id
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```typescript shared.param.types.ts
+import { Customer } from '@drivly/commerce'
+
+export interface CreateCommerceVehicleParams {
+  data: {
+    vin?: string | undefined
+    year?: string | undefined
+    make?: string | undefined
+    model?: string | undefined
+    trim?: string | undefined
+  }
+}
+
+export interface CreateTradeParams {
+  id: string
+  data: {
+    vin?: string | undefined
+    year?: string | undefined
+    make?: string | undefined
+    model?: string | undefined
+    trim?: string | undefined
+    odometer?: number | undefined
+    payoff?: string | undefined
+    lienholder?: string | undefined
+  }
+}
+
+export interface CreateLienholderParams {
+  data: Omit<Customer, 'id' | 'createdAt' | 'updatedAt'>
+}
+
+export interface GetLienholderParams {
+  companyName: string
+}
+```
+
+  </CodeGroup>
+  </Step>
+</Steps>
+
+---
+
+## Handling Use Cases
+
+The following scenarios cover various Credit Application use cases:
+
+### Primary Applicant
+
+<Frame type='glass'>
+  <p class='font-medium text-sm p-4'>
+    Danny found the car of his dreams. He wants to secure a loan to buy the car. He goes to your
+    website and fills out a form to find out how much of a loan he can secure.
+  </p>
+</Frame>
+
+When a user, such as Danny, wishes to secure a loan for his dream car, follow these steps:
+
+<Steps>
+  <Step title='Direct the user to the Credit Application Form on your Website.'>
+    Make sure the form includes fields for the primary applicant's personal, residence, employment, and vehicle information.
+
+<Note>
+  Also include fields for the application type, finance amount, pre-approval ID and has
+  co-applicant.
+</Note>
+
+<ResponseField name='primaryApplicant' type='Applicant Object'>
+  <Accordion title='Applicant Properties'>
+    <ResponseField name='firstName' type='string'></ResponseField>
+    <ResponseField name='lastName' type='string'></ResponseField>
+    <ResponseField name='birthDate' type='string'></ResponseField>
+    <ResponseField name='emailAddress' type='string'></ResponseField>
+    <ResponseField name='cellPhone' type='string'></ResponseField>
+    <ResponseField name='ssn' type='string'></ResponseField>
+    <ResponseField name='relationshipType' type='enum<string> | null'>
+      Available options: `SPOUSE`, `RELATIVE`, `FRIEND`, or `null` (for primary applicant)
+    </ResponseField>
+    <ResponseField name='currentResidence | previousResidence' type='Residence Object'>
+      <Warning>
+        If current monthsAtResidence < 24, previousResidence is REQUIRED
+      </Warning>
+      <Accordion title='Residence Properties'>
+        <ResponseField name='monthlyPaymentAmount' type='number'></ResponseField>
+        <ResponseField name='monthsAtResidence' type='number'></ResponseField>
+        <ResponseField name='ownershipStatus' type='enum<string>'>
+          Available options: `RENT`, `OWN`, `RELATIVE_OWNED`
+        </ResponseField>
+        <ResponseField name='address' type='Address Object'>
+          <Accordion title='Address Properties'>
+            <ResponseField name='lineOne' type='string'></ResponseField>
+            <ResponseField name='lineTwo' type='string'></ResponseField>
+            <ResponseField name='city' type='string'></ResponseField>
+            <ResponseField name='state' type='enum<string>'>
+              Available options: `AL`, `AK`, `AZ`, `AR`, `CA`, `CO`, `CT`, `DE`, `FL`, `GA`, `HI`,
+              `ID`, `IL`, `IN`, `IA`, `KS`, `KY`, `LA`, `ME`, `MD`, `MA`, `MI`, `MN`, `MS`, `MO`,
+              `MT`, `NE`, `NV`, `NH`, `NJ`, `NM`, `NY`, `NC`, `ND`, O`H`, `OK`, `OR`, `PA`, `RI`,
+              `SC`, `SD`, `TN`, `TX`, `UT`, `VT`, `VA`, `WA`, `WV`, `WI`, `WY`
+            </ResponseField>
+            <ResponseField name='postalCode' type='string'></ResponseField>
+          </Accordion>
+        </ResponseField>
+      </Accordion>
+    </ResponseField>
+    <ResponseField name='currentEmployment | previousEmployment' type='Employment Object'>
+      <Warning>
+        If currentEmployment monthsAtEmployer < 24, previousEmployment is REQUIRED
+      </Warning>
+      <Accordion title='Employment Properties'>
+        <ResponseField name='yearlyIncomeAmount' type='number'></ResponseField>
+        <ResponseField name='monthsAtEmployer' type='number'></ResponseField>
+        <ResponseField name='employmentType' type='enum<string>'>
+          Available options: `FULL_TIME`, `PART_TIME`, `SELF_EMPLOYED`, `UNEMPLOYED`, `RETIRED`
+        </ResponseField>
+        <ResponseField name='employerName' type='string'></ResponseField>
+        <ResponseField name='employmentPosition' type='string'></ResponseField>
+        <ResponseField name='employmentAddress' type='Address Object'>
+          <Accordion title='Address Properties'>
+            <ResponseField name='lineOne' type='string'></ResponseField>
+            <ResponseField name='lineTwo' type='string'></ResponseField>
+            <ResponseField name='city' type='string'></ResponseField>
+            <ResponseField name='state' type='enum<string>'>
+              Available options: `AL`, `AK`, `AZ`, `AR`, `CA`, `CO`, `CT`, `DE`, `FL`, `GA`, `HI`,
+              `ID`, `IL`, `IN`, `IA`, `KS`, `KY`, `LA`, `ME`, `MD`, `MA`, `MI`, `MN`, `MS`, `MO`,
+              `MT`, `NE`, `NV`, `NH`, `NJ`, `NM`, `NY`, `NC`, `ND`, O`H`, `OK`, `OR`, `PA`, `RI`,
+              `SC`, `SD`, `TN`, `TX`, `UT`, `VT`, `VA`, `WA`, `WV`, `WI`, `WY`
+            </ResponseField>
+            <ResponseField name='postalCode' type='string'></ResponseField>
+          </Accordion>
+        </ResponseField>
+      </Accordion>
+    </ResponseField>
+    <ResponseField name='additionalIncomeAmount' type='number | null'></ResponseField>
+    <ResponseField name='additionalIncomeFrequency' type='enum<string> | null'>
+      Available options: `WEEKLY`, `BI_WEEKLY`, `TWICE_MONTHLY`, `MONTHLY`, `YEARLY`
+    </ResponseField>
+    <ResponseField name='additionalIncomeSource' type='string | null'></ResponseField>
+    <ResponseField name='terms' type='Terms Object'>
+      <Accordion title='Terms Properties'>
+        <ResponseField name='agreeToTerms' type='boolean'></ResponseField>
+        <ResponseField name='agreeIP' type='string'></ResponseField>
+        <ResponseField name='agreeUserAgent' type='string'></ResponseField>
+      </Accordion>
+    </ResponseField>
+  </Accordion>
+</ResponseField>
+
+<ResponseField name='vehicle' type='Vehicle Object'>
+  <Accordion title='Vehicle Properties'>
+    <ResponseField name='vin' type='string'></ResponseField>
+    <ResponseField name='year' type='number'></ResponseField>
+    <ResponseField name='make' type='string'></ResponseField>
+    <ResponseField name='model' type='string'></ResponseField>
+    <ResponseField name='trim' type='string'></ResponseField>
+    <ResponseField name='mileage' type='number'></ResponseField>
+    <ResponseField name='lien' type='Lien Object'>
+      <Accordion title='Lien Properties'>
+        <ResponseField name='lienHolder' type='string | null'></ResponseField>
+        <ResponseField name='monthlyPaymentAmount' type='number | null'></ResponseField>
+        <ResponseField name='payoffAmount' type='number | null'></ResponseField>
+        <ResponseField name='initialTerm' type='number | null'></ResponseField>
+        <ResponseField name='remainingTerm' type='number | null'></ResponseField>
+        <ResponseField name='originalAmount' type='number | null'></ResponseField>
+        <ResponseField name='apr' type='number | null'></ResponseField>
+      </Accordion>
+    </ResponseField>
+  </Accordion>
+</ResponseField>
+
+<ResponseField name='applicationType' type='enum<string>'>
+  Available options: `PURCHASE`, `REFINANCE`, `LEASE_BUYOUT`
+</ResponseField>
+<ResponseField name='hasCoApplicant' type='boolean'></ResponseField>
+<ResponseField name='financeAmount' type='number'></ResponseField>
+<ResponseField name='preApproval' type='string'></ResponseField>
+
+  </Step>
+  <Step title='Format your Request Body'>
+
+Before sending the request, we need to include the following fields in the request body:
+
+- `sendTo`: The recipient of the application. Available options: `RouteOne`, `TSG`
+- `state`: Set to `DRAFT` in order to create a new application for processing.
+- `environment`: The application can be submitted in `Production` or `Development`
+
+```javascript Format Data
+const creditData = {
+  sendTo: 'RouteOne',
+  state: 'DRAFT',
+  environment: 'Production',
+  applicationType: 'REFINANCE',
+  financeAmount: 35000,
+  downPayment: 5000,
+  preApproval: '123456',
+  primaryApplicant: {
+    firstName: 'Danny',
+    lastName: 'Turner',
+    birthDate: '06/24/1995',
+    emailAddress: 'dannyt@gmail.com',
+    cellPhone: '561-555-1212',
+    ssn: '555-55-5555',
+    currentResidence: {
+      monthlyPaymentAmount: 3000,
+      monthsAtResidence: 36,
+      ownershipStatus: 'OWN',
+      address: {
+        lineOne: '123 Ocean Drive',
+        lineTwo: 'Apt 2',
+        city: 'Juno Beach',
+        state: 'FL',
+        postalCode: '33408',
+      },
+    },
+    currentEmployment: {
+      yearlyIncomeAmount: 100000,
+      monthsAtEmployer: 48,
+      employmentType: 'FULL_TIME',
+      employerName: 'Loggerhead Marine Life Center',
+      employmentPosition: 'Marine Biologist',
+      employmentAddress: {
+        lineOne: '14200 US-1',
+        lineTwo: 'Suite 100',
+        city: 'Juno Beach',
+        state: 'FL',
+        postalCode: '33408',
+      },
+    },
+    terms: {
+      agreeToTerms: true,
+      agreeIP: '150.80.15.220',
+      agreeUserAgent: 'Mozilla/5.0',
+    },
+  },
+  hasCoApplicant: false,
+  vehicle: {
+    vin: 'W1NKM4HB4RF139674',
+    year: 2024,
+    make: 'Mercedes-Benz',
+    model: 'GLC',
+    trim: 'GLC 300 4MATIC',
+    mileage: 20,
+    lien: {
+      lienHolder: null,
+      monthlyPaymentAmount: null,
+      payoffAmount: null,
+      initialTerm: null,
+      remainingTerm: null,
+      originalAmount: null,
+      apr: null,
+    },
+  },
+}
+```
+
+  </Step>
+  <Step title='Send the Request.'>
+
+Now that we have the data formatted, we can send the request to create the Credit Application.
+
+```javascript
+import { createCreditApp } from './credit.action'
+
+const creditAppId = await createCreditApp(creditData)
+console.log(creditAppId)
+```
+
+<Warning>Always perform Credit Application operations server-side to secure API keys.</Warning>
+
+  </Step>
+</Steps>
+
+---
+
+### Primary and CoApplicant
+
+<Frame type='glass'>
+  <p class='font-medium text-sm p-4'>
+    Danny's wife Michelle found a car she loves. They want to secure a loan to buy the car. They go
+    to your website and fill out a form to find out how much of a loan they can secure.
+  </p>
+</Frame>
+
+When both Danny and Michelle want to secure a loan for a car they love, their journey through your website will be slightly different to account for the additional information needed from the co-applicant. Here's how to guide them:
+
+<Steps>
+  <Step title='Direct Both Applicants to the Credit Application Form.'>
+    Ensure your form is set up to handle input from both the primary applicant and the co-applicant. It's crucial to clearly label which sections pertain to each applicant to avoid confusion.
+
+<Note>Include identical fields for both the primary applicant and the co-applicant.</Note>
+
+  </Step>
+  <Step title='Collect and Format Data for Both Applicants.'>
+
+While collecting the data, remember to gather information from both Danny and Michelle, treating Michelle's data as the coApplicant's or vice-versa. The data structure for the coApplicant will mirror that of the primaryApplicant.
+
+<Note>
+  For the `relationshipType` in the coApplicant's data, select the appropriate option that describes
+  their relationship to the primary applicant.
+</Note>
+
+```javascript Format Data
+const creditData = {
+  sendTo: 'RouteOne',
+  state: 'DRAFT',
+  environment: 'Production',
+  // Previous fields for primaryApplicant
+  coApplicant: {
+    // Repeat the fields from primaryApplicant,
+    // filling in Michelle's information
+  },
+  hasCoApplicant: true,
+  // Other necessary fields (vehicle, applicationType, etc.)
+}
+```
+
+  </Step>
+  <Step title='Send the Request.'>
+
+Now that we have the data formatted, we can send the request to create the Credit Application.
+
+```javascript
+import { createCreditApp } from './credit.action'
+
+const creditAppId = await createCreditApp(creditData)
+console.log(creditAppId)
+```
+
+<Warning>Always perform Credit Application operations server-side to secure API keys.</Warning>
+
+  </Step>
+</Steps>
+
+---
+
+### Primary with Trade
+
+<Frame type='glass'>
+  <p class='font-medium text-sm p-4'>
+    Danny is looking to trade-in his 2011 Lincoln Town Car for a 2023 Genesis G80. He wants to
+    secure a loan to buy the car and trade-in his old car. He goes to your website and fills out a
+    form to find out how much of a loan he can secure.
+  </p>
+</Frame>
+
+In cases where Danny is looking to trade in his current vehicle as part of securing a new loan, the process involves an additional step to include trade-in information.
+
+<Steps>
+  <Step title='Guide Danny to the Enhanced Credit Application Form.'>
+    Adjust your form to include a section for vehicle trade-in details.
+
+<ResponseField name='tradeInVehicle' type='Trade-In Object'>
+  <Accordion title='Trade-In Properties'>
+    <ResponseField name='vin' type='string'></ResponseField>
+    <ResponseField name='year' type='string'></ResponseField>
+    <ResponseField name='make' type='string'></ResponseField>
+    <ResponseField name='model' type='string'></ResponseField>
+    <ResponseField name='trim' type='string'></ResponseField>
+    <ResponseField name='odometer' type='number'></ResponseField>
+    <ResponseField name='payoff' type='string'></ResponseField>
+    <ResponseField name='lienholder' type='string'></ResponseField>
+  </Accordion>
+</ResponseField>
+
+Ensure the form includes fields for the primary applicant's personal, residence, employment, and vehicle information.
+
+  </Step>
+  <Step title='Collect Information Including Trade-In Details.'>
+
+Apart from collecting the standard application information, you'll need to gather details about the vehicle Danny intends to trade.
+
+```javascript tradeInData
+const tradeInDetails = {
+  make: 'Lincoln',
+  model: 'Town Car',
+  year: '2011',
+  payoff: '7000',
+  // Additional fields as necessary
+}
+```
+
+  </Step>
+  <Step title='Create a Trade.'>
+
+Before sending the Credit Application, you'll need to create a trade-in record for Danny's vehicle.
+
+```javascript
+import { createTrade } from './trade.action'
+
+const tradeInId = await createTrade(tradeInDetails)
+console.log(tradeInId)
+```
+
+<Warning>Always perform Credit Application operations server-side to secure API keys.</Warning>
+
+  </Step>
+  <Step title='Send the Request with the tradeInId'>
+
+    ```javascript
+    const creditData = {
+      sendTo: 'RouteOne',
+      state: 'DRAFT',
+      environment: 'Production',
+      applicationType: 'PURCHASE',
+      financeAmount: 35000,
+      downPayment: 5000,
+      primaryApplicant: {
+        // Primary applicant data
+      },
+      vehicle: {
+        // Vehicle data
+      },
+      trades: [tradeInId],
+    }
+
+    const creditAppId = await createCreditApp(creditData)
+    console.log(creditAppId)
+    ```
+
+  </Step>
+</Steps>
+
+---
+
+### Primary and CoApplicant with Trade
+
+<Frame type='glass'>
+  <p class='font-medium text-sm p-4'>
+    Danny and Michelle are looking to trade-in their 2011 Lincoln Town Car for a 2023 Genesis G80.
+    They want to secure a loan to buy the car and trade-in their old car. They go to your website
+    and fill out a form to find out how much of a loan they can secure.
+  </p>
+</Frame>
+
+For scenarios involving both a primary and a co-applicant intending to trade in a vehicle, combine the steps and considerations from the previous scenarios.
+
+<Steps>
+  <Step title='Guide Both Applicants to the Enhanced Credit Application Form.'>
+    Ensure your form includes sections for both applicants and trade-in details. Ensure clarity and ease of navigation within the form.
+  </Step>
+  <Step title='Collect Information Including Trade-In Details.'>
+    Gather information from both Danny and Michelle, including details about the vehicle they intend to trade.
+  </Step>
+  <Step title='Create a Trade.'>
+    Before sending the Credit Application, create a trade-in record for the vehicle Danny and Michelle intend to trade.
+
+    ```javascript
+    import { createTrade } from './trade.action'
+
+    const tradeInId = await createTrade(tradeInDetails)
+    console.log(tradeInId)
+    ```
+
+  </Step>
+  <Step title='Send the Request with the tradeInId'>
+
+    ```javascript
+    const creditData = {
+      sendTo: 'RouteOne',
+      state: 'DRAFT',
+      environment: 'Production',
+      applicationType: 'PURCHASE',
+      financeAmount: 35000,
+      downPayment: 5000,
+      primaryApplicant: {
+        // Primary applicant data
+      },
+      coApplicant: {
+        // Co-applicant data
+      },
+      vehicle: {
+        // Vehicle data
+      },
+      trades: [tradeInId],
+    }
+
+    const creditAppId = await createCreditApp(creditData)
+    console.log(creditAppId)
+    ```
+
+  </Step>
+</Steps>
+
+---
+
+## Conclusion
+
+Congratulations! You've successfully integrated Credit Applications into your platform.
+
+By following this guide, you've learned how to handle various scenarios, including primary applicants, co-applicants, and trade-ins. You're now equipped to provide a seamless experience for users looking to secure auto loans.
+
+If you have any questions or need further assistance, please don't hesitate to reach out to our support team. Happy coding!
+
+---
+
+## Next Steps
+
+Ready to get started with Credit Applications? Check out the official Drivly SDK documentation to learn more.
+
+<Card icon='book' href='/commerce/sdk' title='Drivly SDK Documentation'>
+  Learn how to use the Drivly SDK to create Credit Applications.
+</Card>

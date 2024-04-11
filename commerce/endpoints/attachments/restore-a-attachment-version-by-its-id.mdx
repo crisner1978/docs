@@ -1,0 +1,18 @@
+---
+openapi: post /attachments/versions/{id}
+---
+
+      <Accordion title="Usage with the Drivly SDK" icon="code-simple">
+        <Note>
+          <span class="font-medium">Make sure you install our SDK first. You can find out how, and more [here](/commerce/sdk).</span>
+        </Note>
+
+        ```typescript
+        import { SDK } from '@drivly/commerce'
+        import type { attachments } from '@drivly/commerce'
+
+        const sdk = new SDK(...)
+
+        const attachments = await sdk.attachments.create(data: attachments): Promise<attachments>
+        ```
+      </Accordion>

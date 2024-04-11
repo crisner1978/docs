@@ -1,0 +1,929 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Drivly Pre-Approval API",
+    "description": "API for the Driv.ly Pre-Approval experience",
+    "contact": { "name": "Drivly", "url": "https://driv.ly", "email": "support@driv.ly" },
+    "license": { "name": "MIT" },
+    "version": "1.0.0"
+  },
+  "servers": [{ "url": "https://commerce.driv.ly/api" }],
+  "security": [{ "apiKeyAuth": [] }],
+  "paths": {
+    "/preApprovals": {
+      "get": {
+        "summary": "Find Pre Approval",
+        "description": "Find Pre Approvals",
+        "parameters": [
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "sort by field",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "description": "pass a where query to constrain returned documents (complex type, see documentation)",
+            "style": "deepObject",
+            "explode": true,
+            "allowReserved": true,
+            "schema": { "$ref": "#/components/schemas/where" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit the returned documents to a certain number",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "get a specific page of documents",
+            "schema": { "type": "number", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/preApprovals"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Pre Approval",
+        "description": "Create a new Pre Approval",
+        "parameters": [
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "description": "Pre Approval to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/preApproval"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "doc": {
+                      "$ref": "#/components/schemas/preApproval"
+                    },
+                    "message": { "type": "string" }
+                  },
+                  "required": ["doc", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preApprovals/{id}": {
+      "get": {
+        "summary": "Get Pre Approval",
+        "description": "Get Pre Approval by its id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the Pre Approval",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "sort by field",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit the returned documents to a certain number",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "get a specific page of documents",
+            "schema": { "type": "number", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/preApproval"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Pre Approval",
+        "description": "Updates a Pre Approval by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the Pre Approval",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "description": "Pre Approval to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/preApproval"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "doc": {
+                      "$ref": "#/components/schemas/preApproval"
+                    },
+                    "message": { "type": "string" }
+                  },
+                  "required": ["doc", "message"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preApprovals/versions": {
+      "get": {
+        "summary": "Get Pre Approval versions",
+        "description": "Get Pre Approval versions",
+        "parameters": [
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "sort by field",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "description": "pass a where query to constrain returned documents (complex type, see documentation)",
+            "style": "deepObject",
+            "explode": true,
+            "allowReserved": true,
+            "schema": { "$ref": "#/components/schemas/where" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit the returned documents to a certain number",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "get a specific page of documents",
+            "schema": { "type": "number", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "docs": {
+                      "type": "array",
+                      "items": {
+                        "title": "PreApproval version",
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "$ref": "#/components/schemas/preApproval"
+                          },
+                          "createdAt": { "type": "string" },
+                          "updatedAt": { "type": "string" }
+                        },
+                        "required": ["id", "parent", "version", "createdAt", "updatedAt"]
+                      }
+                    },
+                    "totalDocs": { "type": "number" },
+                    "limit": { "type": "number" },
+                    "totalPages": { "type": "number" },
+                    "page": { "type": "number" },
+                    "pagingCounter": { "type": "number" },
+                    "hasPrevPage": { "type": "boolean" },
+                    "hasNextPage": { "type": "boolean" },
+                    "prevPage": { "type": "number" },
+                    "nextPage": { "type": "number" }
+                  },
+                  "required": [
+                    "docs",
+                    "totalDocs",
+                    "limit",
+                    "totalPages",
+                    "page",
+                    "pagingCounter",
+                    "hasPrevPage",
+                    "hasNextPage"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preApprovals/versions/{id}": {
+      "get": {
+        "summary": "Get Pre Approval version",
+        "description": "Get Pre Approval version by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the Pre Approval version",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "sort by field",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit the returned documents to a certain number",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "get a specific page of documents",
+            "schema": { "type": "number", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "PreApproval version",
+                  "properties": {
+                    "version": {
+                      "$ref": "#/components/schemas/preApproval"
+                    },
+                    "createdAt": { "type": "string" },
+                    "updatedAt": { "type": "string" }
+                  },
+                  "required": ["id", "parent", "version", "createdAt", "updatedAt"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Restore Pre Approval version",
+        "description": "Restore a Pre Approval version by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the Pre Approval version",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "number of levels to automatically populate relationships and uploads",
+            "schema": { "type": "number", "format": "int32" }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "retrieves document(s) in a specific locale",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fallback-locale",
+            "in": "query",
+            "description": "specifies a fallback locale if no locale value exists",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "doc": {
+                      "$ref": "#/components/schemas/preApproval"
+                    },
+                    "message": { "type": "string" }
+                  },
+                  "required": ["doc", "message"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "preApproval": {
+        "title": "PreApproval",
+        "type": "object",
+        "properties": {
+          "customer": { "type": "number", "nullable": true },
+          "title": { "type": "string", "nullable": true },
+          "status": {
+            "enum": ["Processing", "Error", "Processed", "Needs Info"],
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": { "type": "string", "nullable": true },
+          "middleInitial": { "type": "string", "nullable": true },
+          "lastName": { "type": "string", "nullable": true },
+          "suffix": { "enum": ["JR", "SR", "II", "III", "IV"], "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "city": { "type": "string", "nullable": true },
+          "state": {
+            "enum": [
+              "AA",
+              "AE",
+              "AK",
+              "AL",
+              "AR",
+              "AS",
+              "AZ",
+              "CA",
+              "CO",
+              "CT",
+              "DC",
+              "DE",
+              "FL",
+              "FM",
+              "GA",
+              "GU",
+              "HI",
+              "IA",
+              "ID",
+              "IL",
+              "IN",
+              "KS",
+              "KY",
+              "LA",
+              "MA",
+              "MD",
+              "ME",
+              "MH",
+              "MI",
+              "MN",
+              "MO",
+              "MP",
+              "MS",
+              "MT",
+              "NC",
+              "ND",
+              "NE",
+              "NH",
+              "NJ",
+              "NM",
+              "NV",
+              "NY",
+              "OH",
+              "OK",
+              "OR",
+              "PA",
+              "PR",
+              "PW",
+              "RI",
+              "SC",
+              "SD",
+              "TN",
+              "TX",
+              "UT",
+              "VA",
+              "VI",
+              "VT",
+              "WA",
+              "WI",
+              "WV",
+              "WY",
+              "AP"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "zip": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "income": { "type": "string", "nullable": true },
+          "ipAddress": { "type": "string", "nullable": true },
+          "userAgent": { "type": "string", "nullable": true },
+          "isp": { "type": "string", "nullable": true },
+          "sessionId": { "type": "string", "nullable": true },
+          "resend": { "type": "string", "nullable": true },
+          "AppId": { "type": "number", "nullable": true },
+          "segmentationBand": {
+            "enum": [
+              "Excellent (750-900)",
+              "Good (700-749)",
+              "Fair (650-699)",
+              "Fair (600-649)",
+              "OK (550-599)",
+              "Lower (300-549)",
+              "Unknown",
+              "NS"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedInterestRate": { "type": "string", "nullable": true },
+          "estimatedLoanTerm": { "type": "string", "nullable": true },
+          "lead": { "type": "number", "nullable": true },
+          "updatedAt": { "type": "string" },
+          "createdAt": { "type": "string" }
+        },
+        "required": ["id", "updatedAt", "createdAt"]
+      },
+      "preApprovals": {
+        "type": "object",
+        "title": "Pre Approvals",
+        "properties": {
+          "docs": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/preApproval" }
+          },
+          "totalDocs": { "type": "number" },
+          "limit": { "type": "number" },
+          "totalPages": { "type": "number" },
+          "page": { "type": "number" },
+          "pagingCounter": { "type": "number" },
+          "hasPrevPage": { "type": "boolean" },
+          "hasNextPage": { "type": "boolean" },
+          "prevPage": { "type": "number" },
+          "nextPage": { "type": "number" }
+        },
+        "required": [
+          "docs",
+          "totalDocs",
+          "limit",
+          "totalPages",
+          "page",
+          "pagingCounter",
+          "hasPrevPage",
+          "hasNextPage"
+        ]
+      },
+      "error": {
+        "title": "Error response message",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": { "message": { "type": "string" } },
+              "required": ["message"]
+            }
+          }
+        },
+        "required": ["errors"]
+      },
+      "where": {
+        "title": "Where clause",
+        "type": "object",
+        "additionalProperties": {
+          "anyOf": [
+            { "type": "object", "properties": { "equals": {} }, "additionalProperties": false },
+            { "type": "object", "properties": { "not_equals": {} }, "additionalProperties": false },
+            {
+              "type": "object",
+              "properties": {
+                "greater_than": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "greater_than_equal": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "less_than": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "less_than_equal": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": { "like": { "type": "string" } },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": { "contains": { "type": "string" } },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": { "in": { "type": "string" } },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": { "not_in": { "type": "string" } },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": { "exists": { "type": "boolean" } },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": { "near": { "type": "string" } },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "properties": {
+          "or": {
+            "type": "array",
+            "items": {
+              "title": "Where clause",
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  { "type": "object", "properties": {}, "additionalProperties": false },
+                  { "type": "object", "properties": {}, "additionalProperties": false },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "greater_than": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "greater_than_equal": {
+                        "anyOf": [{ "type": "string" }, { "type": "number" }]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "less_than": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "less_than_equal": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "like": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "contains": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "in": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "not_in": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "exists": { "type": "boolean" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "near": { "type": "string" } },
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "properties": { "or": { "type": "array" }, "and": { "type": "array" } },
+              "example": {
+                "or": [
+                  { "color": { "equals": "mint" } },
+                  {
+                    "and": [{ "color": { "equals": "white" } }, { "featured": { "equals": false } }]
+                  }
+                ]
+              }
+            }
+          },
+          "and": {
+            "type": "array",
+            "items": {
+              "title": "Where clause",
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  { "type": "object", "properties": {}, "additionalProperties": false },
+                  { "type": "object", "properties": {}, "additionalProperties": false },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "greater_than": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "greater_than_equal": {
+                        "anyOf": [{ "type": "string" }, { "type": "number" }]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "less_than": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "less_than_equal": { "anyOf": [{ "type": "string" }, { "type": "number" }] }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "like": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "contains": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "in": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "not_in": { "type": "string" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "exists": { "type": "boolean" } },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": { "near": { "type": "string" } },
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "properties": { "or": { "type": "array" }, "and": { "type": "array" } },
+              "example": {
+                "or": [
+                  { "color": { "equals": "mint" } },
+                  {
+                    "and": [{ "color": { "equals": "white" } }, { "featured": { "equals": false } }]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "example": {
+          "or": [
+            { "color": { "equals": "mint" } },
+            { "and": [{ "color": { "equals": "white" } }, { "featured": { "equals": false } }] }
+          ]
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": { "in": "header", "type": "apiKey", "name": "Authorization" }
+    }
+  }
+}

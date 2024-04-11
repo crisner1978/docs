@@ -1,0 +1,50 @@
+---
+title: "Build a Custom Link"
+description: "Learn how to use Drivly Connect with your customers."
+---
+
+import { HeroContent } from '/snippets/hero-content.mdx'
+import { StoryBoard } from '/snippets/story-board.mdx'
+
+In this guide, we'll follow an example scenario on how to use Drivly Connect with the
+`VIN decode` to vehicle history.
+
+<StoryBoard>
+  In this scenaorio, a `carfax` account is already `connected`. Tony, Pepper, and their daughter
+  Morgan want to fly from New York City to Atlanta. They’ll be leaving on 11th June and returning a
+  week later on 18th June. Tony and his family prefer flying business class.
+</StoryBoard>
+
+---
+
+<Steps>
+  <Step title="Launch Drivly Connect">
+
+  <HeroContent>
+    <img class='block' src='/images/connect/CloudLotsConnect.svg' alt='Hero Dark' />
+  </HeroContent>
+
+    In this scenaorio, a `carfax` account is already `connected`.
+    Drivly Connect allows you to connect all your automotive providers in on place and can be managed from the Drivly dashboard.
+  </Step>
+  <Step title="Connect a Provider">
+  <HeroContent withGrid>
+    <img class='block' src='/images/connect/CloudLotzDashboard.svg' alt='Hero Dark' />
+  </HeroContent>
+
+  - **Read privacy disclosures** - Drivly Connect discloses data privacy practices right from the start, so you know where and how your data will be used.
+  - **Confirm permissions** - Drivly Connect displays the granular permissions needed to access the requested data. Drivly only shares and syncs data that has been approved.
+  - **Select a provider** from Drivly’s extensive list of integrations.
+  - **Authenticate access** - Drivly Connect prompts your customer to enter their credentials and grant you access to requested data. Drivly Connect will only succeed if the user grants Drivly’s systems access, if applicable. See here for applicable cases.
+
+  </Step>
+  <Step title="Receive Data">
+  <HeroContent withGrid>
+    <img class='block' src='/images/connect/VehicleHistoryThree.svg' alt='Hero Dark' />
+  </HeroContent>
+
+  - That's it! Upon successful authentication, you will be redirected back to your application.
+  - Once the connection is established, you will receive a Drivly access token and can call the Drivly API platform.
+
+  </Step>
+</Steps>

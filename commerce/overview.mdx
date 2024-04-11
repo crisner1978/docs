@@ -1,0 +1,71 @@
+---
+title: 'Overview'
+description: "Elevate your commerce capabilities with Drivly's Commerce API, a powerful SDK designed to revolutionize the way businesses handle automotive transactions."
+---
+
+---
+
+## Developer Guides
+
+<CardGroup cols={2}>
+  <Card title='Buy' icon='pen-to-square' href='/commerce/buy/overview'>
+    Buy, includes checkout and payment processing. Creating customers and orders.
+  </Card>
+  <Card title='Sell' icon='sack-dollar' href='/commerce/sell/overview'>
+    Sell, includes inventory management, listing, and pricing. Creating and managing listings.
+  </Card>
+  <Card title='Trade' icon='car-side' href='/commerce/trade/overview'>
+    Trade, includes trade-in valuation and processing. Creating and managing trade-ins.
+  </Card>
+  <Card title='Broker' icon='building-memo' href='/commerce/broker/overview'>
+    Broker, includes vehicle sourcing and selling. Creating and managing brokered vehicles.
+  </Card>
+  <Card title='Dropship' icon='truck-container' href='/commerce/dropship/overview'>
+    Dropship, includes vehicle selling and delivery. Creating and managing dropship orders.
+  </Card>
+</CardGroup>
+
+---
+
+## Best Practices
+
+Learn about best practices for using the Drivly SDK, API, and more.
+
+### Use sandbox for testing
+
+The sandbox environment is a great way to test your integration with the Drivly API. It allows you to test your integration without affecting your production data.
+
+Our upstream providers require that testing be done strictly inside the sandbox, as to not affect any real-world data.
+
+<Warning>
+  The production API effects real-world data, testing in production can lead to a suspension of your
+  account.
+</Warning>
+
+### Avoid caching
+
+Our APIs are designed to be fast and reliable. However, caching the results of API calls can lead to stale data being reported to your customers, users, and staff.
+We recommend that you avoid caching the results of API calls, or if you must cache, use a short cache time.
+
+### Use the latest version of the SDK
+
+We are constantly improving the Drivly SDK. To take advantage of the latest features and improvements, always use the latest version of the SDK.
+
+---
+
+## Authentication
+
+API keys are used to authenticate requests to our APIs, and are required for all requests. You can create and manage your API keys in the [Dashboard](https://commerce.driv.ly).
+
+### Why use an API key?
+
+API keys are used to authenticate requests to our APIs. They allow us to track and manage your application's access to our APIs, as well as assist in support if you encounter any issues.
+
+### Best practices for API key security
+
+- **Keep your API keys private**: Treat them as sensitive data and avoid exposing them in public repositories, client-side code, or anywhere they could be accessed by unauthorized individuals.
+- **Use environment variables**: Store API keys in environment variables or secure app settings to keep them secure.
+- **Rotate keys regularly**: Periodically change API keys to minimize the risk of old keys being misused.
+- **Apply least privilege**: Grant the minimum permissions necessary for the key to function, reducing the potential impact of a compromised key.
+
+By following these guidelines and using API keys effectively, you can enhance the security and efficiency of your application's interaction with our APIs.

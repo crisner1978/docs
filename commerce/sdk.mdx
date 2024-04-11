@@ -1,0 +1,73 @@
+---
+title: 'SDK'
+description: 'The official Drivly SDK for JavaScript, available for browsers and Node.js backends.'
+---
+
+## Installing
+
+You can find our SDK on any of the following package managers or you can use our CDN to include it in your project.
+
+<Note>
+  Our SDK requires a minimum of Node.js 18 to work, or any modern browser. We rely on the Fetch API,
+  so if you are using an older browser, you will need to use a polyfill. You can find out more
+  information [here](https://caniuse.com/fetch).
+</Note>
+
+<CodeGroup>
+
+```bash Yarn
+yarn add @drivly/commerce
+```
+
+```bash NPM
+npm install @drivly/commerce
+```
+
+```bash PnPM
+pnpm install @drivly/commerce
+```
+
+```bash CDN
+<script src="https://unpkg.com/@drivly/commerce"></script>
+```
+
+</CodeGroup>
+
+## Getting started
+
+You first need to create an API key, which you can find our documentation on [here](/commerce/overview#authentication). Please also read our [Best Practices](/commerce/best-practices) guide to learn how to best use our SDK.
+
+```javascript
+import { SDK } from '@drivly/commerce'
+
+const sdk = new SDK({ apiKey: 'your-api-key', environment: 'sandbox' })
+```
+
+### Environment variables
+
+If you wish to use environment variables, you can set the `DRIVLY_API_KEY` and `DRIVLY_ENV` variables in your environment. Our SDK will automatically pick up these environment variables and use them to authenticate your requests.
+
+```bash
+export DRIVLY_API_KEY=your-api-key
+export DRIVLY_ENV=sandbox
+```
+
+## Making your first request
+
+Now that you have your SDK set up, you can start making requests to our API. Here is an example of how you can get a list of consumers.
+
+```javascript
+const consumers = await sdk.consumers.find()
+```
+
+## Types
+
+We also offer TypeScript types for our SDK, which you can use to get better type safety in your code. You can import the types like so:
+
+```javascript
+import type { Consumer } from '@drivly/commerce'
+```
+
+## Next steps
+
+Now that you have our SDK set up, you can start using it to interact with our API. You can find our API reference [here](/commerce). If you have any questions, feel free to reach out to us at [support@driv.ly](mailto:support@driv.ly).

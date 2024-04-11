@@ -1,0 +1,325 @@
+---
+title: 'Search by Year & Make'
+---
+
+<p class="font-medium">
+  <code class="p-2 flex flex-wrap items-center justify-start">
+    <span class="px-1 py-0.5 mr-2 rounded-[0.3rem] text-[0.55rem] leading-tight font-bold bg-green-400/20 text-green-700 dark:bg-green-400/20 dark:text-green-400 text-base">GET</span>
+    <span>https://listings.vin?vehicle.year=2019&vehicle.make=Toyota</span>
+  </code>
+</p>
+
+<ParamField query="vehicle.year" type="number">
+  The year of the vehicle. Example: 2019. If you want to search for a range of years, you can use the format 2019-2021.
+</ParamField>
+
+<ParamField query="vehicle.make" type="string">
+  The make of the vehicle. Example: Toyota.
+</ParamField>
+
+
+<ResponseExample>
+```json
+{
+  "data": [
+    {
+      "vin": "4T1B11HK4KU746489",
+      "url": "http://listings.vin/4T1B11HK4KU746489",
+      "retailRandom": 0.999927583364776,
+      "vehicle": {
+        "vin": "4T1B11HK4KU746489",
+        "squishVin": "4T1B11HKKU",
+        "year": 2019,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "L",
+        "series": "L 4dr Sedan (2.5L 4cyl 8A)",
+        "bodyStyle": "Car",
+        "type": [
+          "Sedan"
+        ],
+        "style": "Sedan",
+        "drivetrain": "FWD",
+        "engine": "2.5L 4Cyl gasoline",
+        "cylinders": 4,
+        "fuel": "Regular Unleaded",
+        "transmission": "Automatic",
+        "confidence": 0.995,
+        "exteriorColor": "Silver",
+        "baseMsrp": 24095,
+        "baseInvoice": 22046,
+        "doors": 4,
+        "seats": 5
+      },
+      "retailListing": {
+        "vdp": "/toyota-camry#vin=4T1B11HK4KU746489",
+        "price": 19445,
+        "miles": 70788,
+        "used": true,
+        "cpo": false,
+        "carfaxUrl": "https://www.carfax.com/VehicleHistory/p/Report.cfx?vin=4T1B11HK4KU746489&partner=FRD_2",
+        "dealer": "Shelton Ford",
+        "city": "Shelton",
+        "state": "WA",
+        "primaryImage": "https://retail.photos.vin/4T1B11HK4KU746489-1.jpg",
+        "photoCount": 32,
+        "margin": null
+      },
+      "score": 2.16623592376709
+    }
+  ],
+  "facets": {
+    "models": {
+      "RAV4 (1424)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=RAV4",
+      "Tacoma (1295)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Tacoma",
+      "Camry (1218)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Camry",
+      "Highlander (1167)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Highlander",
+      "Corolla (722)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla",
+      "4Runner (709)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=4Runner",
+      "Tundra (571)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Tundra",
+      "C-HR (371)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=C-HR",
+      "RAV4 Hybrid (357)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=RAV4+Hybrid",
+      "Sienna (305)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Sienna",
+      "Prius (212)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Prius",
+      "Avalon (211)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Avalon",
+      "Corolla Hatchback (150)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Corolla+Hatchback",
+      "Highlander Hybrid (119)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Highlander+Hybrid",
+      "Yaris (99)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Yaris",
+      "Camry Hybrid (97)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Camry+Hybrid",
+      "Prius Prime (77)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Prius+Prime",
+      "Sequoia (77)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Sequoia",
+      "Tacoma 2WD (50)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Tacoma+2WD",
+      "86 (46)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=86",
+      "Avalon Hybrid (44)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Avalon+Hybrid",
+      "Mirai (39)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Mirai",
+      "Tacoma 4WD (39)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Tacoma+4WD",
+      "Tacoma Double Cab (20)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Tacoma+Double+Cab",
+      "Tundra 4WD (18)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.model=Tundra+4WD"
+    },
+    "types": {
+      "SUV (4222)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=SUV",
+      "Crossover (3435)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Crossover",
+      "Sedan (2429)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Sedan",
+      "Truck (2012)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Truck",
+      "Hybrid (945)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Hybrid",
+      "Hatchback (456)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Hatchback",
+      "Minivan (305)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Minivan",
+      "Performance/Sports (242)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Performance%2FSports",
+      "Coupe (46)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Coupe",
+      "Luxury (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.type=Luxury"
+    },
+    "exteriorColor": {
+      "White (2135)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=White",
+      "Gray (1963)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Gray",
+      "Black (1637)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Black",
+      "Silver (1477)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Silver",
+      "Red (830)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Red",
+      "Blue (783)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Blue",
+      "Brown (146)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Brown",
+      "Green (34)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Green",
+      "Gold (5)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Gold",
+      "Tan (5)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Tan",
+      "Other (3)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Other",
+      "Orange (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Orange",
+      "Purple (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.exteriorColor=Purple"
+    },
+    "fuel": {
+      "Regular Unleaded (9270)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.fuel=Regular+Unleaded",
+      "Flex-fuel (Unleaded/e85) (115)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.fuel=Flex-fuel+%28Unleaded%2Fe85%29",
+      "Premium Unleaded (Recommended) (46)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.fuel=Premium+Unleaded+%28Recommended%29",
+      "Hydrogen (39)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.fuel=Hydrogen",
+      "Gasoline (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.fuel=Gasoline"
+    },
+    "trims": {
+      "LE (1527)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=LE",
+      "XLE (1445)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=XLE",
+      "SE (797)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=SE",
+      "SR5 (723)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=SR5",
+      "Limited (593)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=Limited",
+      "SR (552)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=SR",
+      "L (551)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=L",
+      "XSE (410)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=XSE",
+      "SR5 Premium (397)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=SR5+Premium",
+      "Limited Platinum (297)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=Limited+Platinum",
+      "XLE Premium (227)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=XLE+Premium",
+      "LE Plus (222)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=LE+Plus",
+      "TRD Sport (211)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=TRD+Sport",
+      "TRD Off Road (171)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=TRD+Off+Road",
+      "Limited Nightshade Edition (154)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=Limited+Nightshade+Edition",
+      "Adventure (139)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=Adventure",
+      "SR5 FFV (115)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=SR5+FFV",
+      "TRD OFF-ROAD Premium (104)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=TRD+OFF-ROAD+Premium",
+      "TRD PRO (98)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=TRD+PRO",
+      "XLE 8-Passenger (86)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=XLE+8-Passenger",
+      "1794 (63)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=1794",
+      "Platinum (63)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=Platinum",
+      "L Eco (62)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=L+Eco",
+      "LE 8-Passenger (49)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=LE+8-Passenger",
+      "XLE 7-Passenger (38)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.trim=XLE+7-Passenger"
+    },
+    "drivetrain": {
+      "FWD (4324)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.drivetrain=FWD",
+      "AWD (2241)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.drivetrain=AWD",
+      "4WD (1799)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.drivetrain=4WD",
+      "RWD (860)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.drivetrain=RWD"
+    },
+    "accidents": {
+      "0 (421)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&autocheck.numberOfAccidents=0",
+      "1 (214)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&autocheck.numberOfAccidents=1",
+      "2 (68)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&autocheck.numberOfAccidents=2",
+      "3 (19)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&autocheck.numberOfAccidents=3",
+      "4 (3)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&autocheck.numberOfAccidents=4"
+    },
+    "cylinders": {
+      "0 (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.cylinders=0",
+      "4 (5150)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.cylinders=4",
+      "6 (3604)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.cylinders=6",
+      "8 (681)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.cylinders=8"
+    },
+    "states": {
+      "FL (114)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=FL",
+      "TX (104)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=TX",
+      "CA (67)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=CA",
+      "NC (42)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=NC",
+      "GA (39)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=GA",
+      "PA (37)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=PA",
+      "VA (37)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=VA",
+      "NJ (33)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=NJ",
+      "NY (24)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=NY",
+      "MD (19)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=MD",
+      "OH (19)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=OH",
+      "TN (17)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=TN",
+      "AZ (13)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=AZ",
+      "SC (13)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=SC",
+      "AL (12)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=AL",
+      "IL (12)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=IL",
+      "MA (12)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=MA",
+      "MS (12)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=MS",
+      "IN (10)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=IN",
+      "NV (10)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=NV",
+      "LA (9)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=LA",
+      "MN (7)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=MN",
+      "WI (7)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=WI",
+      "AR (6)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=AR",
+      "IA (6)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&wholesaleListing.state=IA"
+    },
+    "transmissions": {
+      "Automatic (9245)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.transmission=Automatic",
+      "Manual (192)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.transmission=Manual",
+      "Direct Drive (39)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.transmission=Direct+Drive"
+    },
+    "interiorColor": {
+      "Black (4681)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Black",
+      "Gray (2464)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Gray",
+      "Brown (581)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Brown",
+      "Red (82)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Red",
+      "Other (34)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Other",
+      "Beige (31)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Beige",
+      "White (30)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=White",
+      "Blue (22)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Blue",
+      "Tan (22)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Tan",
+      "Orange (4)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Orange",
+      "Green (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.interiorColor=Green"
+    },
+    "engine": {
+      "3.5L 6Cyl gasoline (2459)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=3.5L+6Cyl+gasoline",
+      "2.5L 4Cyl gasoline (2229)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.5L+4Cyl+gasoline",
+      "4.0L 6Cyl gasoline (636)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=4.0L+6Cyl+gasoline",
+      "1.8L 4Cyl gasoline (615)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.8L+4Cyl+gasoline",
+      "2.0L 4Cyl gasoline (474)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.0L+4Cyl+gasoline",
+      "2.5L 4Cyl hybrid (462)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.5L+4Cyl+hybrid",
+      "5.7L 8Cyl gasoline (453)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=5.7L+8Cyl+gasoline",
+      "2.5L 4Cyl Gasoline (345)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.5L+4Cyl+Gasoline",
+      "3.5L 6Cyl Gasoline (311)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=3.5L+6Cyl+Gasoline",
+      "2.7L 4Cyl gasoline (298)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.7L+4Cyl+gasoline",
+      "1.8L 4Cyl hybrid (178)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.8L+4Cyl+hybrid",
+      "3.5L 6Cyl hybrid (110)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=3.5L+6Cyl+hybrid",
+      "1.8L 4Cyl Gasoline (109)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.8L+4Cyl+Gasoline",
+      "5.7L 8Cyl flex fuel (108)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=5.7L+8Cyl+flex+fuel",
+      "2.0L 4Cyl Gasoline (93)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.0L+4Cyl+Gasoline",
+      "1.5L 4Cyl gasoline (81)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.5L+4Cyl+gasoline",
+      "4.0L 6Cyl Gasoline (73)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=4.0L+6Cyl+Gasoline",
+      "1.8L 4Cyl plug-in hybrid (70)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.8L+4Cyl+plug-in+hybrid",
+      "2.7L 4Cyl Gasoline (67)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.7L+4Cyl+Gasoline",
+      "4.6L 8Cyl gasoline (63)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=4.6L+8Cyl+gasoline",
+      "5.7L 8Cyl Gasoline (44)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=5.7L+8Cyl+Gasoline",
+      "hydrogen fuel cell (38)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=hydrogen+fuel+cell",
+      "2.5L 4Cyl Hybrid (34)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=2.5L+4Cyl+Hybrid",
+      "1.8L 4Cyl Hybrid (23)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.8L+4Cyl+Hybrid",
+      "1.5L 4Cyl Gasoline (21)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.engine=1.5L+4Cyl+Gasoline"
+    },
+    "series": {
+      "SE 4dr Sedan (2.5L 4cyl 8A) (392)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=SE+4dr+Sedan+%282.5L+4cyl+8A%29",
+      "XLE 4dr SUV AWD (3.5L 6cyl 8A) (378)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XLE+4dr+SUV+AWD+%283.5L+6cyl+8A%29",
+      "SR5 Premium 4dr SUV 4WD (4.0L 6cyl 5A) (319)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=SR5+Premium+4dr+SUV+4WD+%284.0L+6cyl+5A%29",
+      "LE 4dr Sedan (1.8L 4cyl CVT) (302)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=LE+4dr+Sedan+%281.8L+4cyl+CVT%29",
+      "SR 4dr Double Cab 4WD 5.0 ft. SB (3.5L 6cyl 6A) (283)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=SR+4dr+Double+Cab+4WD+5.0+ft.+SB+%283.5L+6cyl+6A%29",
+      "LE 4dr Sedan (2.5L 4cyl 8A) (281)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=LE+4dr+Sedan+%282.5L+4cyl+8A%29",
+      "L 4dr Sedan (2.5L 4cyl 8A) (268)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=L+4dr+Sedan+%282.5L+4cyl+8A%29",
+      "LE 4dr SUV (2.5L 4cyl 8A) (233)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=LE+4dr+SUV+%282.5L+4cyl+8A%29",
+      "L 4dr Sedan (1.8L 4cyl CVT) (225)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=L+4dr+Sedan+%281.8L+4cyl+CVT%29",
+      "XLE 4dr SUV AWD (2.5L 4cyl 8A) (221)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XLE+4dr+SUV+AWD+%282.5L+4cyl+8A%29",
+      "LE 4dr SUV AWD (2.5L 4cyl 8A) (216)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=LE+4dr+SUV+AWD+%282.5L+4cyl+8A%29",
+      "XLE 4dr SUV (2.5L 4cyl 8A) (194)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XLE+4dr+SUV+%282.5L+4cyl+8A%29",
+      "LE 4dr SUV (2.0L 4cyl CVT) (184)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=LE+4dr+SUV+%282.0L+4cyl+CVT%29",
+      "SR5 4dr Double Cab 5.0 ft. SB (3.5L 6cyl 6A) (178)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=SR5+4dr+Double+Cab+5.0+ft.+SB+%283.5L+6cyl+6A%29",
+      "XSE 4dr Sedan (2.5L 4cyl 8A) (165)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XSE+4dr+Sedan+%282.5L+4cyl+8A%29",
+      "Limited Platinum 4dr SUV AWD (3.5L 6cyl 8A) (161)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=Limited+Platinum+4dr+SUV+AWD+%283.5L+6cyl+8A%29",
+      "SE 4dr Sedan (1.8L 4cyl 6M) (150)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=SE+4dr+Sedan+%281.8L+4cyl+6M%29",
+      "XLE 4dr SUV (3.5L 6cyl 8A) (147)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XLE+4dr+SUV+%283.5L+6cyl+8A%29",
+      "Adventure 4dr SUV AWD (2.5L 4cyl 8A) (138)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=Adventure+4dr+SUV+AWD+%282.5L+4cyl+8A%29",
+      "TRD Off Road 4dr Double Cab 4WD 5.0 ft. SB (3.5L 6cyl 6A) (138)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=TRD+Off+Road+4dr+Double+Cab+4WD+5.0+ft.+SB+%283.5L+6cyl+6A%29",
+      "SR 4dr Access Cab 6.1 ft. SB (2.7L 4cyl 6A) (134)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=SR+4dr+Access+Cab+6.1+ft.+SB+%282.7L+4cyl+6A%29",
+      "XLE 4dr SUV (2.0L 4cyl CVT) (132)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XLE+4dr+SUV+%282.0L+4cyl+CVT%29",
+      "LE Plus 4dr SUV AWD (3.5L 6cyl 8A) (129)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=LE+Plus+4dr+SUV+AWD+%283.5L+6cyl+8A%29",
+      "Limited Nightshade Edition 4dr SUV 4WD (4.0L 6cyl 5A) (124)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=Limited+Nightshade+Edition+4dr+SUV+4WD+%284.0L+6cyl+5A%29",
+      "XLE Premium 4dr SUV AWD (2.5L 4cyl 8A) (118)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&vehicle.series=XLE+Premium+4dr+SUV+AWD+%282.5L+4cyl+8A%29"
+    },
+    "prices": {
+      "5000-13000 (166)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=5000-13000",
+      "13000-20000 (1643)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=13000-20000",
+      "20000-27000 (3019)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=20000-27000",
+      "27000-34000 (2594)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=27000-34000",
+      "34000-42000 (1099)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=34000-42000",
+      "42000-49000 (198)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=42000-49000",
+      "49000-56000 (23)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=49000-56000",
+      "56000-63000 (2)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=56000-63000",
+      "63000-71000 (1)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=63000-71000",
+      "71000-78000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=71000-78000",
+      "78000-85000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=78000-85000",
+      "85000-92000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=85000-92000",
+      "92000-100000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=92000-100000",
+      "100000-107000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=100000-107000",
+      "107000-114000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=107000-114000",
+      "114000-121000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=114000-121000",
+      "121000-129000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=121000-129000",
+      "129000-136000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=129000-136000",
+      "136000-143000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=136000-143000",
+      "143000-150000 (0)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.price=143000-150000"
+    },
+    "mileage": {
+      "0-7000 (34)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=0-7000",
+      "7000-13000 (85)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=7000-13000",
+      "13000-19000 (136)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=13000-19000",
+      "19000-25000 (258)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=19000-25000",
+      "25000-32000 (466)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=25000-32000",
+      "32000-38000 (529)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=32000-38000",
+      "38000-44000 (651)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=38000-44000",
+      "44000-50000 (777)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=44000-50000",
+      "50000-57000 (912)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=50000-57000",
+      "57000-63000 (803)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=57000-63000",
+      "63000-69000 (752)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=63000-69000",
+      "69000-75000 (661)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=69000-75000",
+      "75000-82000 (632)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=75000-82000",
+      "82000-88000 (468)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=82000-88000",
+      "88000-94000 (395)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=88000-94000",
+      "94000-100000 (340)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=94000-100000",
+      "100000-107000 (266)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=100000-107000",
+      "107000-113000 (185)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=107000-113000",
+      "113000-119000 (161)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=113000-119000",
+      "119000-125000 (137)": "http://listings.vin/?vehicle.year=2019&vehicle.make=Toyota&retailListing.miles=119000-125000"
+    }
+  }
+}
+```
+</ResponseExample>

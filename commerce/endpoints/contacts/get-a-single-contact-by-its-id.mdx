@@ -1,0 +1,18 @@
+---
+openapi: get /contacts/{id}
+---
+
+      <Accordion title="Usage with the Drivly SDK" icon="code-simple">
+        <Note>
+          <span class="font-medium">Make sure you install our SDK first. You can find out how, and more [here](/commerce/sdk).</span>
+        </Note>
+
+        ```typescript
+        import { SDK } from '@drivly/commerce'
+        import type { contacts } from '@drivly/commerce'
+
+        const sdk = new SDK(...)
+
+        const contacts = await sdk.contacts.findOne(contactsId: string): Promise<contacts>
+        ```
+      </Accordion>

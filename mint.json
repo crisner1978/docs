@@ -1,0 +1,1007 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Drivly Docs",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "favicon.svg",
+  "colors": {
+    "primary": "#00CAB9",
+    "light": "#A8F6F6",
+    "dark": "#03C2B2",
+    "background": {
+      "dark": "#121212"
+    },
+    "anchors": {
+      "from": "#00CAB9",
+      "to": "#00CAB9"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Contact us",
+      "url": "mailto:sales@driv.ly"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Apply for access",
+    "url": "https://drivly.typeform.com/applyforaccess"
+  },
+  "tabs": [
+    { "name": "Connect", "url": "connect" },
+    { "name": "Data", "url": "data" },
+    { "name": "Services", "url": "services" },
+    { "name": "Commerce", "url": "commerce" },
+    { "name": "AI", "url": "ai" }
+  ],
+  "primaryTab": { "name": "Home" },
+  "anchors": [
+    {
+      "name": "Getting Started",
+      "icon": "book-open-cover",
+      "url": "get-started/overview"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": ["get-started/overview", "get-started/what-is-drivly", "get-started/quickstart"]
+    },
+    {
+      "group": "Drivly AI",
+      "pages": ["ai/what-is-drivly-ai", "ai/use-cases"]
+    },
+    {
+      "group": "Connect",
+      "pages": [
+        "connect/what-is-connect",
+        "connect/connecting-providers",
+        "connect/build-a-custom-link",
+        "connect/integrations",
+        {
+          "group": "Supported Providers",
+          "pages": [
+            "connect/providers/acv",
+            "connect/providers/adesa",
+            "connect/providers/autocheck",
+            "connect/providers/axle",
+            "connect/providers/blackbook",
+            "connect/providers/carfax",
+            "connect/providers/cdk",
+            "connect/providers/cudl",
+            "connect/providers/dealercenter",
+            "connect/providers/dealertrack",
+            "connect/providers/equifax",
+            "connect/providers/experian",
+            "connect/providers/jdpower",
+            "connect/providers/kelly-blue-book",
+            "connect/providers/manheim",
+            "connect/providers/manheim-mmr",
+            "connect/providers/reynolds-and-reynolds",
+            "connect/providers/routeone",
+            "connect/providers/smartcar",
+            "connect/providers/tekion",
+            "connect/providers/transunion"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Commerce",
+      "pages": [
+        "commerce/overview",
+        "commerce/sdk",
+        {
+          "group": "Buy",
+          "icon": "pen-to-square",
+          "pages": ["commerce/buy/overview"]
+        },
+        {
+          "group": "Sell",
+          "icon": "sack-dollar",
+          "pages": ["commerce/sell/overview"]
+        },
+        {
+          "group": "Trade",
+          "icon": "car-side",
+          "pages": ["commerce/trade/overview"]
+        },
+        {
+          "group": "Broker",
+          "icon": "building-memo",
+          "pages": ["commerce/broker/overview"]
+        },
+        {
+          "group": "Dropship",
+          "icon": "truck-container",
+          "pages": ["commerce/dropship/overview"]
+        }
+      ]
+    },
+    {
+      "group": "Services",
+      "pages": [
+        "services/overview",
+        {
+          "group": "Concierge",
+          "icon": "bell-concierge",
+          "pages": [
+            "services/concierge/what-is-concierge",
+            "services/concierge/concierge-search",
+            "services/concierge/concierge-buy"
+          ]
+        },
+        {
+          "group": "Inspection",
+          "icon": "clipboard-check",
+          "pages": [
+            "services/inspection/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/inspection/reference/pre-purchase",
+                "services/inspection/reference/post-sale",
+                "services/inspection/reference/safety",
+                "services/inspection/reference/mechanical",
+                "services/inspection/reference/condition",
+                "services/inspection/reference/arbitration"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Reconditioning",
+          "icon": "stars",
+          "pages": [
+            "services/reconditioning/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/reconditioning/reference/quote",
+                "services/reconditioning/reference/order"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Mechanical Repair",
+          "icon": "car-wrench",
+          "pages": [
+            "services/mechanical-repair/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/mechanical-repair/reference/quote",
+                "services/mechanical-repair/reference/order"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Finance & Insurance",
+          "icon": "file-invoice-dollar",
+          "pages": [
+            "services/finance-and-insurance/overview",
+            {
+              "group": "Pre-Approval",
+              "pages": [
+                "services/finance-and-insurance/pre-approval/overview",
+                "services/finance-and-insurance/pre-approval/guide",
+                {
+                  "group": "Reference",
+                  "pages": [
+                    "services/finance-and-insurance/pre-approval/reference/find-pre-approval",
+                    "services/finance-and-insurance/pre-approval/reference/create-pre-approval",
+                    "services/finance-and-insurance/pre-approval/reference/get-pre-approval",
+                    "services/finance-and-insurance/pre-approval/reference/update-pre-approval",
+                    "services/finance-and-insurance/pre-approval/reference/get-pre-approval-versions",
+                    "services/finance-and-insurance/pre-approval/reference/get-pre-approval-version",
+                    "services/finance-and-insurance/pre-approval/reference/restore-pre-approval-version"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "Credit Application",
+              "pages": [
+                "services/finance-and-insurance/credit-application/overview",
+                "services/finance-and-insurance/credit-application/guide"
+              ]
+            },
+            {
+              "group": "Vehicle Service Contract",
+              "pages": [
+                "services/finance-and-insurance/vehicle-service-contract/overview",
+                "services/finance-and-insurance/vehicle-service-contract/guide"
+              ]
+            },
+            {
+              "group": "Protection Plans",
+              "pages": [
+                "services/finance-and-insurance/protection-plans/overview",
+                "services/finance-and-insurance/protection-plans/guide"
+              ]
+            },
+            {
+              "group": "GAP Insurance",
+              "pages": [
+                "services/finance-and-insurance/gap-insurance/overview",
+                "services/finance-and-insurance/gap-insurance/guide"
+              ]
+            },
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/finance-and-insurance/reference/pre-approval",
+                "services/finance-and-insurance/reference/credit-application",
+                "services/finance-and-insurance/reference/vehicle-service-contract",
+                "services/finance-and-insurance/reference/protection-plans",
+                "services/finance-and-insurance/reference/gap-insurance"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Back Office & Contracting",
+          "icon": "cabinet-filing",
+          "pages": [
+            "services/back-office-and-contracting/overview",
+            {
+              "group": "API Reference",
+              "pages": ["services/back-office-and-contracting/reference/notarize-power-of-attorney"]
+            }
+          ]
+        },
+        {
+          "group": "Title & Registration",
+          "icon": "file-invoice",
+          "pages": [
+            "services/title-and-registration/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/title-and-registration/reference/quote",
+                "services/title-and-registration/reference/order"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Body & Paint",
+          "icon": "fill-drip",
+          "pages": [
+            "services/body-and-paint/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/body-and-paint/reference/quote",
+                "services/body-and-paint/reference/order"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Wash & Detail",
+          "icon": "car-wash",
+          "pages": [
+            "services/wash-and-detail/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/wash-and-detail/reference/quote-wash",
+                "services/wash-and-detail/reference/order-wash",
+                "services/wash-and-detail/reference/quote-detail",
+                "services/wash-and-detail/reference/order-detail"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Transport & Delivery",
+          "icon": "truck-container",
+          "pages": [
+            "services/transport-and-delivery/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/transport-and-delivery/reference/quote-long-haul",
+                "services/transport-and-delivery/reference/order-long-haul",
+                "services/transport-and-delivery/reference/quote-last-mile",
+                "services/transport-and-delivery/reference/order-last-mile"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Scheduled Maintenance",
+          "icon": "screwdriver-wrench",
+          "pages": [
+            "services/scheduled-maintenance/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                "services/scheduled-maintenance/reference/quote",
+                "services/scheduled-maintenance/reference/order"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Monetizing Services",
+          "icon": "dollar-sign",
+          "pages": ["services/monetizing-services/margin-and-markups"]
+        }
+      ]
+    },
+    {
+      "group": "Data",
+      "pages": [
+        "data/overview",
+        "data/api-keys",
+        {
+          "group": "Vehicle",
+          "icon": "car",
+          "pages": [
+            "data/vehicle/overview",
+            {
+              "group": "Build",
+              "pages": ["data/vehicle/build/overview", "data/vehicle/build/oem-specs"]
+            },
+            {
+              "group": "Listing",
+              "pages": ["data/vehicle/listing/overview", "data/vehicle/listing/vehicle-details"]
+            },
+
+            {
+              "group": "Photos",
+              "pages": [
+                "data/vehicle/photos/overview",
+                "data/vehicle/photos/vehicle-photos",
+                "data/vehicle/photos/get-photo"
+              ]
+            },
+            {
+              "group": "Specs",
+              "pages": ["data/vehicle/specs/overview", "data/vehicle/specs/vehicle-specs"]
+            },
+            {
+              "group": "Stock Photos",
+              "pages": ["data/vehicle/stock-photos/overview"]
+            },
+            {
+              "group": "Pricing",
+              "pages": ["data/vehicle/pricing/overview"]
+            }
+          ]
+        },
+        {
+          "group": "Manufacturer",
+          "icon": "industry-windows",
+          "pages": ["data/manufacturer/overview"]
+        },
+        {
+          "group": "Dealer",
+          "icon": "building-memo",
+          "pages": ["data/dealer/overview"]
+        },
+        {
+          "group": "IoT",
+          "icon": "cloud",
+          "pages": ["data/iot/overview"]
+        },
+        {
+          "group": "Auction",
+          "icon": "sack-dollar",
+          "pages": ["data/auction/overview"]
+        },
+        {
+          "group": "Listings",
+          "icon": "car-side",
+          "pages": [
+            "data/listings/overview",
+            {
+              "group": "API Reference",
+              "pages": [
+                {
+                  "group": "Examples",
+                  "pages": [
+                    {
+                      "group": "Search",
+                      "pages": [
+                        "data/listings/reference/examples/search/search-by-year",
+                        "data/listings/reference/examples/search/search-by-year-&-make",
+                        "data/listings/reference/examples/search/search-by-year-make-&-model",
+                        "data/listings/reference/examples/search/search-by-year-make-model-&-trim",
+                        "data/listings/reference/examples/search/search-by-multiple-values",
+                        "data/listings/reference/examples/search/search-by-body-style",
+                        "data/listings/reference/examples/search/search-by-transmission",
+                        "data/listings/reference/examples/search/search-by-exterior-color"
+                      ]
+                    },
+                    {
+                      "group": "Sorting",
+                      "pages": [
+                        "data/listings/reference/examples/sorting/sort-by-price",
+                        "data/listings/reference/examples/sorting/sort-by-miles",
+                        "data/listings/reference/examples/sorting/sort-by-year"
+                      ]
+                    }
+                  ]
+                },
+                "data/listings/reference/autocomplete",
+                "data/listings/reference/list-models",
+                "data/listings/reference/search"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Tax & Fee",
+          "icon": "file-invoice-dollar",
+          "pages": [
+            "data/tax-and-fee/overview",
+            "data/tax-and-fee/developer-guide",
+            {
+              "group": "API Reference",
+              "pages": [
+                "data/tax-and-fee/reference/get-taxes-and-fees",
+                "data/tax-and-fee/reference/get-payments"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Transaction",
+          "icon": "receipt",
+          "pages": ["data/transaction/overview"]
+        },
+        {
+          "group": "Registration",
+          "icon": "building-columns",
+          "pages": ["data/registration/overview"]
+        },
+        {
+          "group": "Market",
+          "icon": "chart-line",
+          "pages": ["data/market/overview"]
+        }
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "group": "Addresses",
+          "pages": [
+            "commerce/endpoints/addresses/find-paginated-addresses",
+            "commerce/endpoints/addresses/create-a-new-address",
+            "commerce/endpoints/addresses/delete-multiple-addresses",
+            "commerce/endpoints/addresses/update-multiple-addresses",
+            "commerce/endpoints/addresses/get-a-single-address-by-its-id",
+            "commerce/endpoints/addresses/deletes-an-existing-address",
+            "commerce/endpoints/addresses/updates-a-address",
+            "commerce/endpoints/addresses/address-versions",
+            "commerce/endpoints/addresses/get-a-single-address-version-by-its-id",
+            "commerce/endpoints/addresses/restore-a-address-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Attachments",
+          "pages": [
+            "commerce/endpoints/attachments/find-paginated-attachments",
+            "commerce/endpoints/attachments/create-a-new-attachment",
+            "commerce/endpoints/attachments/delete-multiple-attachments",
+            "commerce/endpoints/attachments/update-multiple-attachments",
+            "commerce/endpoints/attachments/get-a-single-attachment-by-its-id",
+            "commerce/endpoints/attachments/deletes-an-existing-attachment",
+            "commerce/endpoints/attachments/updates-a-attachment",
+            "commerce/endpoints/attachments/attachment-versions",
+            "commerce/endpoints/attachments/get-a-single-attachment-version-by-its-id",
+            "commerce/endpoints/attachments/restore-a-attachment-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Calls",
+          "pages": [
+            "commerce/endpoints/calls/find-paginated-calls",
+            "commerce/endpoints/calls/create-a-new-call",
+            "commerce/endpoints/calls/delete-multiple-calls",
+            "commerce/endpoints/calls/update-multiple-calls",
+            "commerce/endpoints/calls/get-a-single-call-by-its-id",
+            "commerce/endpoints/calls/deletes-an-existing-call",
+            "commerce/endpoints/calls/updates-a-call",
+            "commerce/endpoints/calls/call-versions",
+            "commerce/endpoints/calls/get-a-single-call-version-by-its-id",
+            "commerce/endpoints/calls/restore-a-call-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Contacts",
+          "pages": [
+            "commerce/endpoints/contacts/find-paginated-contacts",
+            "commerce/endpoints/contacts/create-a-new-contact",
+            "commerce/endpoints/contacts/delete-multiple-contacts",
+            "commerce/endpoints/contacts/update-multiple-contacts",
+            "commerce/endpoints/contacts/get-a-single-contact-by-its-id",
+            "commerce/endpoints/contacts/deletes-an-existing-contact",
+            "commerce/endpoints/contacts/updates-a-contact",
+            "commerce/endpoints/contacts/contact-versions",
+            "commerce/endpoints/contacts/get-a-single-contact-version-by-its-id",
+            "commerce/endpoints/contacts/restore-a-contact-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Credit Applications",
+          "pages": [
+            "commerce/endpoints/creditapplications/find-paginated-credit-applications",
+            "commerce/endpoints/creditapplications/create-a-new-credit-application",
+            "commerce/endpoints/creditapplications/delete-multiple-credit-applications",
+            "commerce/endpoints/creditapplications/update-multiple-credit-applications",
+            "commerce/endpoints/creditapplications/get-a-single-credit-application-by-its-id",
+            "commerce/endpoints/creditapplications/deletes-an-existing-credit-application",
+            "commerce/endpoints/creditapplications/updates-a-credit-application",
+            "commerce/endpoints/creditapplications/credit-application-versions",
+            "commerce/endpoints/creditapplications/get-a-single-credit-application-version-by-its-id",
+            "commerce/endpoints/creditapplications/restore-a-credit-application-version-by-its-id",
+            "commerce/endpoints/creditapplications/custom-operation"
+          ]
+        },
+        {
+          "group": "Customers",
+          "pages": [
+            "commerce/endpoints/customers/find-paginated-customers",
+            "commerce/endpoints/customers/create-a-new-customer",
+            "commerce/endpoints/customers/delete-multiple-customers",
+            "commerce/endpoints/customers/update-multiple-customers",
+            "commerce/endpoints/customers/get-a-single-customer-by-its-id",
+            "commerce/endpoints/customers/deletes-an-existing-customer",
+            "commerce/endpoints/customers/updates-a-customer",
+            "commerce/endpoints/customers/customer-versions",
+            "commerce/endpoints/customers/get-a-single-customer-version-by-its-id",
+            "commerce/endpoints/customers/restore-a-customer-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Deals",
+          "pages": [
+            "commerce/endpoints/deals/find-paginated-deals",
+            "commerce/endpoints/deals/create-a-new-deal",
+            "commerce/endpoints/deals/delete-multiple-deals",
+            "commerce/endpoints/deals/update-multiple-deals",
+            "commerce/endpoints/deals/get-a-single-deal-by-its-id",
+            "commerce/endpoints/deals/deletes-an-existing-deal",
+            "commerce/endpoints/deals/updates-a-deal",
+            "commerce/endpoints/deals/deal-versions",
+            "commerce/endpoints/deals/get-a-single-deal-version-by-its-id",
+            "commerce/endpoints/deals/restore-a-deal-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Definitions",
+          "pages": [
+            "commerce/endpoints/definitions/find-paginated-definitions",
+            "commerce/endpoints/definitions/create-a-new-definition",
+            "commerce/endpoints/definitions/delete-multiple-definitions",
+            "commerce/endpoints/definitions/update-multiple-definitions",
+            "commerce/endpoints/definitions/get-a-single-definition-by-its-id",
+            "commerce/endpoints/definitions/deletes-an-existing-definition",
+            "commerce/endpoints/definitions/updates-a-definition",
+            "commerce/endpoints/definitions/definition-versions",
+            "commerce/endpoints/definitions/get-a-single-definition-version-by-its-id",
+            "commerce/endpoints/definitions/restore-a-definition-version-by-its-id"
+          ]
+        },
+        {
+          "group": "DMV Fees",
+          "pages": [
+            "commerce/endpoints/dmvfees/find-paginated-dmv-fees",
+            "commerce/endpoints/dmvfees/create-a-new-dmv-fee",
+            "commerce/endpoints/dmvfees/delete-multiple-dmv-fees",
+            "commerce/endpoints/dmvfees/update-multiple-dmv-fees",
+            "commerce/endpoints/dmvfees/get-a-single-dmv-fee-by-its-id",
+            "commerce/endpoints/dmvfees/deletes-an-existing-dmv-fee",
+            "commerce/endpoints/dmvfees/updates-a-dmv-fee",
+            "commerce/endpoints/dmvfees/dmv-fee-versions",
+            "commerce/endpoints/dmvfees/get-a-single-dmv-fee-version-by-its-id",
+            "commerce/endpoints/dmvfees/restore-a-dmv-fee-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Documents",
+          "pages": [
+            "commerce/endpoints/documents/find-paginated-documents",
+            "commerce/endpoints/documents/create-a-new-document",
+            "commerce/endpoints/documents/delete-multiple-documents",
+            "commerce/endpoints/documents/update-multiple-documents",
+            "commerce/endpoints/documents/get-a-single-document-by-its-id",
+            "commerce/endpoints/documents/deletes-an-existing-document",
+            "commerce/endpoints/documents/updates-a-document",
+            "commerce/endpoints/documents/document-versions",
+            "commerce/endpoints/documents/get-a-single-document-version-by-its-id",
+            "commerce/endpoints/documents/restore-a-document-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Fees",
+          "pages": [
+            "commerce/endpoints/fees/find-paginated-fees",
+            "commerce/endpoints/fees/create-a-new-fee",
+            "commerce/endpoints/fees/delete-multiple-fees",
+            "commerce/endpoints/fees/update-multiple-fees",
+            "commerce/endpoints/fees/get-a-single-fee-by-its-id",
+            "commerce/endpoints/fees/deletes-an-existing-fee",
+            "commerce/endpoints/fees/updates-a-fee",
+            "commerce/endpoints/fees/fee-versions",
+            "commerce/endpoints/fees/get-a-single-fee-version-by-its-id",
+            "commerce/endpoints/fees/restore-a-fee-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Holidays",
+          "pages": [
+            "commerce/endpoints/holidays/find-paginated-holidays",
+            "commerce/endpoints/holidays/create-a-new-holiday",
+            "commerce/endpoints/holidays/delete-multiple-holidays",
+            "commerce/endpoints/holidays/update-multiple-holidays",
+            "commerce/endpoints/holidays/get-a-single-holiday-by-its-id",
+            "commerce/endpoints/holidays/deletes-an-existing-holiday",
+            "commerce/endpoints/holidays/updates-a-holiday",
+            "commerce/endpoints/holidays/holiday-versions",
+            "commerce/endpoints/holidays/get-a-single-holiday-version-by-its-id",
+            "commerce/endpoints/holidays/restore-a-holiday-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Insurance Policies",
+          "pages": [
+            "commerce/endpoints/insurancepolicies/find-paginated-insurance-policies",
+            "commerce/endpoints/insurancepolicies/create-a-new-insurance-policy",
+            "commerce/endpoints/insurancepolicies/delete-multiple-insurance-policies",
+            "commerce/endpoints/insurancepolicies/update-multiple-insurance-policies",
+            "commerce/endpoints/insurancepolicies/get-a-single-insurance-policy-by-its-id",
+            "commerce/endpoints/insurancepolicies/deletes-an-existing-insurance-policy",
+            "commerce/endpoints/insurancepolicies/updates-a-insurance-policy",
+            "commerce/endpoints/insurancepolicies/insurance-policy-versions",
+            "commerce/endpoints/insurancepolicies/get-a-single-insurance-policy-version-by-its-id",
+            "commerce/endpoints/insurancepolicies/restore-a-insurance-policy-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Insurance Quotes",
+          "pages": [
+            "commerce/endpoints/insurancequotes/find-paginated-insurance-quotes",
+            "commerce/endpoints/insurancequotes/create-a-new-insurance-quote",
+            "commerce/endpoints/insurancequotes/delete-multiple-insurance-quotes",
+            "commerce/endpoints/insurancequotes/update-multiple-insurance-quotes",
+            "commerce/endpoints/insurancequotes/get-a-single-insurance-quote-by-its-id",
+            "commerce/endpoints/insurancequotes/deletes-an-existing-insurance-quote",
+            "commerce/endpoints/insurancequotes/updates-a-insurance-quote",
+            "commerce/endpoints/insurancequotes/insurance-quote-versions",
+            "commerce/endpoints/insurancequotes/get-a-single-insurance-quote-version-by-its-id",
+            "commerce/endpoints/insurancequotes/restore-a-insurance-quote-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Leads",
+          "pages": [
+            "commerce/endpoints/leads/find-paginated-leads",
+            "commerce/endpoints/leads/create-a-new-lead",
+            "commerce/endpoints/leads/delete-multiple-leads",
+            "commerce/endpoints/leads/update-multiple-leads",
+            "commerce/endpoints/leads/get-a-single-lead-by-its-id",
+            "commerce/endpoints/leads/deletes-an-existing-lead",
+            "commerce/endpoints/leads/updates-a-lead",
+            "commerce/endpoints/leads/lead-versions",
+            "commerce/endpoints/leads/get-a-single-lead-version-by-its-id",
+            "commerce/endpoints/leads/restore-a-lead-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Lead Events",
+          "pages": [
+            "commerce/endpoints/leadevents/find-paginated-lead-events",
+            "commerce/endpoints/leadevents/create-a-new-lead-event",
+            "commerce/endpoints/leadevents/delete-multiple-lead-events",
+            "commerce/endpoints/leadevents/update-multiple-lead-events",
+            "commerce/endpoints/leadevents/get-a-single-lead-event-by-its-id",
+            "commerce/endpoints/leadevents/deletes-an-existing-lead-event",
+            "commerce/endpoints/leadevents/updates-a-lead-event"
+          ]
+        },
+        {
+          "group": "Listings",
+          "pages": [
+            "commerce/endpoints/listings/find-paginated-listings",
+            "commerce/endpoints/listings/create-a-new-listing",
+            "commerce/endpoints/listings/delete-multiple-listings",
+            "commerce/endpoints/listings/update-multiple-listings",
+            "commerce/endpoints/listings/get-a-single-listing-by-its-id",
+            "commerce/endpoints/listings/deletes-an-existing-listing",
+            "commerce/endpoints/listings/updates-a-listing",
+            "commerce/endpoints/listings/listing-versions",
+            "commerce/endpoints/listings/get-a-single-listing-version-by-its-id",
+            "commerce/endpoints/listings/restore-a-listing-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Locations",
+          "pages": [
+            "commerce/endpoints/locations/find-paginated-locations",
+            "commerce/endpoints/locations/create-a-new-location",
+            "commerce/endpoints/locations/delete-multiple-locations",
+            "commerce/endpoints/locations/update-multiple-locations",
+            "commerce/endpoints/locations/get-a-single-location-by-its-id",
+            "commerce/endpoints/locations/deletes-an-existing-location",
+            "commerce/endpoints/locations/updates-a-location",
+            "commerce/endpoints/locations/location-versions",
+            "commerce/endpoints/locations/get-a-single-location-version-by-its-id",
+            "commerce/endpoints/locations/restore-a-location-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Logs",
+          "pages": [
+            "commerce/endpoints/logs/find-paginated-logs",
+            "commerce/endpoints/logs/create-a-new-log",
+            "commerce/endpoints/logs/delete-multiple-logs",
+            "commerce/endpoints/logs/update-multiple-logs",
+            "commerce/endpoints/logs/get-a-single-log-by-its-id",
+            "commerce/endpoints/logs/deletes-an-existing-log",
+            "commerce/endpoints/logs/updates-a-log"
+          ]
+        },
+        {
+          "group": "Meetings",
+          "pages": [
+            "commerce/endpoints/meetings/find-paginated-meetings",
+            "commerce/endpoints/meetings/create-a-new-meeting",
+            "commerce/endpoints/meetings/delete-multiple-meetings",
+            "commerce/endpoints/meetings/update-multiple-meetings",
+            "commerce/endpoints/meetings/get-a-single-meeting-by-its-id",
+            "commerce/endpoints/meetings/deletes-an-existing-meeting",
+            "commerce/endpoints/meetings/updates-a-meeting",
+            "commerce/endpoints/meetings/meeting-versions",
+            "commerce/endpoints/meetings/get-a-single-meeting-version-by-its-id",
+            "commerce/endpoints/meetings/restore-a-meeting-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Messages",
+          "pages": [
+            "commerce/endpoints/messages/find-paginated-messages",
+            "commerce/endpoints/messages/create-a-new-message",
+            "commerce/endpoints/messages/delete-multiple-messages",
+            "commerce/endpoints/messages/update-multiple-messages",
+            "commerce/endpoints/messages/get-a-single-message-by-its-id",
+            "commerce/endpoints/messages/deletes-an-existing-message",
+            "commerce/endpoints/messages/updates-a-message",
+            "commerce/endpoints/messages/message-versions",
+            "commerce/endpoints/messages/get-a-single-message-version-by-its-id",
+            "commerce/endpoints/messages/restore-a-message-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Pre-Approvals",
+          "pages": [
+            "commerce/endpoints/preapprovals/find-paginated-pre-approvals",
+            "commerce/endpoints/preapprovals/create-a-new-pre-approval",
+            "commerce/endpoints/preapprovals/delete-multiple-pre-approvals",
+            "commerce/endpoints/preapprovals/update-multiple-pre-approvals",
+            "commerce/endpoints/preapprovals/get-a-single-pre-approval-by-its-id",
+            "commerce/endpoints/preapprovals/deletes-an-existing-pre-approval",
+            "commerce/endpoints/preapprovals/updates-a-pre-approval",
+            "commerce/endpoints/preapprovals/pre-approval-versions",
+            "commerce/endpoints/preapprovals/get-a-single-pre-approval-version-by-its-id",
+            "commerce/endpoints/preapprovals/restore-a-pre-approval-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Sales Reps",
+          "pages": [
+            "commerce/endpoints/salesreps/find-paginated-sales-reps",
+            "commerce/endpoints/salesreps/create-a-new-sales-rep",
+            "commerce/endpoints/salesreps/delete-multiple-sales-reps",
+            "commerce/endpoints/salesreps/update-multiple-sales-reps",
+            "commerce/endpoints/salesreps/get-a-single-sales-rep-by-its-id",
+            "commerce/endpoints/salesreps/deletes-an-existing-sales-rep",
+            "commerce/endpoints/salesreps/updates-a-sales-rep",
+            "commerce/endpoints/salesreps/sales-rep-versions",
+            "commerce/endpoints/salesreps/get-a-single-sales-rep-version-by-its-id",
+            "commerce/endpoints/salesreps/restore-a-sales-rep-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Searches",
+          "pages": [
+            "commerce/endpoints/searches/find-paginated-searches",
+            "commerce/endpoints/searches/create-a-new-search",
+            "commerce/endpoints/searches/delete-multiple-searches",
+            "commerce/endpoints/searches/update-multiple-searches",
+            "commerce/endpoints/searches/get-a-single-search-by-its-id",
+            "commerce/endpoints/searches/deletes-an-existing-search",
+            "commerce/endpoints/searches/updates-a-search",
+            "commerce/endpoints/searches/search-versions",
+            "commerce/endpoints/searches/get-a-single-search-version-by-its-id",
+            "commerce/endpoints/searches/restore-a-search-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Service Quotes",
+          "pages": [
+            "commerce/endpoints/servicequotes/find-paginated-service-quotes",
+            "commerce/endpoints/servicequotes/create-a-new-service-quote",
+            "commerce/endpoints/servicequotes/delete-multiple-service-quotes",
+            "commerce/endpoints/servicequotes/update-multiple-service-quotes",
+            "commerce/endpoints/servicequotes/get-a-single-service-quote-by-its-id",
+            "commerce/endpoints/servicequotes/deletes-an-existing-service-quote",
+            "commerce/endpoints/servicequotes/updates-a-service-quote",
+            "commerce/endpoints/servicequotes/service-quote-versions",
+            "commerce/endpoints/servicequotes/get-a-single-service-quote-version-by-its-id",
+            "commerce/endpoints/servicequotes/restore-a-service-quote-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Service Orders",
+          "pages": [
+            "commerce/endpoints/serviceorders/find-paginated-service-orders",
+            "commerce/endpoints/serviceorders/create-a-new-service-order",
+            "commerce/endpoints/serviceorders/delete-multiple-service-orders",
+            "commerce/endpoints/serviceorders/update-multiple-service-orders",
+            "commerce/endpoints/serviceorders/get-a-single-service-order-by-its-id",
+            "commerce/endpoints/serviceorders/deletes-an-existing-service-order",
+            "commerce/endpoints/serviceorders/updates-a-service-order",
+            "commerce/endpoints/serviceorders/service-order-versions",
+            "commerce/endpoints/serviceorders/get-a-single-service-order-version-by-its-id",
+            "commerce/endpoints/serviceorders/restore-a-service-order-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Taxes And Fees",
+          "pages": [
+            "commerce/endpoints/taxesandfees/find-paginated-taxes-and-fees",
+            "commerce/endpoints/taxesandfees/create-a-new-taxes-and-fee",
+            "commerce/endpoints/taxesandfees/delete-multiple-taxes-and-fees",
+            "commerce/endpoints/taxesandfees/update-multiple-taxes-and-fees",
+            "commerce/endpoints/taxesandfees/get-a-single-taxes-and-fee-by-its-id",
+            "commerce/endpoints/taxesandfees/deletes-an-existing-taxes-and-fee",
+            "commerce/endpoints/taxesandfees/updates-a-taxes-and-fee",
+            "commerce/endpoints/taxesandfees/taxes-and-fee-versions",
+            "commerce/endpoints/taxesandfees/get-a-single-taxes-and-fee-version-by-its-id",
+            "commerce/endpoints/taxesandfees/restore-a-taxes-and-fee-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Templates",
+          "pages": [
+            "commerce/endpoints/templates/find-paginated-templates",
+            "commerce/endpoints/templates/create-a-new-template",
+            "commerce/endpoints/templates/delete-multiple-templates",
+            "commerce/endpoints/templates/update-multiple-templates",
+            "commerce/endpoints/templates/get-a-single-template-by-its-id",
+            "commerce/endpoints/templates/deletes-an-existing-template",
+            "commerce/endpoints/templates/updates-a-template",
+            "commerce/endpoints/templates/template-versions",
+            "commerce/endpoints/templates/get-a-single-template-version-by-its-id",
+            "commerce/endpoints/templates/restore-a-template-version-by-its-id"
+          ]
+        },
+        {
+          "group": "CRM Trades",
+          "pages": [
+            "commerce/endpoints/crmtrades/find-paginated-crm-trades",
+            "commerce/endpoints/crmtrades/create-a-new-crm-trade",
+            "commerce/endpoints/crmtrades/delete-multiple-crm-trades",
+            "commerce/endpoints/crmtrades/update-multiple-crm-trades",
+            "commerce/endpoints/crmtrades/get-a-single-crm-trade-by-its-id",
+            "commerce/endpoints/crmtrades/deletes-an-existing-crm-trade",
+            "commerce/endpoints/crmtrades/updates-a-crm-trade",
+            "commerce/endpoints/crmtrades/crm-trade-versions",
+            "commerce/endpoints/crmtrades/get-a-single-crm-trade-version-by-its-id",
+            "commerce/endpoints/crmtrades/restore-a-crm-trade-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Trades",
+          "pages": [
+            "commerce/endpoints/trades/find-paginated-trades",
+            "commerce/endpoints/trades/create-a-new-trade",
+            "commerce/endpoints/trades/delete-multiple-trades",
+            "commerce/endpoints/trades/update-multiple-trades",
+            "commerce/endpoints/trades/get-a-single-trade-by-its-id",
+            "commerce/endpoints/trades/deletes-an-existing-trade",
+            "commerce/endpoints/trades/updates-a-trade",
+            "commerce/endpoints/trades/trade-versions",
+            "commerce/endpoints/trades/get-a-single-trade-version-by-its-id",
+            "commerce/endpoints/trades/restore-a-trade-version-by-its-id"
+          ]
+        },
+        {
+          "group": "VDP Emails",
+          "pages": [
+            "commerce/endpoints/vdpemails/find-paginated-vdp-emails",
+            "commerce/endpoints/vdpemails/create-a-new-vdp-email",
+            "commerce/endpoints/vdpemails/delete-multiple-vdp-emails",
+            "commerce/endpoints/vdpemails/update-multiple-vdp-emails",
+            "commerce/endpoints/vdpemails/get-a-single-vdp-email-by-its-id",
+            "commerce/endpoints/vdpemails/deletes-an-existing-vdp-email",
+            "commerce/endpoints/vdpemails/updates-a-vdp-email",
+            "commerce/endpoints/vdpemails/vdp-email-versions",
+            "commerce/endpoints/vdpemails/get-a-single-vdp-email-version-by-its-id",
+            "commerce/endpoints/vdpemails/restore-a-vdp-email-version-by-its-id"
+          ]
+        },
+        {
+          "group": "CRM Vehicles",
+          "pages": [
+            "commerce/endpoints/crmvehicles/find-paginated-crm-vehicles",
+            "commerce/endpoints/crmvehicles/create-a-new-crm-vehicle",
+            "commerce/endpoints/crmvehicles/delete-multiple-crm-vehicles",
+            "commerce/endpoints/crmvehicles/update-multiple-crm-vehicles",
+            "commerce/endpoints/crmvehicles/get-a-single-crm-vehicle-by-its-id",
+            "commerce/endpoints/crmvehicles/deletes-an-existing-crm-vehicle",
+            "commerce/endpoints/crmvehicles/updates-a-crm-vehicle",
+            "commerce/endpoints/crmvehicles/crm-vehicle-versions",
+            "commerce/endpoints/crmvehicles/get-a-single-crm-vehicle-version-by-its-id",
+            "commerce/endpoints/crmvehicles/restore-a-crm-vehicle-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Vehicles",
+          "pages": [
+            "commerce/endpoints/vehicles/find-paginated-vehicles",
+            "commerce/endpoints/vehicles/create-a-new-vehicle",
+            "commerce/endpoints/vehicles/delete-multiple-vehicles",
+            "commerce/endpoints/vehicles/update-multiple-vehicles",
+            "commerce/endpoints/vehicles/get-a-single-vehicle-by-its-id",
+            "commerce/endpoints/vehicles/deletes-an-existing-vehicle",
+            "commerce/endpoints/vehicles/updates-a-vehicle",
+            "commerce/endpoints/vehicles/vehicle-versions",
+            "commerce/endpoints/vehicles/get-a-single-vehicle-version-by-its-id",
+            "commerce/endpoints/vehicles/restore-a-vehicle-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Web Events",
+          "pages": [
+            "commerce/endpoints/webevents/find-paginated-web-events",
+            "commerce/endpoints/webevents/create-a-new-web-event",
+            "commerce/endpoints/webevents/delete-multiple-web-events",
+            "commerce/endpoints/webevents/update-multiple-web-events",
+            "commerce/endpoints/webevents/get-a-single-web-event-by-its-id",
+            "commerce/endpoints/webevents/deletes-an-existing-web-event",
+            "commerce/endpoints/webevents/updates-a-web-event",
+            "commerce/endpoints/webevents/web-event-versions",
+            "commerce/endpoints/webevents/get-a-single-web-event-version-by-its-id",
+            "commerce/endpoints/webevents/restore-a-web-event-version-by-its-id"
+          ]
+        },
+        {
+          "group": "Webhooks",
+          "pages": [
+            "commerce/endpoints/webhooks/find-paginated-webhooks",
+            "commerce/endpoints/webhooks/create-a-new-webhook",
+            "commerce/endpoints/webhooks/delete-multiple-webhooks",
+            "commerce/endpoints/webhooks/update-multiple-webhooks",
+            "commerce/endpoints/webhooks/get-a-single-webhook-by-its-id",
+            "commerce/endpoints/webhooks/deletes-an-existing-webhook",
+            "commerce/endpoints/webhooks/updates-a-webhook",
+            "commerce/endpoints/webhooks/webhook-versions",
+            "commerce/endpoints/webhooks/get-a-single-webhook-version-by-its-id",
+            "commerce/endpoints/webhooks/restore-a-webhook-version-by-its-id"
+          ]
+        }
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/drivly",
+    "github": "https://github.com/drivly",
+    "linkedin": "https://www.linkedin.com/company/drivly"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-T45DEGR8GE"
+    }
+  }
+}

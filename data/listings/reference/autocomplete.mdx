@@ -1,0 +1,76 @@
+---
+title: 'Autocomplete Search'
+sidebarTitle: 'Autocomplete'
+api: 'GET https://listings.vin/search'
+---
+
+<ParamField query="q" type="string">
+  The string that you wish to autocomplete for. This can be a partial or full string. e.g. "audi", "for", "bmw 3"
+</ParamField>
+
+## Response
+
+The response will be an array of search results. Each result will contain the text of the search result and the filter object of the search result.
+
+<ResponseField name="data" type="array" required>
+  Array of search results.
+  <ResponseField name="text" type="string">
+    The text of the search result. Uses `<b></b>` to highlight the matching part of the string.
+    e.g. `<b>Audi</b> <b>Q5</b> Prestige`
+  </ResponseField>
+
+  
+  <ResponseField name="filter" type="object">
+      The object of the search result.
+      <Expandable title="Filter">
+      <ResponseField name="year" type="number">
+        The year of the vehicle. e.g. 2018
+      </ResponseField>
+
+      <ResponseField name="make" type="string">
+        The make of the vehicle. e.g. "Audi"
+      </ResponseField>
+      
+      <ResponseField name="model" type="string">
+        The model of the vehicle. e.g. "Q5"
+      </ResponseField>
+      </Expandable>
+  </ResponseField>
+  
+</ResponseField>
+
+
+<ResponseExample>
+
+```json Response
+{
+  "data": [
+    {
+      "text": "<b>Audi</b> <b>Q5</b> Prestige",
+      "filter": {
+        "year": 2018,
+        "make": "Audi",
+        "model": "Q5"
+      }
+    },
+    {
+      "text": "<b>Audi</b> <b>Q5</b> Premium",
+      "filter": {
+        "year": 2018,
+        "make": "Audi",
+        "model": "Q5"
+      }
+    },
+    {
+      "text": "<b>Audi</b> <b>Q5</b> Premium Plus",
+      "filter": {
+        "year": 2018,
+        "make": "Audi",
+        "model": "Q5"
+      }
+    }
+  ]
+}
+```
+
+</ResponseExample>

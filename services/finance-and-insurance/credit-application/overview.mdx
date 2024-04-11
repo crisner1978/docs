@@ -1,0 +1,469 @@
+---
+title: 'Overview'
+description: 'Credit application for financing.'
+---
+
+<p class='font-medium'>
+  Drivly's Credit Application API is designed for the submission of credit applications for vehicle
+  purchases and loan payoffs. It interfaces with the RouteOne system for processing these
+  applications, ensuring a streamlined approach for credit checks, approvals, and financing options.
+</p>
+
+---
+
+## Benefits of Using the Credit Application API
+
+Integrating the Credit Application API into your vehicle financing workflows offers key benefits:
+
+### Enhanced Efficiency
+
+- **RouteOne Integration**: Direct integration with RouteOne accelerates the credit check and approval process.
+- **Automated Processing:** Minimizes manual data entry and expedites decision-making, essential for high-performance applications.
+
+### Improved Customer Experience
+
+- **Faster Decision Times**: Quicker credit decisions improve user satisfaction, crucial for apps aiming to maintain high engagement.
+- **Convenience:** Enables a more convenient application process, as customers can apply anytime and anywhere without the need for in-person visits.
+
+### Reduced Errors
+
+- **Data Validation**: The API validates application data automatically, reducing errors and ensuring data integrity.
+- **Consistency**: Uniform processing of applications enhances the quality of loan services offered through your application.
+
+### Competitive Edge
+
+- **Loan Payoff Integration**: Supports loan payoff requests, providing a comprehensive financing solution within your app.
+- **Innovative Offering:** Sets your business apart by utilizing cutting-edge technology to process credit applications.
+
+---
+
+## Authentication
+
+To securely use this endpoint:
+
+1. **Sign up** for a Drivly account
+2. Create a [DRIVLY_API_KEY](/commerce/overview#authentication).
+
+<Note>The key should be included in the header of each request.</Note>
+
+```javascript
+headers: {
+  'Authorization': '<api-key>',
+  'Content-Type': 'application/json'
+}
+```
+
+<Card
+  title='API Best Practices'
+  href='/commerce/overview#best-practices-for-api-key-security'
+  icon='shield'>
+  Learn how to keep your API key secure and prevent unauthorized access.
+</Card>
+
+---
+
+## Making a Credit Application Request
+
+Submit a credit application to `https://commerce.driv.ly/api/creditApplications` with a `POST` request. Below is a breakdown of the required and optional data fields, supplemented with example requests for your applications.
+
+### Required Fields
+
+- `primaryApplicant`: The applicant's information.
+- `applicationType`: The type of application (e.g., `PURCHASE`, `REFINANCE`, `LEASE_BUYOUT`).
+- `vehicle`: The vehicle information being financed.
+- `hasCoApplicant`: Whether the application includes a co-applicant (e.g., `true`, `false`).
+- `environment`: The environment to use (e.g., `Production`, `Development`).
+- `financeAmount`: The amount to finance (e.g., `35000`).
+- `sendTo`: The system to send the application to (e.g., `RouteOne`, `TSG`).
+- `preApproval`: The pre-approval ID.
+
+### Optional Fields
+
+- `coApplicant`: The co-applicant's information (if applicable).
+- `trades`: Trade-in vehicle information (if applicable).
+
+### JSON Request Body
+
+<Accordion title='Example' defaultOpen='true'>
+
+```json
+{
+  "title": "Credit Application",
+  "sendTo": "RouteOne",
+  "state": "DRAFT",
+  "environment": "Production",
+  "preApproval": "123456789",
+  "applicationType": "REFINANCE",
+  "financeAmount": 35000,
+  "downPayment": 5000,
+  "primaryApplicant": {
+    "firstName": "Danny",
+    "lastName": "Turner",
+    "birthDate": "06/24/1995",
+    "emailAddress": "dannyt@gmail.com",
+    "cellPhone": "561-775-1234",
+    "ssn": "123-45-6789",
+    "relationshipType": "SPOUSE",
+    "currentResidence": {
+      "monthlyPaymentAmount": 123,
+      "monthsAtResidence": 36,
+      "ownershipStatus": "OWN",
+      "address": {
+        "lineOne": "123 Main St",
+        "lineTwo": "Apt 2",
+        "city": "Miami",
+        "state": "FL",
+        "postalCode": "33101"
+      }
+    },
+    "currentEmployment": {
+      "yearlyIncomeAmount": 123,
+      "monthsAtEmployer": 36,
+      "employmentType": "FULL_TIME",
+      "employerName": "ABC Corp",
+      "employmentPosition": "Manager",
+      "employmentAddress": {
+        "lineOne": "1525 Flamingo Ave",
+        "lineTwo": "Suite 100",
+        "city": "Miami",
+        "state": "FL",
+        "postalCode": "33101"
+      }
+    },
+    "additionalIncomeAmount": 123,
+    "additionalIncomeFrequency": "WEEKLY",
+    "additionalIncomeSource": "Part-time job",
+    "terms": {
+      "agreeToTerms": true,
+      "agreeIP": "150.80.15.220",
+      "agreeUserAgent": "Mozilla/5.0"
+    }
+  },
+  "hasCoApplicant": false,
+  "vehicle": {
+    "vin": "W1NKM4HB4RF139674",
+    "year": 2024,
+    "make": "Mercedes-Benz",
+    "model": "GLC",
+    "trim": "GLC 300 4MATIC",
+    "mileage": 20,
+    "lien": {
+      "lienHolder": "ABC Bank",
+      "monthlyPaymentAmount": 800,
+      "payoffAmount": 30000,
+      "initialTerm": 72,
+      "remainingTerm": 36,
+      "originalAmount": 60000,
+      "apr": 4.5
+    }
+  }
+}
+```
+
+</Accordion>
+
+---
+
+### Fetch API Example
+
+We will assume that the `createCreditApplication` function and the `Promise` is called with the required data fields.
+
+<CodeGroup>
+
+```javascript Async/Await
+export async function createCreditApp(data) {
+  try {
+    const response = await fetch('https://commerce.driv.ly/api/creditApplications', {
+      method: 'POST',
+      headers: {
+        Authorization: '<api-key>',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const responseData = await response.json()
+    console.log('Credit Application Response:', responseData)
+  } catch (error) {
+    console.error('Error during the API request:', error)
+  }
+}
+```
+
+```javascript Promises
+fetch('https://commerce.driv.ly/api/preApprovals', {
+  method: 'POST',
+  headers: {
+    Authorization: '<api-key>',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error('Error:', error))
+```
+
+</CodeGroup>
+
+## Successful Response
+
+A successful response will have a `200` status code and a JSON object with the following fields:
+
+- `id`: The application ID.
+- `title`: The application title.
+- `status`: The application status.
+- `sendTo`: The system the application is sent to.
+- `state`: The application state.
+- `environment`: The environment used.
+- `preApproval`: The pre-approval ID.
+- `applicationType`: The application type.
+- `financeAmount`: The financed amount.
+- `downPayment`: The down payment amount.
+- `primaryApplicant`: The primary applicant's information.
+- `hasCoApplicant`: Whether the application has a co-applicant.
+- `vehicle`: The vehicle information.
+- `createdAt`: The application creation date.
+- `updatedAt`: The application update date.
+
+### Example Response
+
+```json
+{
+  "id": "65f4c43aa86cc23f4013cfc8",
+  "sendToTSG": false,
+  "state": "DRAFT",
+  "environment": "Production",
+  "requiredFields": [],
+  "preApproval": {
+    "id": "12034631b86bb45g202071a1",
+    "title": "Danny Turner (dannyt@gmail.com)",
+    "firstName": "Danny",
+    "middleInitial": "",
+    "lastName": "Turner",
+    "suffix": null,
+    "address": "123 Main St Apt 2",
+    "city": "Miami",
+    "state": "FL",
+    "zip": "33101",
+    "phone": "+15615551234",
+    "email": "dannyt@gmail.com",
+    "sessionId": "",
+    "createdAt": "2024-03-26T22:04:01.175Z",
+    "updatedAt": "2024-03-26T22:04:01.175Z",
+    "status": "Processed",
+    "income": "$15,000",
+    "AppId": 154422063,
+    "customer": {
+      "id": "12ab3d1241567b12d2ga12c1",
+      "leads": ["65ea2c8130784a03c8fd39c9"],
+      "address": "65ea2c8130784a03c8fd39c9",
+      "email": "dannyt@gmail.com",
+      "phone": "+15615551234",
+      "consumerFirstName": "Danny",
+      "consumerMiddleName": "",
+      "consumerLastName": "Turner",
+      "consumerSuffix": null,
+      "consumerPreApprovals": ["12034631b86bb45g202071a1"],
+      "consumerLeadSource": [],
+      "companyType": [],
+      "createdAt": "2024-03-26T22:03:29.685Z",
+      "updatedAt": "2024-03-26T22:03:29.685Z",
+    },
+    "segmentationBand": "Good (700-749)"
+  },
+  "primaryApplicant": {
+    "firstName": "Danny",
+    "lastName": "Turner",
+    "birthDate": "06/24/1995",
+    "emailAddress": "dannyt@gmail.com",
+    "cellPhone": "561-775-1234",
+    "currentResidence": {
+      "monthlyPaymentAmount": 3500,
+      "monthsAtResidence": 63,
+      "ownershipStatus": "OWN",
+      "address": {
+        "lineOne": "123 Main St",
+        "lineTwo": "Apt 2",
+        "city": "Miami",
+        "state": "FL",
+        "postalCode": "33101"
+      }
+    },
+    "currentEmployment": {
+      "yearlyIncomeAmount": 125000,
+      "monthsAtEmployer": 38,
+      "employmentType": "FULL_TIME",
+      "employerName": "ABC Corp",
+      "employmentPosition": "Manager",
+      "employmentAddress": {
+        "lineOne": "1525 Flamingo Ave",
+        "lineTwo": "Suite 100",
+        "city": "Miami",
+        "state": "FL",
+        "postalCode": "33101"
+      }
+    },
+    "previousResidence": { "address": {} },
+    "previousEmployment": { "employmentAddress": {} },
+    "additionalIncomeAmount": null,
+    "additionalIncomeSource": "",
+    "terms": {
+      "agreeToTerms": true,
+      "agreeIP": "150.80.15.220",
+      "agreeUserAgent": "Mozilla/5.0"
+    }
+  },
+  "coApplicant": {
+    "currentResidence": { "address": {} },
+    "currentEmployment": { "employmentAddress": {} },
+    "previousResidence": { "address": {} },
+    "previousEmployment": { "employmentAddress": {} },
+    "terms": {}
+  },
+  "vehicle": {
+    "vin": "5NPD84LF1JH392427",
+    "year": 2018,
+    "make": "hyundai",
+    "model": "Elantra",
+    "trim": "SEL 2.0L Auto (Alabama)",
+    "mileage": 20000,
+    "lien": {
+      "lienHolder": "ABC Bank",
+      "monthlyPaymentAmount": 300,
+      "payoffAmount": 1,
+      "initialTerm": 60,
+      "remainingTerm": 12,
+      "originalAmount": 4000,
+      "apr": 5
+    }
+  },
+  "createdAt": "2024-03-15T21:58:48.032Z",
+  "updatedAt": "2024-03-15T21:58:48.032Z",
+  "logs": [],
+  "missingFields": {},
+  "passesChecklist": true,
+  "rates": [],
+  "title": "[DRAFT] Danny Turner - $30,000.00",
+  "applicationType": "REFINANCE",
+  "meta": {
+    "refinanceType": "REMOVE SOMEONE",
+    "term": "60 months",
+    "sellTrade": "No"
+  },
+  "downPayment": 5000,
+  "financeAmount": 30000,
+  "trades": [],
+  "hasCoApplicant": false
+}
+```
+
+---
+
+## Properties Reference
+
+<ResponseField name='primaryApplicant | coApplicant' type='Applicant Object'>
+  <Accordion title='Applicant Properties'>
+    <ResponseField name='firstName' type='string'></ResponseField>
+    <ResponseField name='lastName' type='string'></ResponseField>
+    <ResponseField name='birthDate' type='string'></ResponseField>
+    <ResponseField name='emailAddress' type='string'></ResponseField>
+    <ResponseField name='cellPhone' type='string'></ResponseField>
+    <ResponseField name='ssn' type='string'></ResponseField>
+    <ResponseField name='relationshipType' type='enum<string> | null'>
+      Available options: `SPOUSE`, `RELATIVE`, `FRIEND`, or `null` (for primary applicant)
+    </ResponseField>
+    <ResponseField name='currentResidence | previousResidence' type='Residence Object'>
+      <Warning>
+        If current monthsAtResidence < 24, previousResidence is REQUIRED
+      </Warning>
+      <Accordion title='Residence Properties'>
+        <ResponseField name='monthlyPaymentAmount' type='number'></ResponseField>
+        <ResponseField name='monthsAtResidence' type='number'></ResponseField>
+        <ResponseField name='ownershipStatus' type='enum<string>'>
+          Available options: `RENT`, `OWN`, `RELATIVE_OWNED`
+        </ResponseField>
+        <ResponseField name='address' type='Address Object'>
+          <Accordion title='Address Properties'>
+            <ResponseField name='lineOne' type='string'></ResponseField>
+            <ResponseField name='lineTwo' type='string'></ResponseField>
+            <ResponseField name='city' type='string'></ResponseField>
+            <ResponseField name='state' type='enum<string>'>
+              Available options: `AL`, `AK`, `AZ`, `AR`, `CA`, `CO`, `CT`, `DE`, `FL`, `GA`, `HI`,
+              `ID`, `IL`, `IN`, `IA`, `KS`, `KY`, `LA`, `ME`, `MD`, `MA`, `MI`, `MN`, `MS`, `MO`,
+              `MT`, `NE`, `NV`, `NH`, `NJ`, `NM`, `NY`, `NC`, `ND`, O`H`, `OK`, `OR`, `PA`, `RI`,
+              `SC`, `SD`, `TN`, `TX`, `UT`, `VT`, `VA`, `WA`, `WV`, `WI`, `WY`
+            </ResponseField>
+            <ResponseField name='postalCode' type='string'></ResponseField>
+          </Accordion>
+        </ResponseField>
+      </Accordion>
+    </ResponseField>
+    <ResponseField name='currentEmployment | previousEmployment' type='Employment Object'>
+      <Warning>
+        If currentEmployment monthsAtEmployer < 24, previousEmployment is REQUIRED
+      </Warning>
+      <Accordion title='Employment Properties'>
+        <ResponseField name='yearlyIncomeAmount' type='number'></ResponseField>
+        <ResponseField name='monthsAtEmployer' type='number'></ResponseField>
+        <ResponseField name='employmentType' type='enum<string>'>
+          Available options: `FULL_TIME`, `PART_TIME`, `SELF_EMPLOYED`, `UNEMPLOYED`, `RETIRED`
+        </ResponseField>
+        <ResponseField name='employerName' type='string'></ResponseField>
+        <ResponseField name='employmentPosition' type='string'></ResponseField>
+        <ResponseField name='employmentAddress' type='Address Object'>
+          <Accordion title='Address Properties'>
+            <ResponseField name='lineOne' type='string'></ResponseField>
+            <ResponseField name='lineTwo' type='string'></ResponseField>
+            <ResponseField name='city' type='string'></ResponseField>
+            <ResponseField name='state' type='enum<string>'>
+              Available options: `AL`, `AK`, `AZ`, `AR`, `CA`, `CO`, `CT`, `DE`, `FL`, `GA`, `HI`,
+              `ID`, `IL`, `IN`, `IA`, `KS`, `KY`, `LA`, `ME`, `MD`, `MA`, `MI`, `MN`, `MS`, `MO`,
+              `MT`, `NE`, `NV`, `NH`, `NJ`, `NM`, `NY`, `NC`, `ND`, O`H`, `OK`, `OR`, `PA`, `RI`,
+              `SC`, `SD`, `TN`, `TX`, `UT`, `VT`, `VA`, `WA`, `WV`, `WI`, `WY`
+            </ResponseField>
+            <ResponseField name='postalCode' type='string'></ResponseField>
+          </Accordion>
+        </ResponseField>
+      </Accordion>
+    </ResponseField>
+    <ResponseField name='additionalIncomeAmount' type='number | null'></ResponseField>
+    <ResponseField name='additionalIncomeFrequency' type='enum<string> | null'>
+      Available options: `WEEKLY`, `BI_WEEKLY`, `TWICE_MONTHLY`, `MONTHLY`, `YEARLY`
+    </ResponseField>
+    <ResponseField name='additionalIncomeSource' type='string | null'></ResponseField>
+    <ResponseField name='terms' type='Terms Object'>
+      <Accordion title='Terms Properties'>
+        <ResponseField name='agreeToTerms' type='boolean'></ResponseField>
+        <ResponseField name='agreeIP' type='string'></ResponseField>
+        <ResponseField name='agreeUserAgent' type='string'></ResponseField>
+      </Accordion>
+    </ResponseField>
+  </Accordion>
+</ResponseField>
+
+<ResponseField name='vehicle' type='Vehicle Object'>
+  <Accordion title='Vehicle Properties'>
+    <ResponseField name='vin' type='string'></ResponseField>
+    <ResponseField name='year' type='number'></ResponseField>
+    <ResponseField name='make' type='string'></ResponseField>
+    <ResponseField name='model' type='string'></ResponseField>
+    <ResponseField name='trim' type='string'></ResponseField>
+    <ResponseField name='mileage' type='number'></ResponseField>
+    <ResponseField name='lien' type='Lien Object'>
+      <Accordion title='Lien Properties'>
+        <ResponseField name='lienHolder' type='string | null'></ResponseField>
+        <ResponseField name='monthlyPaymentAmount' type='number | null'></ResponseField>
+        <ResponseField name='payoffAmount' type='number | null'></ResponseField>
+        <ResponseField name='initialTerm' type='number | null'></ResponseField>
+        <ResponseField name='remainingTerm' type='number | null'></ResponseField>
+        <ResponseField name='originalAmount' type='number | null'></ResponseField>
+        <ResponseField name='apr' type='number | null'></ResponseField>
+      </Accordion>
+    </ResponseField>
+  </Accordion>
+</ResponseField>

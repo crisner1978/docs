@@ -1,0 +1,484 @@
+
+
+<Info>
+  **[Drivly Connect](/connect/what-is-connect)** required integrations: Manheim, Kelly Blue Book, CarGurus, Black Book,
+  NADA Guides, Edmunds. *At least two book value sources are required for Drivly's Pricing API. 
+</Info>
+
+
+
+### Drivly Vehicle Pricing:
+
+The Drivly weighted average price calculation takes into account pricing information from a variety of sources, including all major pricing categories, such as MSRP, trade-in, wholesale, private party, retail, and loan values.
+
+<Steps>
+<Step title='Calculate the average price for each book:'>
+
+```yaml
+MSRP Average = (nada.msrp + blackBook.msrp) / 2
+
+Trade Average = (cargurus.trade + edmunds.trade.clean + kelley.trade.good +
+nada.trade.avgBook + blackBook.trade.totalAvg) / 5
+
+Wholesale Average = (edmunds.wholesale.clean + kelley.wholesale.book +
+nada.wholesale.avg + blackBook.wholesale.totalAvg +
+manheim.lastSixMonthsPrice) / 5
+
+Private Party Average = (cargurus.privateparty + edmunds.privateparty.clean +
+kelley.privateparty.good) / 3
+
+Retail Average = (cargurus.retail + edmunds.retail.clean + kelley.retail.book +
+nada.retail.book + blackBook.retail.totalClean) / 5
+
+Loan Average = (nada.loan.book + blackBook.loan.totalValue) / 2
+```
+
+</Step>
+
+<Step title='Then calculate a weighted average for each:'>
+
+```yaml
+Drivly Price =
+(MSRP * w1 + Trade * w2 + Wholesale * w3 + Private Party * w4 + Retail * w5 + Loan * w6)
+/ (w1 + w2 + w3 + w4 + w5 + w6)
+```
+
+| Source           | Trust Score | BBB Rating | User Reviews | Weight |
+| ---------------- | ----------- | ---------- | ------------ | ------ |
+| CarGurus         | 9/10        | A+         | 4.5/5        | 0.23   |
+| Kelley Blue Book | 9/10        | A+         | 4.5/5        | 0.23   |
+| Edmunds          | 8/10        | A+         | 4/5          | 0.18   |
+| NADA Guides      | 8/10        | A          | 4/5          | 0.14   |
+| Black Book       | 8/10        | A          | 3.5/5        | 0.09   |
+| Manheim          | 8/10        | A          | 4/5          | 0.13   |
+
+In this formula, `w1, w2, ... w6` are the weights assigned to the corresponding pricing categories based on the importance, accuracy, and credibility of the sources. These weights are adjusted according overtime to reflect the market.
+
+By calculating these weighted average prices, we normalize the data to find the best approximation of the vehicle's value across various conditions and sources.
+
+```javascript
+const data = {
+  vin: 'WP0CD29929S773682',
+  year: '2009',
+  make: 'Porsche',
+  model: '911',
+  trim: 'Turbo',
+  msrp: {
+    nada: 139300,
+    blackBook: 139300,
+  },
+  trade: {
+    cargurus: 65262,
+    edmunds: {
+      outstanding: 70972,
+      clean: 66809,
+      average: 59872,
+      rough: 50853,
+    },
+    kelley: {
+      good: 61891,
+      baseGood: 61081,
+    },
+    nada: {
+      base: 50525,
+      baseAvg: 47675,
+      baseRough: 44300,
+      book: 66550,
+      avgBook: 63700,
+      roughBook: 60325,
+    },
+    blackBook: {
+      baseClean: 62150,
+      baseAvg: 57125,
+      baseRough: 48855,
+      totalClean: 64875,
+      totalAvg: 60025,
+      totalRough: 51955,
+      totalWithHAVClean: 64875,
+      totalWithHAVAvg: 60025,
+      totalWithHAVRough: 51955,
+    },
+  },
+  wholesale: {
+    edmunds: {
+      outstanding: 59867,
+      clean: 56356,
+      average: 50504,
+      rough: 42897,
+    },
+    kelley: {
+      book: 69319,
+      base: 68509,
+      fair: 57788,
+      good: 64039,
+      veryGood: 67663,
+      excellent: 72600,
+      baseGood: 63229,
+    },
+    nada: {
+      high: 57701,
+      avg: 55476,
+      low: 53276,
+      baseLow: 45550,
+      baseAverage: 47750,
+      baseHigh: 49975,
+    },
+    blackBook: {
+      baseClean: 61850,
+      baseAvg: 56825,
+      baseRough: 51975,
+      totalClean: 64575,
+      totalAvg: 59725,
+      totalRough: 55075,
+      totalWithHAVClean: 64575,
+      totalWithHAVAvg: 59725,
+      totalWithHAVRough: 55075,
+    },
+    manheim: {
+      lastSixMonthsPrice: 68500,
+    },
+  },
+  privateparty: {
+    cargurus: 85801,
+    edmunds: {
+      outstanding: 81594,
+      clean: 76612,
+      average: 68310,
+      rough: 57516,
+    },
+    kelley: {
+      good: 62871,
+      baseGood: 62061,
+    },
+  },
+  retail: {
+    cargurus: 88522,
+    edmunds: {
+      outstanding: 87681,
+      clean: 82120,
+      average: 72853,
+      rough: 60805,
+    },
+    kelley: {
+      book: 74852,
+      base: 74042,
+      msrp: 142150,
+      baseFairPurchasePrice: 71909,
+      totalFairPurchasePrice: 72719,
+      fairPurchasePriceLow: 67907,
+      fairPurchasePriceHigh: 77530,
+    },
+    nada: {
+      base: 57250,
+      book: 73275,
+    },
+    blackBook: {
+      baseClean: 72500,
+      baseAvg: 63475,
+      baseRough: 57950,
+      totalClean: 75225,
+      totalAvg: 66375,
+      totalRough: 61050,
+      totalWithHAVClean: 75225,
+      totalWithHAVAvg: 66375,
+      totalWithHAVRough: 61050,
+    },
+  },
+  loan: {
+    nada: {
+      base: 45475,
+      book: 61500,
+    },
+    blackBook: {
+      baseValue: 61825,
+      totalValue: 64275,
+      totalWithHAV: 64275,
+    },
+  },
+}
+```
+
+```javascript
+function calculateWeightedAverages(prices, weights) {
+  let weightedSum = 0
+  let totalWeights = 0
+
+  prices.forEach((price, index) => {
+    weightedSum += price * weights[index]
+    totalWeights += weights[index]
+  })
+
+  return weightedSum / totalWeights
+}
+
+const weights = [0.23, 0.18, 0.23, 0.14, 0.09, 0.13]
+
+const msrpAverage = (data.msrp.nada + data.msrp.blackBook) / 2
+const tradeAverage =
+  (data.trade.cargurus +
+    data.trade.edmunds.clean +
+    data.trade.kelley.good +
+    data.trade.nada.avgBook +
+    data.trade.blackBook.totalAvg) /
+  5
+const wholesaleAverage =
+  (data.wholesale.edmunds.clean +
+    data.wholesale.kelley.book +
+    data.wholesale.nada.avg +
+    data.wholesale.blackBook.totalAvg +
+    data.wholesale.manheim.lastSixMonthsPrice) /
+  5
+const privatePartyAverage =
+  (data.privateparty.cargurus + data.privateparty.edmunds.clean + data.privateparty.kelley.good) / 3
+const retailAverage =
+  (data.retail.cargurus +
+    data.retail.edmunds.clean +
+    data.retail.kelley.book +
+    data.retail.nada.book +
+    data.retail.blackBook.totalClean) /
+  5
+const loanAverage = (data.loan.nada.book + data.loan.blackBook.totalValue) / 2
+
+const averagePrices = [
+  msrpAverage,
+  tradeAverage,
+  wholesaleAverage,
+  privatePartyAverage,
+  retailAverage,
+  loanAverage,
+]
+
+const weightedAveragePrice = calculateWeightedAverages(averagePrices, weights)
+
+console.log('Weighted Average Price:', weightedAveragePrice)
+```
+
+</Step>
+</Steps>
+
+---
+
+## Incorporating the standard deviation to understand pricing confidence
+
+For the Drivly Price, we can calculate the average value for each pricing category, and then take a weighted average based on the relevance of each category.
+
+<Check>
+  **Drivly Price** is a weighted average of `Trade-in`, `Wholesale`, `Private Party`, and <br />{' '}
+  `Retail values`.
+</Check>
+
+<Steps>
+  <Step title='Trade-In Average:'>
+
+```bash
+(50,525+66,550 + 48,855+64,875 + 65,262 + (50,853+70,972)/2 + (61,081+61,891)/2) / 7
+≈ 58,704
+```
+
+</Step>
+
+<Step title='Wholesale Average'>
+
+```bash
+(45,550+57,701 + 51,975+64,575 + (42,897+59,867)/2 + (57,788+72,600)/2 + 68,500) / 7
+≈ 57,889
+```
+
+</Step>
+
+<Step title='Private Party Average:'>
+
+```bash
+(85,801 + (57,516+81,594)/2 + (62,061+62,871)/2) / 3
+≈ $72,566
+```
+
+</Step>
+
+<Step title='Retail Average:'>
+
+```bash
+(57,250+73,275 + 57,950+75,225 + 88,522 + (60,805+87,681)/2 + (67,907+77,530)/2) / 7
+≈ $72,807
+```
+
+ </Step>
+
+<Step title='Drivly Price:'>
+
+```bash
+(0.4 * 58,704) + (0.2 * 57,889) + (0.2 * 72,566) + (0.2 * 72,807)
+≈ $62,954
+```
+
+ </Step>
+</Steps>
+
+Next, we'll calculate the weighted average considering their relevance. In this example, we assume weights of `40%` for Trade-In, `20%` for Wholesale, `20%` for Private Party, and `20%` for Retail, but these can be adjusted as required based on market data.
+
+Drivly Price = `(0.4 * 58,704) + (0.2 * 57,889) + (0.2 * 72,566) + (0.2 * 72,807) ≈ $62,954`
+
+The Drivly Price, would be approximately `$62,954` for the vehicle with the given VIN `WP0CD29929S773682`.
+
+1. Calculate the mean price: `(58,704 + 57,889 + 72,566 + 72,807) / 4 = $65,241.5`
+2. Find the squared differences:
+
+- `(58,704 - 65,241.5)^2 = 42,735,969.25`
+- `(57,889 - 65,241.5)^2 = 53,919,863.25`
+- `(72,566 - 65,241.5)^2 = 53,534,497.25`
+- `(72,807 - 65,241.5)^2 = 57,387,798.25`
+
+3. Average the squared differences: `(42,735,969.25 + 53,919,863.25 + 53,534,497.25 + 57,387,798.25) / 4 = 51,894,532`
+4. Take the square root of that average: `√51,894,532 ≈ $7,206`
+
+The standard deviation of the pricing data is approximately **\$7,206**. This measure gives an idea of how widely spread or dispersed the average prices are.
+
+| Category      | NADA          | Black Book    | CarGurus | Edmunds         | KBB           | Manheim | Drivly  |
+| ------------- | ------------- | ------------- | -------- | --------------- | ------------- | ------- | ------- |
+| MSRP          | 139,300       | 139,300       | -        | -               | -             | -       | -       |
+| Trade-In      | 50,525-66,550 | 48,855-64,875 | 65,262   | 50,853-70,972\* | 61,081-61,891 | -       | -       |
+| Wholesale     | 45,550-57,701 | 51,975-64,575 | -        | 42,897-59,867\* | 57,788-72,600 | 68,500  | -       |
+| Private Party | -             | -             | 85,801   | 57,516-81,594\* | 62,061-62,871 | -       | -       |
+| Retail        | 57,250-73,275 | 57,950-75,225 | 88,522   | 60,805-87,681\* | 67,907-77,530 | -       | -       |
+| Loan          | 45,475-61,500 | 61,825-64,275 | -        | -               | -             | -       | -       |
+| STD           | -             | -             | -        | -               | -             | -       | $7,206  |
+| Drivly Price  | -             | -             | -        | -               | -             | -       | $62,954 |
+
+- For Edmunds, the range is based on the conditions: Rough, Average, Clean, and Outstanding.
+
+---
+
+### Drivly Price with confidence interval that takes the standard deviation into account.
+
+Using a single standard deviation (which typically accounts for about 68% of the data) to create a confidence interval:
+
+**Drivly Price**: \$62,954 ± \$7,206
+
+This means that we expect approximately 68% of the actual prices to fall within the range of \$55,748 to \$70,160. This gives users a sense of the variability and accuracy of the Drivly Price.
+
+For higher confidence, we can use two standard deviations (about 95% of the data) for the interval. So, approximately 95% of the actual prices should fall within the range of \$48,542 to \$77,366.
+
+This wider interval provides an even higher level of confidence in our pricing accuracy.
+
+---
+
+### Drivly Price with STD and Weighted Price algorithm:
+
+```javascript
+function calculateWeightedAverages(prices, weights) {
+  let weightedSum = 0
+  let totalWeights = 0
+
+  prices.forEach((price, index) => {
+    weightedSum += price * weights[index]
+    totalWeights += weights[index]
+  })
+
+  return weightedSum / totalWeights
+}
+
+function calculateStandardDeviation(array) {
+  const n = array.length
+  const mean = array.reduce((sum, val) => sum + val, 0) / n
+  const squaredDiff = array.map((val) => Math.pow(val - mean, 2))
+  const variance = squaredDiff.reduce((sum, val) => sum + val, 0) / n
+  const stdDev = Math.sqrt(variance)
+  return stdDev
+}
+
+const weights = [0.23, 0.18, 0.23, 0.14, 0.09, 0.13]
+
+const weightedAveragePrice = calculateWeightedAverages(averagePrices, weights)
+const standardDeviation = calculateStandardDeviation(averagePrices)
+const accuratePrice = weightedAveragePrice - standardDeviation
+const pricingConfidence = (1 - standardDeviation / weightedAveragePrice) * 100
+
+console.log('Weighted Average Price:', weightedAveragePrice)
+console.log('Accurate Price:', accuratePrice)
+console.log('Pricing Confidence Score:', pricingConfidence.toFixed(2) + '%')
+```
+
+How it works:
+
+1. We first calculate the average price for each pricing type (MSRP, Trade, Wholesale, Private Party, Retail, and Loan) and stores them in variables: `msrpAverage`, `tradeAverage`, `wholesaleAverage`, `privatePartyAverage`, `retailAverage`, and `loanAverage`.
+2. These average prices are then combined into an array `averagePrices`.
+3. The `calculateWeightedAverages` function computes the Weighted Average Price using the `averagePrices` array and the given weights.
+4. Finally, the code prints the Weighted Average Price.
+
+Outputs:
+
+**Weighted Average Price:** \$64,257.955
+**Drivly Price:** \$63,984.721 _\*considering the standard deviation_
+**Pricing Confidence Score:** 99.57% _\*high confidence level pricing accuracy_
+
+Drivly Price takes the `Weighted Average Price` into account by adjusting it based on the `standard deviation` (variability) of the prices from different sources. The intention of this adjustment is to provide a more reliable and realistic estimation of the car's price, acknowledging the inherent uncertainty and variability.
+
+These values indicate that the initial Weighted Average Price is $64,257.95, the Drivly Price (considering the standard deviation) is calculated to be approximately $63,984.72, and the Pricing Confidence Score is 99.57%, emphasizing the high confidence level in the estimated accurate price.
+
+---
+
+<Info title='Required integrations:' icon='link-horizontal' href='/connect/providers/integrations'>
+  Coming soon!
+</Info>
+
+### Adding in more variables to improve accuracy
+
+Expanding the dataset to include normalized Vehicle History, condition reports, OEM Build Options and high value features, and additional market data (Drivly Listings API).
+
+1. Vehicle History and Condition:
+
+   - Add vehicle's mileage, maintenance history, and wear and tear.
+   - Create a function to calculate condition adjustments based on the provided data from Drivly Connect providers.
+   - Modify the price estimates by applying the condition adjustments to each pricing type's average.
+
+2. Options and features:
+
+   - Include additional pricing properties in the `data` object to account for specific options and features.
+   - Create a function to calculate adjustments for each option and feature.
+   - Modify the price estimates by applying the options and features adjustments to each pricing type's average.
+
+3. Market data:
+   - Utilize Drivly's Listings API and Drivly Connect providers to add regional market data like local demand, supply, and car price trends.
+   - Create a function to calculate market adjustments based on the provided data.
+   - Modify the price estimates by applying the market adjustments to each pricing type's average.
+
+Here's an example of how we could implement part of the algorithm for `condition` using a `mileage` adjustment:
+
+```javascript
+// Update data object with car's condition (mileage) and a sample condition-based adjustment
+const data = {
+  // ...pre-existing data...
+  condition: {
+    mileage: 40000,
+    mileage_adjustment: {
+      mileage_30000: 0.95,
+      mileage_40000: 0.9,
+      mileage_60000: 0.85,
+      //...
+    },
+  },
+}
+
+function applyConditionAdjustment(basePrice, mileage, mileage_adjustment) {
+  if (mileage <= 30000) {
+    return basePrice * mileage_adjustment.mileage_30000
+  } else if (mileage > 30000 && mileage <= 40000) {
+    return basePrice * mileage_adjustment.mileage_40000
+  } else {
+    // Assuming mileage > 40000 and mileage <= 60000
+    return basePrice * mileage_adjustment.mileage_60000
+  }
+}
+
+const conditionAdjustedMSRP = applyConditionAdjustment(
+  msrpAverage,
+  data.condition.mileage,
+  data.condition.mileage_adjustment
+)
+// ... Do this for other pricing types
+
+// Update the averagePrices array with condition-adjusted prices
+// ...
+
+// Proceed with the existing algorithm to calculate the weighted average price and adjusted price
+```

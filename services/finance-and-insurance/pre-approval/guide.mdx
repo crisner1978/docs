@@ -1,0 +1,300 @@
+---
+title: 'Getting Started with Pre-Approvals'
+sidebarTitle: 'Guide'
+---
+
+---
+
+Get up and running with Pre-Approvals with our step-by-step guide.
+
+<Note>
+  This guide uses The official [Drivly SDK](/commerce/sdk) and
+  [Next.js](https://nextjs.org/docs/app/commerce/create-next-app).
+</Note>
+
+## Prerequisites
+
+Before diving into the integration process, ensure you have the following:
+
+1. **Sign up** for a Drivly account
+2. Create a [DRIVLY_API_KEY](/commerce/overview#authentication).
+3. Basic understanding of TypeScript and REST APIs.
+4. A secure environment for handling sensitive data.
+5. **Install** the Drivly SDK
+
+<CodeGroup>
+
+```bash Yarn
+yarn add @drivly/commerce
+```
+
+```bash NPM
+npm install @drivly/commerce
+```
+
+```bash PnPM
+pnpm install @drivly/commerce
+```
+
+```bash Bun
+bun add @drivly/commerce
+```
+
+```bash CDN
+<script src="https://unpkg.com/@drivly/commerce"></script>
+```
+
+</CodeGroup>
+
+<Warning>The SDK should be used on the Server to avoid leaking API keys</Warning>
+
+---
+
+## Overview
+
+The concept of pre-approvals is to allow a user to get pre-approved for a loan before they start shopping for a car. This allows the user to know how much they can afford and what their interest rate will be. This is a great way to get users to commit to a purchase.
+
+<Frame type='glass'>
+  <p class='font-medium text-sm p-4'>
+    Robert Jones is looking to buy a new car. He wants to know how much he can afford and what his
+    interest rate will be. He goes to the Drivly website and fills out a form to get pre-approved.
+  </p>
+</Frame>
+
+<StoryBoard>
+  Robert Jones is looking to buy a new car. He wants to know how much he can afford and what his interest rate will be. He goes to the Drivly website and fills out a form to get pre-approved.
+</StoryBoard>
+
+To complete this scenario, you will need to:
+
+1. [Install Dependencies](#install-dependencies)
+2. [Create a Schema](#create-a-schema)
+3. [Setup the SDK](#setup-the-sdk)
+4. [Create a Pre-Approval](#create-a-pre-approval)
+5. [_(Bonus) Update a Pre-Approval_](#update-a-pre-approval)
+
+## Install Dependencies
+
+This guide uses some other dependencies along with the Drivly SDK. Let's install those dependencies.
+
+<CodeGroup>
+
+```bash Yarn
+yarn add zod react-hook-form @hookform/resolvers
+```
+
+```bash NPM
+npm install zod react-hook-form @hookform/resolvers
+```
+
+```bash PnPM
+pnpm install zod react-hook-form @hookform/resolvers
+```
+
+```bash Bun
+bun add zod react-hook-form @hookform/resolvers
+```
+
+</CodeGroup>
+
+---
+
+## Create a Schema
+
+Next, we will use Zod to create a schema for the Pre-Approval. This schema will be used to validate the form data before we send it to the server.
+
+<CodeGroup>
+
+```javascript preapproval.schema.ts
+import * as z from 'zod'
+import { states } from './states'
+
+export const PreApprovalSchema = z.object({
+  firstName: z.string(),
+  middleInitial: z.string().optional(),
+  lastName: z.string(),
+  suffix: z.enum(['', 'JR', 'SR', 'II', 'III', 'IV']).optional().nullable(),
+  email: z.string().email(),
+  phone: z.string().min(5),
+  address: z.string(),
+  city: z.string(),
+  state: z.enum(statesArray),
+  zip: z.string().min(5),
+})
+
+export type PreApprovalSchemaType = z.infer<typeof PreApprovalSchema>
+```
+
+```jsx states.ts
+
+  export const states = [
+  'AA', 'AE', 'AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
+  'FM', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD',
+  'ME', 'MH', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ',
+  'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'PW', 'RI', 'SC', 'SD', 'TN',
+  'TX', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY', 'AP'
+  ] as const
+```
+
+</CodeGroup>
+
+<Warning>
+  The `states` is an array of all the states that are defined in the SDK's exported `interface
+  PreApproval`. You will need to either create this array or cast the value of `state` from `string`
+  to `as PreApproval['state']` to ensure that value is valid for the SDK.
+</Warning>
+
+---
+
+## Setup the SDK
+
+Let's create a singleton instance of the SDK and export it for use in our application.
+
+```javascript sdk.ts
+import { SDK } from '@drivly/commerce'
+
+export const sdk = SDK({
+  apiKey: process.env.DRIVLY_API_KEY as string,
+  environment: process.env.VERCEL_ENV === 'production' ? 'production' : 'sandbox',
+})
+```
+
+---
+
+## Create a Pre-Approval
+
+Now that we have the schema and the SDK setup, we can create the form that will be used to collect the user's information. We will use `react-hook-form` to handle the form state and `@hookform/resolvers` to use the Zod schema to validate the form data.
+
+<Note>**Server Side Integration**: Server Actions, Serverless Function, or API Route</Note>
+
+> We will Server Actions for this example.
+
+We also need a server action to handle the creation of the pre-approval. This action will use the SDK to create the pre-approval and return the pre-approval ID.
+
+<CodeGroup>
+
+```tsx PreApprovalForm.tsx
+import { PreApprovalSchema, PreApprovalSchemaType } from './PreApprovalSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { createPreApproval } from './preapproval.action'
+
+export default function PreApprovalForm() {
+  const form = useForm<PreApprovalSchemaType>({
+    resolver: zodResolver(PreApprovalSchema),
+    defaultValues: {
+      firstName: '',
+      middleInitial: '',
+      lastName: '',
+      suffix: undefined,
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+    },
+  })
+
+  const onSubmit: SubmitHandler<PreApprovalSchemaType> = async (data) => {
+    const result = await createPreApproval(data)
+    console.log(result.message)
+  }
+
+  return <form onSubmit={form.handleSubmit(onSubmit)}>{/* ... */}</form>
+}
+```
+
+```javascript preapproval.action.ts
+'use server'
+
+import { PreApproval } from '@drivly/commerce'
+import { sdk } from './sdk'
+
+export const createPreApproval = async (
+  params: Omit<PreApproval, 'id' | 'createdAt' | 'updatedAt'>
+) => {
+  try {
+    const result = await sdk?.commerce.preApprovals.create({
+      doc: params,
+    })
+
+    if (!result) throw new Error('Pre-approval not created')
+
+    console.log('Pre-approval created:', result)
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+</CodeGroup>
+
+---
+
+## Update a Pre-Approval
+
+If we need to update or add information to their pre-approval, we can use the `updatePreApproval` action.
+
+<CodeGroup>
+
+```javascript preapproval.action.ts
+'use server'
+
+import { UpdatePreApprovalParams } from './shared.param.types'
+import { sdk } from './sdk'
+
+export const updatePreApproval = async (params: UpdatePreApprovalParams) => {
+  try {
+    const { id, data } = params
+    const update = await sdk?.commerce.preApprovals.updateById({
+      id,
+      patch: data,
+    })
+
+    if (!update) throw new Error('Pre-approval failed to update')
+
+    console.log('Pre-approval updated:', update)
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+```javascript shared.param.types.ts
+import { PreApproval } from '@drivly/commerce'
+
+export interface UpdatePreApprovalParams {
+  id: string
+  data: Partial<PreApproval>
+  path: string
+}
+```
+
+</CodeGroup>
+
+---
+
+## Conclusion
+
+You have successfully created a form that will allow users to get pre-approved for a loan. You have also created a server action that will use the SDK to create the pre-approval. You can now use this form to get users pre-approved for a loan.
+
+You can also use the `updatePreApproval` action to update the pre-approval if more information is needed from the user (e.g. `income`).
+
+<Frame type='glass'>
+  <p class='font-medium text-sm p-4'>
+    Robert Jones can now fill out the form and get pre-approved for a loan. He can then use the
+    `preApprovalId` to associate himself with his pre-approval. This will allow you to show him cars
+    that he can afford and give him an idea of what his interest rate will be.
+  </p>
+</Frame>
+
+---
+
+## Next Steps
+
+Ready to get started with Pre-Approvals? Check out the official Drivly SDK documentation to learn more.
+
+<Card icon='book' href='/commerce/sdk' title='Drivly SDK Documentation'>
+  Learn how to use the Drivly SDK to create Pre-Approvals.
+</Card>
