@@ -187,19 +187,7 @@
               "group": "Pre-Approval",
               "pages": [
                 "services/finance-and-insurance/pre-approval/overview",
-                "services/finance-and-insurance/pre-approval/guide",
-                {
-                  "group": "Reference",
-                  "pages": [
-                    "services/finance-and-insurance/pre-approval/reference/find-pre-approval",
-                    "services/finance-and-insurance/pre-approval/reference/create-pre-approval",
-                    "services/finance-and-insurance/pre-approval/reference/get-pre-approval",
-                    "services/finance-and-insurance/pre-approval/reference/update-pre-approval",
-                    "services/finance-and-insurance/pre-approval/reference/get-pre-approval-versions",
-                    "services/finance-and-insurance/pre-approval/reference/get-pre-approval-version",
-                    "services/finance-and-insurance/pre-approval/reference/restore-pre-approval-version"
-                  ]
-                }
+                "services/finance-and-insurance/pre-approval/guide"
               ]
             },
             {
@@ -228,16 +216,6 @@
               "pages": [
                 "services/finance-and-insurance/gap-insurance/overview",
                 "services/finance-and-insurance/gap-insurance/guide"
-              ]
-            },
-            {
-              "group": "API Reference",
-              "pages": [
-                "services/finance-and-insurance/reference/pre-approval",
-                "services/finance-and-insurance/reference/credit-application",
-                "services/finance-and-insurance/reference/vehicle-service-contract",
-                "services/finance-and-insurance/reference/protection-plans",
-                "services/finance-and-insurance/reference/gap-insurance"
               ]
             }
           ]
@@ -465,6 +443,23 @@
           "group": "Market",
           "icon": "chart-line",
           "pages": ["data/market/overview"]
+        }
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "group": "Pre-Approval",
+          "pages": [
+            "services/reference/pre-approval/find-pre-approval",
+            "services/reference/pre-approval/create-pre-approval",
+            "services/reference/pre-approval/get-pre-approval",
+            "services/reference/pre-approval/update-pre-approval",
+            "services/reference/pre-approval/get-pre-approval-versions",
+            "services/reference/pre-approval/get-pre-approval-version",
+            "services/reference/pre-approval/restore-pre-approval-version"
+          ]
         }
       ]
     },
@@ -786,10 +781,8 @@
           "pages": [
             "commerce/endpoints/preapprovals/find-paginated-pre-approvals",
             "commerce/endpoints/preapprovals/create-a-new-pre-approval",
-            "commerce/endpoints/preapprovals/delete-multiple-pre-approvals",
             "commerce/endpoints/preapprovals/update-multiple-pre-approvals",
             "commerce/endpoints/preapprovals/get-a-single-pre-approval-by-its-id",
-            "commerce/endpoints/preapprovals/deletes-an-existing-pre-approval",
             "commerce/endpoints/preapprovals/updates-a-pre-approval",
             "commerce/endpoints/preapprovals/pre-approval-versions",
             "commerce/endpoints/preapprovals/get-a-single-pre-approval-version-by-its-id",
